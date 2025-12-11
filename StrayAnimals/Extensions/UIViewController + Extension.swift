@@ -9,20 +9,6 @@ import UIKit
 
 extension UIViewController {
     
-//    func checkIfInSigninFlow() -> Bool {
-//        if let nav = self as? UINavigationController {
-//            if let _ = nav.viewControllers.first as? WelcomeViewController {
-//                return true
-//            } else if let _ = nav.viewControllers.first as? LoginViewController {
-//                return true
-//            } else {
-//                return false
-//            }
-//        } else {
-//            return false
-//        }
-//    }
-    
     func presentFullScreen(_ viewControllerToPresent: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         if self.presentedViewController == nil { // MARK: - Fix present modally an active controller,
             //MARK: - Remove run in main thread code because of present modally issue
