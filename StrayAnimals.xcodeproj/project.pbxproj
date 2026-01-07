@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC4E069E2E62F5AC002B6904 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E069D2E62F5AC002B6904 /* ViewController.swift */; };
+		EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */; };
+		EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */; };
+		EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E069D2E62F5AC002B6904 /* ListViewController.swift */; };
 		EC4E06A32E62F5AD002B6904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4E06A22E62F5AD002B6904 /* Assets.xcassets */; };
 		EC4E06A62E62F5AD002B6904 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC4E06A52E62F5AD002B6904 /* Base */; };
 		ECDB41102EB9E32900AEB3FB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECDB410F2EB9E32900AEB3FB /* SnapKit */; };
@@ -19,10 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewItem.swift; sourceTree = "<group>"; };
 		EC4E06962E62F5AC002B6904 /* StrayAnimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrayAnimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4E06992E62F5AC002B6904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4E069B2E62F5AC002B6904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EC4E069D2E62F5AC002B6904 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC4E069D2E62F5AC002B6904 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		EC4E06A22E62F5AD002B6904 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC4E06A52E62F5AD002B6904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4E06A72E62F5AD002B6904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,10 +76,10 @@
 			children = (
 				EC4E06992E62F5AC002B6904 /* AppDelegate.swift */,
 				EC4E069B2E62F5AC002B6904 /* SceneDelegate.swift */,
-				EC4E069D2E62F5AC002B6904 /* ViewController.swift */,
 				EC4E06A22E62F5AD002B6904 /* Assets.xcassets */,
 				EC4E06A42E62F5AD002B6904 /* LaunchScreen.storyboard */,
 				EC4E06A72E62F5AD002B6904 /* Info.plist */,
+				ECDB429A2EEA94F900AEB3FB /* Main */,
 				1DBB3D842E7AB5D700568B53 /* Utilities */,
 				1DBB3D762E7AB5C900568B53 /* Extensions */,
 				1DBB3D682E7AB5B900568B53 /* CustomView */,
@@ -92,6 +96,16 @@
 				ECDB413A2ED4C27300AEB3FB /* AnimalEnum.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ECDB429A2EEA94F900AEB3FB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E069D2E62F5AC002B6904 /* ListViewController.swift */,
+				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
+				EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,10 +189,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECF5781B2E63F83C00F5959F /* AppDelegate.swift in Sources */,
-				EC4E069E2E62F5AC002B6904 /* ViewController.swift in Sources */,
+				EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */,
 				ECDB413B2ED4C27300AEB3FB /* AnimalEnum.swift in Sources */,
 				ECDB41382ED4437A00AEB3FB /* PetData.swift in Sources */,
 				ECF5781C2E63F83E00F5959F /* SceneDelegate.swift in Sources */,
+				EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */,
+				EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

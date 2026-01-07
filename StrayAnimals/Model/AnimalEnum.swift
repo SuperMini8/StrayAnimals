@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 // MARK: - 台灣地區
 enum TaiwanArea: Int, Codable {
     /// 02 台北市
@@ -289,6 +290,32 @@ enum AnimalKind: String, Codable {
         try container.encode(rawValue)
     }
     
+    func displayTitleText() -> String {
+        var text = "類型："
+        switch self {
+        case .dog:
+            text += "狗"
+        case .cat:
+            text += "貓"
+        case .other:
+            text += "其他"
+        }
+        return text
+    }
+    
+    func defaultIamge() -> UIImage? {
+        var imageName = ""
+        switch self {
+        case .dog:
+            imageName = ImageNameBook.dog.rawValue
+        case .cat:
+            imageName = ImageNameBook.cat.rawValue
+        case .other:
+            imageName = ImageNameBook.dogAndCat.rawValue
+        }
+        return UIImage(named: imageName)
+    }
+    
 }
 // MARK: - 寵物性別
 enum AnimalSex: String, Codable {
@@ -305,15 +332,28 @@ enum AnimalSex: String, Codable {
         try container.encode(rawValue)
     }
     
-    func sexName() -> String {
+    func sexImageName() -> String {
         var name: String = ""
         switch self {
         case .male:
-            name = "公"
+            name = ImageNameBook.gender.rawValue
         case .female:
-            name = "母"
+            name = ImageNameBook.female.rawValue
         case .unknown:
-            name = "未知性別"
+            name = ImageNameBook.questionMark.rawValue
+        }
+        return name
+    }
+    
+    func displaySexName() -> String {
+        var name: String = "性別："
+        switch self {
+        case .male:
+            name += "公"
+        case .female:
+            name += "母"
+        case .unknown:
+            name += "未知性別"
         }
         return name
     }
@@ -367,14 +407,14 @@ enum AnimalAge: String, Codable {
     }
     
     func AgeText() -> String {
-        var text: String = ""
+        var text: String = "年紀："
         switch self {
         case .child:
-            text = "幼年"
+            text += "幼年"
         case .adult:
-            text = "成年"
+            text += "成年"
         case .unknown:
-            text = "未知年齡"
+            text += "未知年齡"
         }
         return text
     }
@@ -453,18 +493,18 @@ enum AnimalStatus: String, Codable {
     }
     
     func statusText() -> String {
-        var text: String = ""
+        var text: String = "待認養狀態："
         switch self {
         case .none:
-            text = "未公告"
+            text += "未公告"
         case .openAdoption:
-            text = "開放認養"
+            text += "開放認養"
         case .adopted:
-            text = "已認養"
+            text += "已認養"
         case .other:
-            text = "其他"
+            text += "其他"
         case .dead:
-            text = "死亡"
+            text += "死亡"
         }
         return text
     }

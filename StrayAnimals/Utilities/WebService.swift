@@ -70,7 +70,7 @@ class PetWebService {
     /// 動物所屬收容所名稱
     var shelterName: PetShelter?
     
-    func combinedURLString() -> String {
+    private func combinedURLString() -> String {
         
         var urlString = petDataUrlString
         

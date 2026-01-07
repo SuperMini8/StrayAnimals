@@ -12,5 +12,5 @@ https://data.moa.gov.tw/open_detail.aspx?id=QcbUEzN6E6DL
 5. Code UI
 
 畫面：
-1. List
+1. List (CollectionView 使用 UICollectionViewCompositionalLayout)
 2. Information
