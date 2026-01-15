@@ -3,10 +3,7 @@ import Foundation
 
 enum Language: String {
     case english = "en"
-    case filipino_Philippines = "fil-PH"
-    case indonesian = "id"
-    case thai = "th"
-    case vietnamese = "vi"
+    case chinese = "zh-Hant"
 }
 
 class LocalizedHelper {
@@ -19,11 +16,11 @@ class LocalizedHelper {
     
 }
 
-func LString(_ string: String, commit: String = "") -> String {
+func LString(_ string: String, comment: String = "") -> String {
     guard let path = Bundle.main.path(forResource: LocalizedHelper.shared.currentLanguage.rawValue,
                                 ofType: "lproj"),
           let bundle = Bundle(path: path)
     else { return "" }
     
-    return NSLocalizedString(string, bundle: bundle, comment: commit)
+    return NSLocalizedString(string, bundle: bundle, comment: comment)
 }

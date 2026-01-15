@@ -3,10 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D36306F2F188F210071D131 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D36306D2F188F210071D131 /* Localizable.strings */; };
+		1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630712F188FBE0071D131 /* FontGroup.swift */; };
+		1D3630782F188FBE0071D131 /* ImageNameBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630722F188FBE0071D131 /* ImageNameBook.swift */; };
+		1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630732F188FBE0071D131 /* LocalizedHelper.swift */; };
+		1D36307B2F188FBE0071D131 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630752F188FBE0071D131 /* WebService.swift */; };
+		1D36308B2F188FC60071D131 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630802F188FC60071D131 /* UIColor + Extensions.swift */; };
+		1D36308C2F188FC60071D131 /* UIImage + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630812F188FC60071D131 /* UIImage + Extensions.swift */; };
+		1D36308D2F188FC60071D131 /* UILabel + Extensions .swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630822F188FC60071D131 /* UILabel + Extensions .swift */; };
+		1D3630902F188FC60071D131 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630852F188FC60071D131 /* UIViewController + Extension.swift */; };
+		1D3630932F1896E50071D131 /* PetWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630922F1896E50071D131 /* PetWebService.swift */; };
 		EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */; };
 		EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */; };
 		EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E069D2E62F5AC002B6904 /* ListViewController.swift */; };
@@ -21,6 +31,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D36306C2F188D0D0071D131 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		1D36306E2F188F210071D131 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1D3630702F188F6A0071D131 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1D3630712F188FBE0071D131 /* FontGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontGroup.swift; sourceTree = "<group>"; };
+		1D3630722F188FBE0071D131 /* ImageNameBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameBook.swift; sourceTree = "<group>"; };
+		1D3630732F188FBE0071D131 /* LocalizedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedHelper.swift; sourceTree = "<group>"; };
+		1D3630752F188FBE0071D131 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		1D3630802F188FC60071D131 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
+		1D3630812F188FC60071D131 /* UIImage + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extensions.swift"; sourceTree = "<group>"; };
+		1D3630822F188FC60071D131 /* UILabel + Extensions .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions .swift"; sourceTree = "<group>"; };
+		1D3630852F188FC60071D131 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		1D3630922F1896E50071D131 /* PetWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWebService.swift; sourceTree = "<group>"; };
 		EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewItem.swift; sourceTree = "<group>"; };
 		EC4E06962E62F5AC002B6904 /* StrayAnimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrayAnimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,13 +57,6 @@
 		ECF578172E62F61100F5959F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		1DBB3D622E7AB59E00568B53 /* CustomButton */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CustomButton; sourceTree = "<group>"; };
-		1DBB3D682E7AB5B900568B53 /* CustomView */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CustomView; sourceTree = "<group>"; };
-		1DBB3D762E7AB5C900568B53 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
-		1DBB3D842E7AB5D700568B53 /* Utilities */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utilities; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		EC4E06932E62F5AC002B6904 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -54,6 +69,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D3630762F188FBE0071D131 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1D3630712F188FBE0071D131 /* FontGroup.swift */,
+				1D3630722F188FBE0071D131 /* ImageNameBook.swift */,
+				1D3630732F188FBE0071D131 /* LocalizedHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1D3630862F188FC60071D131 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1D3630802F188FC60071D131 /* UIColor + Extensions.swift */,
+				1D3630812F188FC60071D131 /* UIImage + Extensions.swift */,
+				1D3630822F188FC60071D131 /* UILabel + Extensions .swift */,
+				1D3630852F188FC60071D131 /* UIViewController + Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1D3630912F1896C70071D131 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				1D3630752F188FBE0071D131 /* WebService.swift */,
+				1D3630922F1896E50071D131 /* PetWebService.swift */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
 		EC4E068D2E62F5AC002B6904 = {
 			isa = PBXGroup;
 			children = (
@@ -79,11 +124,11 @@
 				EC4E06A22E62F5AD002B6904 /* Assets.xcassets */,
 				EC4E06A42E62F5AD002B6904 /* LaunchScreen.storyboard */,
 				EC4E06A72E62F5AD002B6904 /* Info.plist */,
+				1D36306D2F188F210071D131 /* Localizable.strings */,
+				1D3630912F1896C70071D131 /* WebService */,
 				ECDB429A2EEA94F900AEB3FB /* Main */,
-				1DBB3D842E7AB5D700568B53 /* Utilities */,
-				1DBB3D762E7AB5C900568B53 /* Extensions */,
-				1DBB3D682E7AB5B900568B53 /* CustomView */,
-				1DBB3D622E7AB59E00568B53 /* CustomButton */,
+				1D3630762F188FBE0071D131 /* Utilities */,
+				1D3630862F188FC60071D131 /* Extensions */,
 				ECDB41392ED4441900AEB3FB /* Model */,
 			);
 			path = StrayAnimals;
@@ -123,12 +168,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				1DBB3D622E7AB59E00568B53 /* CustomButton */,
-				1DBB3D682E7AB5B900568B53 /* CustomView */,
-				1DBB3D762E7AB5C900568B53 /* Extensions */,
-				1DBB3D842E7AB5D700568B53 /* Utilities */,
-			);
 			name = StrayAnimals;
 			productName = StrayAnimals;
 			productReference = EC4E06962E62F5AC002B6904 /* StrayAnimals.app */;
@@ -142,7 +181,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					EC4E06952E62F5AC002B6904 = {
 						CreatedOnToolsVersion = 15.4;
@@ -151,11 +190,12 @@
 			};
 			buildConfigurationList = EC4E06912E62F5AC002B6904 /* Build configuration list for PBXProject "StrayAnimals" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hant";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = EC4E068D2E62F5AC002B6904;
 			packageReferences = (
@@ -176,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4E06A32E62F5AD002B6904 /* Assets.xcassets in Resources */,
+				1D36306F2F188F210071D131 /* Localizable.strings in Resources */,
 				EC4E06A62E62F5AD002B6904 /* Base in Resources */,
 				ECF578182E62F61100F5959F /* README.md in Resources */,
 			);
@@ -191,6 +232,15 @@
 				ECF5781B2E63F83C00F5959F /* AppDelegate.swift in Sources */,
 				EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */,
 				ECDB413B2ED4C27300AEB3FB /* AnimalEnum.swift in Sources */,
+				1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */,
+				1D3630782F188FBE0071D131 /* ImageNameBook.swift in Sources */,
+				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
+				1D3630932F1896E50071D131 /* PetWebService.swift in Sources */,
+				1D36308B2F188FC60071D131 /* UIColor + Extensions.swift in Sources */,
+				1D36308C2F188FC60071D131 /* UIImage + Extensions.swift in Sources */,
+				1D36308D2F188FC60071D131 /* UILabel + Extensions .swift in Sources */,
+				1D3630902F188FC60071D131 /* UIViewController + Extension.swift in Sources */,
+				1D36307B2F188FBE0071D131 /* WebService.swift in Sources */,
 				ECDB41382ED4437A00AEB3FB /* PetData.swift in Sources */,
 				ECF5781C2E63F83E00F5959F /* SceneDelegate.swift in Sources */,
 				EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */,
@@ -201,10 +251,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1D36306D2F188F210071D131 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1D36306E2F188F210071D131 /* zh-Hant */,
+				1D3630702F188F6A0071D131 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		EC4E06A42E62F5AD002B6904 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EC4E06A52E62F5AD002B6904 /* Base */,
+				1D36306C2F188D0D0071D131 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -217,6 +277,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -247,6 +308,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = BJ3K623YKW;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -271,6 +333,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -280,6 +343,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -310,6 +374,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BJ3K623YKW;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -327,6 +392,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -338,7 +404,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BJ3K623YKW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StrayAnimals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -366,7 +431,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BJ3K623YKW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StrayAnimals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

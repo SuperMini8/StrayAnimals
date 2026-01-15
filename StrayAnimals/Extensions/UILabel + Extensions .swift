@@ -14,16 +14,6 @@ extension UILabel {
         case right
     }
     
-    func setUnderline(_ text: String, color: UIColor? = nil) {
-        var attributes: [NSAttributedString.Key: Any] = [
-            .underlineStyle: NSUnderlineStyle.single.rawValue
-        ]
-        if let color = color {
-            attributes[.underlineColor] = color
-        }
-        self.attributedText = NSAttributedString(string: text, attributes: attributes)
-    }
-    
     func setTextAndImage(text: String, font: UIFont, imageName: String, imageArrangement: ImageArrangementType) {
         // 處理圖片
         let attText = NSMutableAttributedString()
