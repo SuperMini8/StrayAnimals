@@ -68,9 +68,11 @@ final class WebService {
                  urlString: String,
                  headers: [String : String] = [:],
                                body: Data? = nil) ->AnyPublisher<T, WebServiceError> {
+        /// 先處理 URL 轉型失敗
         guard let request = createRequest(method: method, urlString: urlString, headers: headers, body: body) else {
             return Fail(error: WebServiceError.invalidURL("\(urlString) init URL is invalid")).eraseToAnyPublisher()
         }
+        
         return session.dataTaskPublisher(for: request)
         /// 轉換網路層錯誤
             .mapError { WebServiceError.transportError($0) }
@@ -109,9 +111,8 @@ final class WebService {
     
 }
 
-// MARK: - Backward compatibility (optional)
+// MARK: - 為了舊畫面，先留著
 extension WebService {
-    /// If you still need a callback-based API somewhere, you can bridge to Combine and resubscribe here.
     /// 建立一個 Request
     private func buildRequest(
         type: RequestType,
