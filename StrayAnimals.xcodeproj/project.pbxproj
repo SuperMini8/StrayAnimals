@@ -17,6 +17,7 @@
 		1D36308D2F188FC60071D131 /* UILabel + Extensions .swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630822F188FC60071D131 /* UILabel + Extensions .swift */; };
 		1D3630902F188FC60071D131 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630852F188FC60071D131 /* UIViewController + Extension.swift */; };
 		1D3630932F1896E50071D131 /* PetWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630922F1896E50071D131 /* PetWebService.swift */; };
+		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
 		EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */; };
 		EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */; };
 		EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E069D2E62F5AC002B6904 /* ListViewController.swift */; };
@@ -43,6 +44,7 @@
 		1D3630822F188FC60071D131 /* UILabel + Extensions .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extensions .swift"; sourceTree = "<group>"; };
 		1D3630852F188FC60071D131 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		1D3630922F1896E50071D131 /* PetWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWebService.swift; sourceTree = "<group>"; };
+		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewItem.swift; sourceTree = "<group>"; };
 		EC4E06962E62F5AC002B6904 /* StrayAnimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrayAnimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 			children = (
 				1D3630752F188FBE0071D131 /* WebService.swift */,
 				1D3630922F1896E50071D131 /* PetWebService.swift */,
+				1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */,
 			);
 			path = WebService;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */,
 				1D3630782F188FBE0071D131 /* ImageNameBook.swift in Sources */,
 				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
+				1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */,
 				1D3630932F1896E50071D131 /* PetWebService.swift in Sources */,
 				1D36308B2F188FC60071D131 /* UIColor + Extensions.swift in Sources */,
 				1D36308C2F188FC60071D131 /* UIImage + Extensions.swift in Sources */,
