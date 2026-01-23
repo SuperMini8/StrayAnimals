@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class ListViewModel {
     
@@ -13,16 +14,19 @@ class ListViewModel {
     
     var reloadList: (() -> Void)?
     
+    private let petWebService = PetWebService()
+    private var cancellables = Set<AnyCancellable>()
+    
     func getPetData(top: Int, skip: Int) {
-        let petWebService = PetWebService()
         petWebService.topAmount = top
         petWebService.skipAmount = skip
-        petWebService.searchPetData { [weak self] data in
-            guard let self, let data = data else { return }
-            self.pets = data
-            DispatchQueue.main.async { [ weak self] in
+        petWebService.searchPetDataPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in
+            }, receiveValue: { [weak self] data in
+                self?.pets = data
                 self?.reloadList?()
-            }
-        }
+            })
+            .store(in: &cancellables)
     }
 }
