@@ -10,14 +10,6 @@ import Combine
 
 final class WebService {
     
-    enum RequestType: String {
-        case get   = "GET"
-        case post  = "POST"
-        case put   = "PUT"
-        case patch = "PATCH"
-        case delete = "DELETE"
-    }
-    
     enum WebServiceError: Error {
         /// String 轉換成 URL 失敗
         case invalidURL(String)
@@ -47,7 +39,7 @@ final class WebService {
     }
     
     /// 建立 Request
-    private func createRequest(method: RequestType,
+    private func createRequest(method: HTTPMethod,
                                urlString: String,
                                headers: [String: String] = [:],
                                body: Data? = nil) -> URLRequest? {
@@ -64,7 +56,7 @@ final class WebService {
     }
     
     /// 發送 Request 並且 decode data
-    func request<T: Decodable>(method: RequestType,
+    func request<T: Decodable>(method: HTTPMethod,
                  urlString: String,
                  headers: [String : String] = [:],
                                body: Data? = nil) ->AnyPublisher<T, WebServiceError> {
@@ -115,7 +107,7 @@ final class WebService {
 extension WebService {
     /// 建立一個 Request
     private func buildRequest(
-        type: RequestType,
+        type: HTTPMethod,
         url: URL,
         headers: [String: String] = [:],
         httpBody: Data? = nil
@@ -131,7 +123,7 @@ extension WebService {
     }
     
     static func urlSessionRequest(
-        type: RequestType,
+        type: HTTPMethod,
         url: URL,
         headers: [String: String] = [:],
         httpBody: Data? = nil,

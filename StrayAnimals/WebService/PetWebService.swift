@@ -93,7 +93,7 @@ class PetWebService {
         }
         
         if let petColor = animalColor {
-            urlString += "&animal_color=\(petColor)"
+            urlString += "&animal_colour=\(petColor)"
         }
         
         if let petAge = animalAge {
