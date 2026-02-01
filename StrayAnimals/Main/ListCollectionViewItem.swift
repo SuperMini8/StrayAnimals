@@ -108,14 +108,14 @@ class ListCollectionViewItem: UICollectionViewCell {
     
     func configure(vm: PetData?) {
         viewModel = vm
-        imageView.image = vm?.animal_kind.defaultIamge()
-        animalKindLabel.setTextAndImage(text: vm?.animal_kind.displayTitleText() ?? "",
+        imageView.image = vm?.animalKind.defaultIamge()
+        animalKindLabel.setTextAndImage(text: vm?.animalKind.displayTitleText() ?? "",
                                         font: FontGroup.font(.regular, .small),
-                                        imageName: vm?.animal_sex.sexImageName() ?? "",
+                                        imageName: vm?.animalSex.sexImageName() ?? "",
                                         imageArrangement: .right)
-        animalStatusLabel.text = vm?.animal_status.statusText()
-        animalAgeLabel.text = vm?.animal_age.AgeText()
-        animalPlaceLabel.text = vm?.animal_place
+        animalStatusLabel.text = vm?.animalStatus.statusText()
+        animalAgeLabel.text = vm?.animalAge.AgeText()
+        animalPlaceLabel.text = vm?.animalPlace
     }
     
     func setImage(_ image: UIImage?) {

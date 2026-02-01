@@ -1,9 +1,3 @@
-//
-//  UIViewController + Extension.swift
-//  RemitExchange
-//
-//  Created by Lily TSAI 蔡佳玲 on 2025/7/30.
-//
 
 import UIKit
 

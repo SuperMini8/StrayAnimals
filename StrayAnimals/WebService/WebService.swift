@@ -11,8 +11,6 @@ import Combine
 final class WebService {
     
     enum WebServiceError: Error {
-        /// String 轉換成 URL 失敗
-        case invalidURL(String)
         /// 網路層錯誤
         case transportError(URLError)
         /// 無效的 response
@@ -28,42 +26,15 @@ final class WebService {
     /// 引用依賴注入，為了方便測試
     private let session: URLSession
     private let decoder: JSONDecoder
-    /// 預設的 Header ， 也可根據需求覆蓋
-    private let defaultHeaders: [String: String]
     
-    /// 這裡注入預設的 Header
-    init(session: URLSession = .shared, decoder: JSONDecoder = JSONDecoder(), defaultHeaders: [String: String] = [:]) {
+    init(session: URLSession = .shared,
+         decoder: JSONDecoder = JSONDecoder.apiDefault) {
         self.session = session
         self.decoder = decoder
-        self.defaultHeaders = defaultHeaders
-    }
-    
-    /// 建立 Request
-    private func createRequest(method: HTTPMethod,
-                               urlString: String,
-                               headers: [String: String] = [:],
-                               body: Data? = nil) -> URLRequest? {
-        guard let url = URL(string: urlString) else {
-            return nil
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        /// 加入與覆蓋預設的 Header
-        let merged = defaultHeaders.merging(headers) { _, new in new }
-        request.allHTTPHeaderFields = merged
-        request.httpBody = body
-        return request
     }
     
     /// 發送 Request 並且 decode data
-    func request<T: Decodable>(method: HTTPMethod,
-                 urlString: String,
-                 headers: [String : String] = [:],
-                               body: Data? = nil) ->AnyPublisher<T, WebServiceError> {
-        /// 先處理 URL 轉型失敗
-        guard let request = createRequest(method: method, urlString: urlString, headers: headers, body: body) else {
-            return Fail(error: WebServiceError.invalidURL("\(urlString) init URL is invalid")).eraseToAnyPublisher()
-        }
+    func request<T: Decodable>(_ request: URLRequest) ->AnyPublisher<T, WebServiceError> {
         
         return session.dataTaskPublisher(for: request)
         /// 轉換網路層錯誤
@@ -89,12 +60,8 @@ final class WebService {
             .decode(type: T.self, decoder: decoder)
         /// 轉換 Decode Error 為 WebServiceError ，其他已轉換好的直接扔出
             .mapError { error in
-                if let wse = error as? WebServiceError {
-                    return wse
-                }
-                if error is DecodingError {
-                    return .decodeError(error)
-                }
+                if let wse = error as? WebServiceError { return wse }
+                if error is DecodingError { return .decodeError(error) }
                 /// 其他的 error
                 return .unknown(error)
             }
@@ -115,9 +82,6 @@ extension WebService {
         var request = URLRequest(url: url)
         request.httpMethod = type.rawValue
         /// 加入與覆蓋預設 Header
-        var merged = defaultHeaders
-        headers.forEach { merged[$0.key] = $0.value }
-        request.allHTTPHeaderFields = merged
         request.httpBody = httpBody
         return request
     }
@@ -129,6 +93,7 @@ extension WebService {
         httpBody: Data? = nil,
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void
     ) {
+        
         let service = WebService()
         let request = service.buildRequest(type: type, url: url, headers: headers, httpBody: httpBody)
         URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()

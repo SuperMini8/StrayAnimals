@@ -1,9 +1,3 @@
-//
-//  UIImage + Extensions.swift
-//  RemitExchange
-//
-//  Created by Elma YEH 葉品妤 on 2025/8/25.
-//
 
 import UIKit
 

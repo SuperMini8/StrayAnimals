@@ -19,11 +19,31 @@ enum HTTPMethod: String {
 }
 
 enum ParameterEncoding {
-    case urlQuery
-    case jsonBody
+    case none
+    case json
+    case formURLEncoded
+    
+    var contentType: ContentType? {
+        switch self {
+        case .none:
+            return nil
+        case .json:
+            return .json
+        case .formURLEncoded:
+            return .formURLEncoded
+        }
+    }
+}
+
+enum ContentType: String {
+    /// 傳送 json 格式 body
+    case json = "application/json"
+    /// 傳送 URLEncoding 格式 body
+    case formURLEncoded = "application/x-www-form-urlencoded; charset=utf-8"
 }
 
 protocol EndpointType {
+    var scheme: String { get }
     var service: ServiceHost { get }
     var path: String { get }
     var method: HTTPMethod { get }
@@ -31,19 +51,22 @@ protocol EndpointType {
     var queryItems: [URLQueryItem]? { get }
     var headers: HTTPHeaders { get }
     var body: Data? { get }
-    var encoding: ParameterEncoding { get }
+    var bodyEncoding: ParameterEncoding { get }
+    var timeout: TimeInterval { get }
 }
 
 extension EndpointType {
+    var scheme: String { "https" }
     var queryItems: [URLQueryItem]? { nil }
     var headers: HTTPHeaders { [:] }
     var body: Data? { nil }
-    var encoding: ParameterEncoding { .urlQuery } // 預設 GET 行為
+    var bodyEncoding: ParameterEncoding { .none }
+    var timeout: TimeInterval { 30 } // 預設 30 秒 Timeout
 }
 
 enum APIEndpoint: EndpointType {
     
-    case strayAnimalList(quary: StrayAnimalListQuery)
+    case strayAnimalList(query: StrayAnimalListQuery)
     
     var service: ServiceHost {
         switch self {
@@ -55,7 +78,7 @@ enum APIEndpoint: EndpointType {
     var path: String {
         switch self {
         case .strayAnimalList:
-            return "Service/OpenData/TransService.aspx"
+            return "/Service/OpenData/TransService.aspx"
         }
     }
     
@@ -68,15 +91,15 @@ enum APIEndpoint: EndpointType {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        case .strayAnimalList(let quary):
-            return [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + quary.toQueryItems()
+        case .strayAnimalList(let query):
+            return [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems()
         }
     }
     
-    var encoding: ParameterEncoding {
+    var bodyEncoding: ParameterEncoding {
         switch self {
         case .strayAnimalList:
-            return .urlQuery
+            return .none
         }
     }
         

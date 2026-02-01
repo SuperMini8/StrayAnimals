@@ -13,12 +13,16 @@ final class EnvironmentManager {
     
     private init() {}
     
+    private let envString: String = {
+            Bundle.main.infoDictionary?["APP_ENV"] as? String ?? "prod"
+        }()
+    
     var currentEnvironment: APIEnvironment {
-        #if DEBUG
-            return .dev
-        #else
-            return .production
-        #endif
+        switch envString {
+        case "dev": return .dev
+        case "prod": return .production
+        default: return .production
+        }
     }
     
     /// 是否為開發環境

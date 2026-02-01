@@ -1,9 +1,3 @@
-//
-//  UILabel + Extensions .swift
-//  RemitExchange
-//
-//  Created by Lily TSAI 蔡佳玲 on 2025/8/14.
-//
 
 import UIKit
 

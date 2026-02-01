@@ -14,6 +14,4 @@ enum APIEnvironment {
     case dev
     case production
     
-    var scheme: String { "https" }
-    
 }

@@ -145,7 +145,8 @@ class PetWebService {
             }
             
             do {
-                let petDatas = try JSONDecoder().decode([PetData].self, from: data)
+                let decoder = JSONDecoder.apiDefault
+                let petDatas = try decoder.decode([PetData].self, from: data)
                 completion(petDatas)
             } catch {
                 print(error)
