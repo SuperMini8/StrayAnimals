@@ -28,7 +28,7 @@ final class WebService {
     private let decoder: JSONDecoder
     
     init(session: URLSession = .shared,
-         decoder: JSONDecoder = JSONDecoder.apiDefault) {
+         decoder: JSONDecoder = .apiDefault) {
         self.session = session
         self.decoder = decoder
     }
@@ -51,7 +51,10 @@ final class WebService {
             }
         /// 處理 data 有可能是 Empty 的情況，需要 decode 正常
             .map { data -> Data in
-                if T.self is EmptyDecodable.Type, data.isEmpty {
+                if T.self is EmptyDecodable.Type,
+                   let string = String(data: data, encoding: .utf8),
+                   string.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    
                     return Data("{}".utf8)
                 }
                 return data
@@ -73,7 +76,7 @@ final class WebService {
 // MARK: - 為了舊畫面，先留著
 extension WebService {
     /// 建立一個 Request
-    private func buildRequest(
+    private static func buildRequest(
         type: HTTPMethod,
         url: URL,
         headers: [String: String] = [:],
@@ -82,6 +85,9 @@ extension WebService {
         var request = URLRequest(url: url)
         request.httpMethod = type.rawValue
         /// 加入與覆蓋預設 Header
+        headers.forEach { key, value in
+            request.setValue(value, forHTTPHeaderField: key)
+        }
         request.httpBody = httpBody
         return request
     }
@@ -94,8 +100,8 @@ extension WebService {
         completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void
     ) {
         
-        let service = WebService()
-        let request = service.buildRequest(type: type, url: url, headers: headers, httpBody: httpBody)
+        let request = buildRequest(type: type, url: url, headers: headers, httpBody: httpBody)
+        
         URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
     }
 }
