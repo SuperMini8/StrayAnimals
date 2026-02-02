@@ -42,6 +42,7 @@ class ListViewController: UIViewController {
         setUI()
         setBind()
         viewModel.getPetData(top: 10, skip: 10)
+        viewModel.getPetData()
     }
     
     private func setUI() {

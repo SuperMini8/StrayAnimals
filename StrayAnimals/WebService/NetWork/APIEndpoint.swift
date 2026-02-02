@@ -43,6 +43,7 @@ enum ContentType: String {
 }
 
 protocol EndpointType {
+    associatedtype response: Decodable
     var scheme: String { get }
     var service: ServiceHost { get }
     var path: String { get }
@@ -64,43 +65,16 @@ extension EndpointType {
     var timeout: TimeInterval { 30 } // 預設 30 秒 Timeout
 }
 
-enum APIEndpoint: EndpointType {
+enum APIEndpoint {
     
-    case strayAnimalList(query: StrayAnimalListQuery)
-    
-    var service: ServiceHost {
-        switch self {
-        case .strayAnimalList:
-            return .gov
-        }
-    }
-    
-    var path: String {
-        switch self {
-        case .strayAnimalList:
-            return "/Service/OpenData/TransService.aspx"
-        }
-    }
-    
-    var method: HTTPMethod {
-        switch self {
-        case .strayAnimalList:
-            return .get
-        }
-    }
-    
-    var queryItems: [URLQueryItem]? {
-        switch self {
-        case .strayAnimalList(let query):
-            return [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems()
-        }
-    }
-    
-    var bodyEncoding: ParameterEncoding {
-        switch self {
-        case .strayAnimalList:
-            return .none
-        }
-    }
+    struct StrayAnimalList: EndpointType {
+        typealias response = [PetData]
         
+        var service: ServiceHost { .gov }
+        var path: String { "/Service/OpenData/TransService.aspx" }
+        var method: HTTPMethod { .get }
+        let query: StrayAnimalListQuery
+        var queryItems: [URLQueryItem]? { [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems() }
+        
+    }
 }

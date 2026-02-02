@@ -25,4 +25,11 @@ class ListViewModel {
             }
         }
     }
+    
+    func getPetData() {
+        let webservice = WebService()
+        var query = StrayAnimalListQuery()
+        query.setPage(1, size: 10)
+        print(webservice.sendRequest(with: APIEndpoint.StrayAnimalList(query: query)).values)
+    }
 }
