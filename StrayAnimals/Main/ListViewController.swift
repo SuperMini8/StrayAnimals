@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 class ListViewController: UIViewController {
+    
+    var cancellables = Set<AnyCancellable>()
     
     private lazy var titleView: UILabel = {
         let label = UILabel()
@@ -41,7 +44,6 @@ class ListViewController: UIViewController {
         setNavBarAppearance()
         setUI()
         setBind()
-        viewModel.getPetData(top: 10, skip: 10)
         viewModel.getPetData()
     }
     
@@ -57,9 +59,11 @@ class ListViewController: UIViewController {
     }
     
     func setBind() {
-        viewModel.reloadList = { [ weak self ] in
+        // data 更新，就更新畫面
+        viewModel.$pets.sink { [weak self] datas in
             self?.listCollectionView.reloadData()
         }
+        .store(in: &cancellables)
     }
     
     private func setNavBarAppearance() {
