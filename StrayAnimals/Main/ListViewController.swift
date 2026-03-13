@@ -16,7 +16,7 @@ class ListViewController: UIViewController {
         let label = UILabel()
         label.setTextAndImage(text: "流浪動物",
                               font: FontGroup.font(.bold, .large),
-                              imageName: ImageNameBook.dogAndCat.rawValue,
+                              image: UIImage.dogAndCat,
                               imageArrangement: .left)
         return label
     }()
@@ -32,19 +32,20 @@ class ListViewController: UIViewController {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(ListCollectionViewItem.self, forCellWithReuseIdentifier: ListCollectionViewItem.cellID)
         collectionView.backgroundColor = .clear
         return collectionView
     }()
     
-    let viewModel = ListViewModel()
+    let viewModel = ListViewModel(startPage: 1, pageSize: 10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavBarAppearance()
         setUI()
         setBind()
-        viewModel.getPetData()
+        viewModel.viewdidLoad.send()
     }
     
     private func setUI() {
@@ -90,5 +91,23 @@ extension ListViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewItem.cellID, for: indexPath) as? ListCollectionViewItem else { return UICollectionViewCell() }
         cell.configure(vm: viewModel.pets[indexPath.row])
         return cell
+    }
+}
+
+extension ListViewController: UICollectionViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        /// contentOffset 是左上角相對移動的數字
+        let offsetY = scrollView.contentOffset.y
+        /// 想偵測是否為最底部，還必須檢查上 frame Height
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+        /// 應該也可以寫成 offsetY + frameHeight == contentHeight
+        /// - 100 是「接近」底部的判斷，所以會多次觸發
+        if offsetY > contentHeight - frameHeight - 100 {
+            if viewModel.isLoading == false {
+                viewModel.loadMore.send()
+            }
+        }
     }
 }

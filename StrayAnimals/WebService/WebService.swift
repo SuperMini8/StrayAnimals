@@ -55,7 +55,7 @@ final class WebService {
                 guard let httpResponse = output.response as? HTTPURLResponse else {
                     throw WebServiceError.invalidResponse
                 }
-                guard (200...299).contains(httpResponse.statusCode) else {
+                guard 200...299 ~= httpResponse.statusCode else {
                     throw WebServiceError.httpError(statusCode: httpResponse.statusCode)
                 }
                 return output.data
@@ -82,38 +82,5 @@ final class WebService {
             .eraseToAnyPublisher()
     }
     
-}
-
-// MARK: - 為了舊畫面，先留著
-extension WebService {
-    /// 建立一個 Request
-    private static func buildRequest(
-        type: HTTPMethod,
-        url: URL,
-        headers: [String: String] = [:],
-        httpBody: Data? = nil
-    ) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = type.rawValue
-        /// 加入與覆蓋預設 Header
-        headers.forEach { key, value in
-            request.setValue(value, forHTTPHeaderField: key)
-        }
-        request.httpBody = httpBody
-        return request
-    }
-    
-    static func urlSessionRequest(
-        type: HTTPMethod,
-        url: URL,
-        headers: [String: String] = [:],
-        httpBody: Data? = nil,
-        completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void
-    ) {
-        
-        let request = buildRequest(type: type, url: url, headers: headers, httpBody: httpBody)
-        
-        URLSession.shared.dataTask(with: request, completionHandler: completionHandler).resume()
-    }
 }
 

@@ -304,16 +304,14 @@ enum AnimalKind: String, Codable {
     }
     
     func defaultIamge() -> UIImage? {
-        var imageName = ""
         switch self {
         case .dog:
-            imageName = ImageNameBook.dog.rawValue
+            return UIImage.dog
         case .cat:
-            imageName = ImageNameBook.cat.rawValue
+            return UIImage.cat
         case .other:
-            imageName = ImageNameBook.dogAndCat.rawValue
+            return UIImage.dogAndCat
         }
-        return UIImage(named: imageName)
     }
     
 }
@@ -332,17 +330,15 @@ enum AnimalSex: String, Codable {
         try container.encode(rawValue)
     }
     
-    func sexImageName() -> String {
-        var name: String = ""
+    func sexImage() -> UIImage {
         switch self {
         case .male:
-            name = ImageNameBook.gender.rawValue
+            return UIImage.gender
         case .female:
-            name = ImageNameBook.female.rawValue
+            return UIImage.female
         case .unknown:
-            name = ImageNameBook.questionMark.rawValue
+            return UIImage.questionMark
         }
-        return name
     }
     
     func displaySexName() -> String {

@@ -8,11 +8,11 @@ extension UILabel {
         case right
     }
     
-    func setTextAndImage(text: String, font: UIFont, imageName: String, imageArrangement: ImageArrangementType) {
+    func setTextAndImage(text: String, font: UIFont, image: UIImage?, imageArrangement: ImageArrangementType) {
         // 處理圖片
         let attText = NSMutableAttributedString()
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(named: imageName)
+        imageAttachment.image = image
         imageAttachment.bounds = CGRect(x: 0, y: -3, width: font.pointSize, height: font.pointSize)
         // 處理文字
         let text = NSAttributedString(string: text)

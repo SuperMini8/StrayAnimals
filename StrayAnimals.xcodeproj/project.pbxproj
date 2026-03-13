@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		1D36306F2F188F210071D131 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D36306D2F188F210071D131 /* Localizable.strings */; };
 		1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630712F188FBE0071D131 /* FontGroup.swift */; };
-		1D3630782F188FBE0071D131 /* ImageNameBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630722F188FBE0071D131 /* ImageNameBook.swift */; };
 		1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630732F188FBE0071D131 /* LocalizedHelper.swift */; };
 		1D36307B2F188FBE0071D131 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630752F188FBE0071D131 /* WebService.swift */; };
 		1D36308B2F188FC60071D131 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630802F188FC60071D131 /* UIColor.swift */; };
 		1D36308C2F188FC60071D131 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630812F188FC60071D131 /* UIImage.swift */; };
 		1D36308D2F188FC60071D131 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630822F188FC60071D131 /* UILabel.swift */; };
 		1D3630902F188FC60071D131 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630852F188FC60071D131 /* UIViewController.swift */; };
-		1D3630932F1896E50071D131 /* PetWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630922F1896E50071D131 /* PetWebService.swift */; };
+		1D6FA32D2F6400C30075D942 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FA32C2F6400C30075D942 /* ImageLoader.swift */; };
 		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
 		1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */; };
 		1DAFC5732F2CA32B009369E1 /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC5722F2CA32B009369E1 /* EnvironmentManager.swift */; };
@@ -44,14 +43,13 @@
 		1D36306E2F188F210071D131 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1D3630702F188F6A0071D131 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1D3630712F188FBE0071D131 /* FontGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontGroup.swift; sourceTree = "<group>"; };
-		1D3630722F188FBE0071D131 /* ImageNameBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNameBook.swift; sourceTree = "<group>"; };
 		1D3630732F188FBE0071D131 /* LocalizedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedHelper.swift; sourceTree = "<group>"; };
 		1D3630752F188FBE0071D131 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		1D3630802F188FC60071D131 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		1D3630812F188FC60071D131 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		1D3630822F188FC60071D131 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		1D3630852F188FC60071D131 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		1D3630922F1896E50071D131 /* PetWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWebService.swift; sourceTree = "<group>"; };
+		1D6FA32C2F6400C30075D942 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
 		1DAFC5722F2CA32B009369E1 /* EnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				1D3630712F188FBE0071D131 /* FontGroup.swift */,
-				1D3630722F188FBE0071D131 /* ImageNameBook.swift */,
 				1D3630732F188FBE0071D131 /* LocalizedHelper.swift */,
 			);
 			path = Utilities;
@@ -114,7 +111,7 @@
 			children = (
 				1DAFC5712F2CA30E009369E1 /* NetWork */,
 				1D3630752F188FBE0071D131 /* WebService.swift */,
-				1D3630922F1896E50071D131 /* PetWebService.swift */,
+				1D6FA32C2F6400C30075D942 /* ImageLoader.swift */,
 				1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */,
 			);
 			path = WebService;
@@ -277,12 +274,10 @@
 				ECDB413B2ED4C27300AEB3FB /* AnimalEnum.swift in Sources */,
 				1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */,
 				1DAFC57B2F2CB453009369E1 /* StrayAnimalListQuery.swift in Sources */,
-				1D3630782F188FBE0071D131 /* ImageNameBook.swift in Sources */,
 				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
 				1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */,
 				1DAFC5772F2CA748009369E1 /* APIEndpoint.swift in Sources */,
 				1DAFC5732F2CA32B009369E1 /* EnvironmentManager.swift in Sources */,
-				1D3630932F1896E50071D131 /* PetWebService.swift in Sources */,
 				1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */,
 				1D36308B2F188FC60071D131 /* UIColor.swift in Sources */,
 				1DAFC5752F2CA40C009369E1 /* ServiceHost.swift in Sources */,
@@ -290,6 +285,7 @@
 				ECFC6B462F2D379600DC583E /* RequestBuilder.swift in Sources */,
 				ECFC6B482F2F11E100DC583E /* JSONDecoder.swift in Sources */,
 				1D36308D2F188FC60071D131 /* UILabel.swift in Sources */,
+				1D6FA32D2F6400C30075D942 /* ImageLoader.swift in Sources */,
 				1D3630902F188FC60071D131 /* UIViewController.swift in Sources */,
 				1D36307B2F188FBE0071D131 /* WebService.swift in Sources */,
 				ECDB41382ED4437A00AEB3FB /* PetData.swift in Sources */,

@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import SnapKit
+import Combine
 
-class ListCollectionViewItem: UICollectionViewCell {
+final class ListCollectionViewItem: UICollectionViewCell {
     
     static let cellID: String = "ListCollectionViewItem"
         
@@ -44,6 +45,8 @@ class ListCollectionViewItem: UICollectionViewCell {
         return label
     }()
     
+    private var cancellables = Set<AnyCancellable>()
+    
     var viewModel: PetData?
     
     override init(frame: CGRect) {
@@ -57,7 +60,8 @@ class ListCollectionViewItem: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        /// 取消舊訂閱
+        cancellables.removeAll()
     }
         
     private func setUI() {
@@ -111,7 +115,7 @@ class ListCollectionViewItem: UICollectionViewCell {
         imageView.image = vm?.animalKind.defaultIamge()
         animalKindLabel.setTextAndImage(text: vm?.animalKind.displayTitleText() ?? "",
                                         font: FontGroup.font(.regular, .small),
-                                        imageName: vm?.animalSex.sexImageName() ?? "",
+                                        image: vm?.animalSex.sexImage(),
                                         imageArrangement: .right)
         animalStatusLabel.text = vm?.animalStatus.statusText()
         animalAgeLabel.text = vm?.animalAge.AgeText()
