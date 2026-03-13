@@ -22,7 +22,7 @@ struct URLFactory {
         self.environment = EnvironmentManager.shared.currentEnvironment
     }
 
-    func makeComponents(for endpoint: EndpointType) -> URLComponents {
+    func makeComponents(for endpoint: any EndpointType) -> URLComponents {
         var components = URLComponents()
         components.scheme = endpoint.scheme
         components.host = endpoint.service.host(in: environment)
@@ -31,11 +31,11 @@ struct URLFactory {
         return components
     }
     
-    func makeURL(for endpoint: EndpointType) -> URL? {
+    func makeURL(for endpoint: any EndpointType) -> URL? {
         return makeComponents(for: endpoint).url
     }
     
-    func debugSummary(for endpoint: EndpointType) -> String {
+    func debugSummary(for endpoint: any EndpointType) -> String {
         let components = makeComponents(for: endpoint)
         let urlString = components.url?.absoluteString ?? "<invalid url>"
         

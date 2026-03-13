@@ -14,7 +14,7 @@ enum RequestBuilderError: Error {
 struct RequestBuilder {
     let urlFactory: URLFactory
     
-    func build(_ endpoint: EndpointType) throws -> URLRequest {
+    func build(_ endpoint: any EndpointType) throws -> URLRequest {
         guard let url = urlFactory.makeURL(for: endpoint) else {
             if EnvironmentManager.shared.isDevelopment {
                 throw RequestBuilderError.invalidURL("⚠️ URL make error:\n\(urlFactory.debugSummary(for: endpoint))")
