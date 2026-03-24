@@ -12,8 +12,6 @@ import Combine
 
 final class ListCollectionViewItem: UICollectionViewCell {
     
-    static let cellID: String = "ListCollectionViewItem"
-        
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill

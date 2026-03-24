@@ -33,7 +33,7 @@ class ListViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(ListCollectionViewItem.self, forCellWithReuseIdentifier: ListCollectionViewItem.cellID)
+        collectionView.register(cellType: ListCollectionViewItem.self)
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -88,7 +88,7 @@ extension ListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewItem.cellID, for: indexPath) as? ListCollectionViewItem else { return UICollectionViewCell() }
+        let cell = collectionView.dequeueReusableCell(ListCollectionViewItem.self, for: indexPath)
         cell.configure(vm: viewModel.pets[indexPath.row])
         return cell
     }
