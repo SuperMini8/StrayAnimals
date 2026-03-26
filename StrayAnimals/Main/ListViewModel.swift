@@ -16,7 +16,7 @@ enum ListUpdateType {
 final class ListViewModel {
         
     // 用 Set 存訂閱，避免重複的訂閱
-    var cancellables = Set<AnyCancellable>()
+    private var cancellables = Set<AnyCancellable>()
         
     // 網路工具
     private let webService: WebService
@@ -51,7 +51,7 @@ final class ListViewModel {
         bind()
     }
     
-    func bind() {
+    private func bind() {
         // 當 viewController 進到 viewDidLoad 狀態，就去 load data
         viewdidLoad
             .sink { [weak self] in

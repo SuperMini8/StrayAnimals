@@ -14,4 +14,22 @@ extension UIViewController {
         present(alert, animated: true)
     }
     
+    func showLoadingView() {
+        let loadingView = LoadingView()
+        if !view.subviews.contains(loadingView) {
+            view.addSubview(loadingView)
+            loadingView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
+        loadingView.startAnimating()
+    }
+    
+    func hideLoadingView() {
+        if let loadingView = view.subviews.first(where: { $0 is LoadingView }) as? LoadingView {
+            loadingView.stopAnimating()
+            loadingView.removeFromSuperview()
+        }
+    }
+    
 }

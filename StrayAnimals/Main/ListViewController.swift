@@ -9,9 +9,7 @@ import UIKit
 import Combine
 
 class ListViewController: UIViewController {
-    
-    var cancellables = Set<AnyCancellable>()
-    
+        
     private lazy var titleView: UILabel = {
         let label = UILabel()
         label.setTextAndImage(text: "流浪動物",
@@ -38,7 +36,8 @@ class ListViewController: UIViewController {
         return collectionView
     }()
     
-    let viewModel: ListViewModel
+    private var cancellables = Set<AnyCancellable>()
+    private let viewModel: ListViewModel
     
     init(viewModel: ListViewModel = ListViewModel(startPage: 1, pageSize: 10)) {
         self.viewModel = viewModel
@@ -68,7 +67,7 @@ class ListViewController: UIViewController {
         }
     }
     
-    func setBind() {
+    private func setBind() {
         // 接收更新 List 事件
         viewModel.listUpdate
             .receive(on: DispatchQueue.main)
@@ -91,6 +90,7 @@ class ListViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] showAnimated in
             // Loading View 開關
+                showAnimated ? self?.showLoadingView() : self?.hideLoadingView()
         }
         .store(in: &cancellables)
     }
