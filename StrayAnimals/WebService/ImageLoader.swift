@@ -99,7 +99,7 @@ final class ImageLoader: ImageLoading {
         let width = Int(targetSize.width.rounded())     // rounded 進行四捨五入
         let height = Int(targetSize.height.rounded())
         let scaleInt = Int(scale.rounded())
-        return "\(url)_W:\(width)_H:\(height)_S:\(scale)"
+        return "\(url)_W:\(width)_H:\(height)_S:\(scaleInt)"
     }
     /// 將 Data 變成指定大小的圖
     private func downsampleImage(data: Data, to pointSize: CGSize, scale: CGFloat) -> UIImage? {
