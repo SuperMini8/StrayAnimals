@@ -145,6 +145,8 @@ final class ListCollectionViewItem: UICollectionViewCell {
                 isLoading ? self?.loadingView.startAnimating() : self?.loadingView.stopAnimating()
             }
             .store(in: &cancellables)
+        
+        setNeedsLayout()
     }
     
     // layout 都畫好後才知道實際大小
