@@ -17,6 +17,7 @@
 		1D3630902F188FC60071D131 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630852F188FC60071D131 /* UIViewController.swift */; };
 		1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */; };
 		1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD912F752B58004ADF0E /* LoadingView.swift */; };
+		1D6CFD952F753656004ADF0E /* PetInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */; };
 		1D6F54782F724320005DA616 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54772F724320005DA616 /* ReusableView.swift */; };
 		1D6F547A2F725A72005DA616 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54792F725A72005DA616 /* UITableViewCell.swift */; };
 		1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547B2F725AED005DA616 /* UICollectionViewCell.swift */; };
@@ -59,6 +60,7 @@
 		1D3630852F188FC60071D131 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		1D6CFD912F752B58004ADF0E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInformationViewController.swift; sourceTree = "<group>"; };
 		1D6F54772F724320005DA616 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		1D6F54792F725A72005DA616 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		1D6F547B2F725AED005DA616 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +142,26 @@
 			path = WebService;
 			sourceTree = "<group>";
 		};
+		1D6CFD932F75362D004ADF0E /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				EC4E069D2E62F5AC002B6904 /* ListViewController.swift */,
+				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
+				EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */,
+				1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */,
+				1D6CFD962F75365A004ADF0E /* PetInformationView */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		1D6CFD962F75365A004ADF0E /* PetInformationView */ = {
+			isa = PBXGroup;
+			children = (
+				1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */,
+			);
+			path = PetInformationView;
+			sourceTree = "<group>";
+		};
 		1DAFC5712F2CA30E009369E1 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,10 +231,7 @@
 		ECDB429A2EEA94F900AEB3FB /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				EC4E069D2E62F5AC002B6904 /* ListViewController.swift */,
-				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
-				EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */,
-				1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */,
+				1D6CFD932F75362D004ADF0E /* ListView */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -299,6 +318,7 @@
 				1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */,
 				1DAFC57B2F2CB453009369E1 /* StrayAnimalListQuery.swift in Sources */,
 				1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */,
+				1D6CFD952F753656004ADF0E /* PetInformationViewController.swift in Sources */,
 				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
 				1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */,
 				1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */,
