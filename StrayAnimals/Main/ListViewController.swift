@@ -38,7 +38,16 @@ class ListViewController: UIViewController {
         return collectionView
     }()
     
-    let viewModel = ListViewModel(startPage: 1, pageSize: 10)
+    let viewModel: ListViewModel
+    
+    init(viewModel: ListViewModel = ListViewModel(startPage: 1, pageSize: 10)) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +58,7 @@ class ListViewController: UIViewController {
     }
     
     private func setUI() {
-        view.backgroundColor = .whiteSmoke
+        view.backgroundColor = .lightGrey240
         navigationItem.titleView = titleView
         
         view.addSubview(listCollectionView)
@@ -60,9 +69,28 @@ class ListViewController: UIViewController {
     }
     
     func setBind() {
-        // data 更新，就更新畫面
-        viewModel.$pets.sink { [weak self] datas in
-            self?.listCollectionView.reloadData()
+        // 接收更新 List 事件
+        viewModel.listUpdate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] updateType in
+                switch updateType {
+                // 整個 List 重整
+                case .reloadAll:
+                    self?.listCollectionView.reloadData()
+                // 只更新新的資料
+                case .append(let indexPaths):
+                    self?.listCollectionView.performBatchUpdates {
+                        self?.listCollectionView.insertItems(at: indexPaths)
+                    }
+                }
+        }
+        .store(in: &cancellables)
+        
+        // Loading 畫面
+        viewModel.$isLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] showAnimated in
+            // Loading View 開關
         }
         .store(in: &cancellables)
     }
@@ -84,14 +112,17 @@ extension ListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.pets.count
+        return viewModel.listItemViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(ListCollectionViewItem.self, for: indexPath)
-        cell.configure(vm: viewModel.pets[indexPath.row])
+        let cellViewModel = viewModel.listItemViewModels[indexPath.row]
+        cell.configure(with: cellViewModel)
         return cell
     }
+    
+    
 }
 
 extension ListViewController: UICollectionViewDelegate {

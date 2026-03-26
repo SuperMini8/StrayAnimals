@@ -11,8 +11,8 @@ import SnapKit
 import Combine
 
 final class ListCollectionViewItem: UICollectionViewCell {
-    
-    lazy private var imageView: UIImageView = {
+    // MARK: - UI
+    lazy private var animalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -43,10 +43,11 @@ final class ListCollectionViewItem: UICollectionViewCell {
         return label
     }()
     
+    lazy private var loadingView = LoadingView()
+    // MARK: - property
     private var cancellables = Set<AnyCancellable>()
-    
-    var viewModel: PetData?
-    
+    private var viewModel: ListCollectionViewItemViewModel?
+    // MARK: - method
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -60,15 +61,21 @@ final class ListCollectionViewItem: UICollectionViewCell {
         super.prepareForReuse()
         /// 取消舊訂閱
         cancellables.removeAll()
+        animalImageView.image = nil
+        animalKindLabel.text = nil
+        animalStatusLabel.text = nil
+        animalAgeLabel.text = nil
+        animalPlaceLabel.text = nil
     }
         
     private func setUI() {
         backgroundColor = .white
         layer.cornerRadius = 12
+        clipsToBounds = true
         
-        if !contentView.contains(imageView) {
-            contentView.addSubview(imageView)
-            imageView.snp.makeConstraints { make in
+        if !contentView.contains(animalImageView) {
+            contentView.addSubview(animalImageView)
+            animalImageView.snp.makeConstraints { make in
                 make.top.left.right.equalToSuperview()
                 make.width.height.equalTo(contentView.snp.width)
             }
@@ -76,7 +83,7 @@ final class ListCollectionViewItem: UICollectionViewCell {
         if !contentView.contains(animalKindLabel) {
             contentView.addSubview(animalKindLabel)
             animalKindLabel.snp.makeConstraints { make in
-                make.top.equalTo(imageView.snp.bottom).offset(3)
+                make.top.equalTo(animalImageView.snp.bottom).offset(3)
                 make.width.equalToSuperview().multipliedBy(0.85)
                 make.centerX.equalToSuperview()
             }
@@ -106,23 +113,45 @@ final class ListCollectionViewItem: UICollectionViewCell {
                 make.bottom.greaterThanOrEqualTo(contentView).offset(-3)
             }
         }
+        if !contentView.contains(loadingView) {
+            contentView.addSubview(loadingView)
+            loadingView.snp.makeConstraints { make in
+                make.edges.equalTo(animalImageView)
+            }
+        }
     }
     
-    func configure(vm: PetData?) {
-        viewModel = vm
-        imageView.image = vm?.animalKind.defaultIamge()
-        animalKindLabel.setTextAndImage(text: vm?.animalKind.displayTitleText() ?? "",
+    func configure(with viewModel: ListCollectionViewItemViewModel) {
+        cancellables.removeAll()
+        
+        self.viewModel = viewModel
+        animalKindLabel.setTextAndImage(text: viewModel.kind.displayTitleText() ,
                                         font: FontGroup.font(.regular, .small),
-                                        image: vm?.animalSex.sexImage(),
+                                        image: viewModel.sex.sexImage(),
                                         imageArrangement: .right)
-        animalStatusLabel.text = vm?.animalStatus.statusText()
-        animalAgeLabel.text = vm?.animalAge.AgeText()
-        animalPlaceLabel.text = vm?.animalPlace
+        animalStatusLabel.text = viewModel.status.statusText()
+        animalAgeLabel.text = viewModel.age.AgeText()
+        animalPlaceLabel.text = viewModel.place
+        
+        viewModel.$image
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] image in
+                self?.animalImageView.image = image ?? viewModel.kind.defaultIamge()
+            }
+            .store(in: &cancellables)
+        viewModel.$isImageLoading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isLoading in
+                isLoading ? self?.loadingView.startAnimating() : self?.loadingView.stopAnimating()
+            }
+            .store(in: &cancellables)
     }
     
-    func setImage(_ image: UIImage?) {
-        imageView.image = image
+    // layout 都畫好後才知道實際大小
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let scale = window?.windowScene?.screen.scale ?? UIScreen.currentFallbackScale
+        viewModel?.loadImageIfNeeded(imageSize: animalImageView.bounds.size, imageScale: scale)
     }
-    
     
 }

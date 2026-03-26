@@ -15,12 +15,14 @@
 		1D36308C2F188FC60071D131 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630812F188FC60071D131 /* UIImage.swift */; };
 		1D36308D2F188FC60071D131 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630822F188FC60071D131 /* UILabel.swift */; };
 		1D3630902F188FC60071D131 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630852F188FC60071D131 /* UIViewController.swift */; };
+		1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */; };
 		1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD912F752B58004ADF0E /* LoadingView.swift */; };
 		1D6F54782F724320005DA616 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54772F724320005DA616 /* ReusableView.swift */; };
 		1D6F547A2F725A72005DA616 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54792F725A72005DA616 /* UITableViewCell.swift */; };
 		1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547B2F725AED005DA616 /* UICollectionViewCell.swift */; };
 		1D6F547E2F725F2F005DA616 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547D2F725F2F005DA616 /* UITableView.swift */; };
 		1D6F54802F726026005DA616 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547F2F726026005DA616 /* UICollectionView.swift */; };
+		1D6F54822F729380005DA616 /* ListCollectionViewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */; };
 		1D6FA32D2F6400C30075D942 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FA32C2F6400C30075D942 /* ImageLoader.swift */; };
 		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
 		1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */; };
@@ -55,12 +57,14 @@
 		1D3630812F188FC60071D131 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		1D3630822F188FC60071D131 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		1D3630852F188FC60071D131 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		1D6CFD912F752B58004ADF0E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1D6F54772F724320005DA616 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		1D6F54792F725A72005DA616 /* UITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		1D6F547B2F725AED005DA616 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
 		1D6F547D2F725F2F005DA616 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		1D6F547F2F726026005DA616 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewItemViewModel.swift; sourceTree = "<group>"; };
 		1D6FA32C2F6400C30075D942 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				1D3630802F188FC60071D131 /* UIColor.swift */,
+				1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */,
 				1D3630812F188FC60071D131 /* UIImage.swift */,
 				1D3630822F188FC60071D131 /* UILabel.swift */,
 				1D3630852F188FC60071D131 /* UIViewController.swift */,
@@ -207,6 +212,7 @@
 				EC4E069D2E62F5AC002B6904 /* ListViewController.swift */,
 				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
 				EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */,
+				1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 				1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */,
 				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
 				1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */,
+				1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */,
 				1DAFC5772F2CA748009369E1 /* APIEndpoint.swift in Sources */,
 				1DAFC5732F2CA32B009369E1 /* EnvironmentManager.swift in Sources */,
 				1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */,
@@ -314,6 +321,7 @@
 				ECF5781C2E63F83E00F5959F /* SceneDelegate.swift in Sources */,
 				EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */,
 				1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */,
+				1D6F54822F729380005DA616 /* ListCollectionViewItemViewModel.swift in Sources */,
 				1DAFC5792F2CA9A6009369E1 /* URLFactory.swift in Sources */,
 				EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */,
 				1D6F547A2F725A72005DA616 /* UITableViewCell.swift in Sources */,
@@ -475,8 +483,10 @@
 				APP_ENV = dev;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BJ3K623YKW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StrayAnimals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -491,6 +501,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mini8.StrayAnimals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -503,8 +514,10 @@
 				APP_ENV = prod;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BJ3K623YKW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StrayAnimals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -519,6 +532,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mini8.StrayAnimals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
