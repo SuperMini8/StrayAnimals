@@ -93,6 +93,18 @@ class ListViewController: UIViewController {
                 showAnimated ? self?.showLoadingView() : self?.hideLoadingView()
         }
         .store(in: &cancellables)
+        
+        // error 事件
+        viewModel.errorMessage
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                self?.showAlert(message: errorMessage,
+                                buttonTitle: "確認",
+                                buttonAction: { _ in
+                    self?.viewModel.reload.send()
+                })
+            }
+            .store(in: &cancellables)
     }
     
     private func setNavBarAppearance() {
@@ -120,6 +132,12 @@ extension ListViewController: UICollectionViewDataSource {
         let cellViewModel = viewModel.listItemViewModels[indexPath.row]
         cell.configure(with: cellViewModel)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let listItemCell = cell as? ListCollectionViewItem {
+            listItemCell.startDownloadImage()
+        }
     }
     
     

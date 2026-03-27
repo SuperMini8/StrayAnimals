@@ -149,8 +149,8 @@ final class ListCollectionViewItem: UICollectionViewCell {
         setNeedsLayout()
     }
     
-    // layout 都畫好後才知道實際大小
-    override func layoutSubviews() {
+    // 給 CollectionView 呼叫開始下載用的
+    func startDownloadImage() {
         super.layoutSubviews()
         let scale = window?.windowScene?.screen.scale ?? UIScreen.currentFallbackScale
         viewModel?.loadImageIfNeeded(imageSize: animalImageView.bounds.size, imageScale: scale)

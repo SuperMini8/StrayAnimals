@@ -23,9 +23,25 @@ enum WebServiceError: Error {
     case decodeError(Error)
     /// 其他的 Error
     case unknown(Error)
+    
+    /// show 給 alert 用的
+    func errorMassage() -> String {
+        switch self {
+        case .transportError(let error):
+            return error.localizedDescription
+        case .invalidResponse:
+            return "Invalid response"
+        case .httpError(let code):
+            return "HTTP Error: \(code)"
+        case .decodeError(let error):
+            return "Decode Error: \(error)"
+        case .unknown(_):
+            return "Unknown Error"
+        }
+    }
 }
 
-final class WebService {
+final class WebService: APIClientProtocol {
     
     
     /// 引用依賴注入，為了方便測試

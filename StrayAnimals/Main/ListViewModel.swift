@@ -33,11 +33,13 @@ final class ListViewModel {
     // 接收 ViewController 來的事件
     let viewdidLoad = PassthroughSubject<Void, Never>()
     let loadMore = PassthroughSubject<Void, Never>()
+    let reload = PassthroughSubject<Void, Never>()
     
     // MARK: - Output
     private(set) var listItemViewModels: [ListCollectionViewItemViewModel] = []
     // PassthroughSubject 傳送單一「事件」
     let listUpdate = PassthroughSubject<ListUpdateType, Never>()
+    let errorMessage = PassthroughSubject<String, Never>()
 
     
     init(startPage: Int,
@@ -55,7 +57,7 @@ final class ListViewModel {
         // 當 viewController 進到 viewDidLoad 狀態，就去 load data
         viewdidLoad
             .sink { [weak self] in
-                self?.getPetData()
+                self?.getPetData(updateType: .reloadAll)
             }
             .store(in: &cancellables)
         // 當 viewController 需要更多資料時
@@ -66,9 +68,16 @@ final class ListViewModel {
                 }
             }
             .store(in: &cancellables)
+        reload
+            .sink { [weak self] in
+                if self?.isLoading != true {
+                    self?.getPetData(updateType: .reloadAll)
+                }
+            }
+            .store(in: &cancellables)
     }
     // MARK: - PetData 相關
-    private func getPetData() {
+    private func getPetData(updateType: ListUpdateType) {
         
         isLoading = true
         
@@ -76,8 +85,8 @@ final class ListViewModel {
             // 在主執行緒
             .receive(on: DispatchQueue.main)
             // 建立訂閱
-            .sink { completion in
-                
+            .sink { [weak self] completion in
+                guard let self else { return }
                 self.isLoading = false
                 
                 switch completion {
@@ -85,6 +94,7 @@ final class ListViewModel {
                     print("Request finished. Page is: \(self.currentPage)")
                 case .failure(let error):
                     print("Request failed with: \(error)")
+                    self.errorMessage.send(error.errorMassage())
                 }
                 print(completion)
             } receiveValue: { [weak self] response in
@@ -98,9 +108,10 @@ final class ListViewModel {
                 let newCount = listItemViewModels.count
                 let updateIndexPaths = (oldCount ..< newCount).map { IndexPath(row: $0, section: 0) }
                 // 傳送更新事件
-                if oldCount == 0 {
+                switch updateType {
+                case .reloadAll:
                     listUpdate.send(.reloadAll)
-                } else {
+                case .append(_):
                     listUpdate.send(.append(indexPaths: updateIndexPaths))
                 }
             }
@@ -112,7 +123,7 @@ final class ListViewModel {
         // 更新頁數
         currentPage += 1
         listQuery.setPage(currentPage, size: pageSize)
-        getPetData()
+        getPetData(updateType: .append(indexPaths: []))
     }
     
     // MARK: - Cell 相關
