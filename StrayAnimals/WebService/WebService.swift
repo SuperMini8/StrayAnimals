@@ -19,6 +19,8 @@ enum WebServiceError: Error {
     case invalidResponse
     /// 其他 http 錯誤
     case httpError(statusCode: Int)
+    /// 回傳內容不是 JSON
+    case invalidResponseBody(String)
     /// decode 失敗
     case decodeError(Error)
     /// 其他的 Error
@@ -33,6 +35,8 @@ enum WebServiceError: Error {
             return "Invalid response"
         case .httpError(let code):
             return "HTTP Error: \(code)"
+        case .invalidResponseBody(let errorMessage):
+            return "Invalid response body: \(errorMessage)"
         case .decodeError(let error):
             return "Decode Error: \(error)"
         case .unknown(_):
@@ -68,12 +72,32 @@ final class WebService: APIClientProtocol {
             .mapError { WebServiceError.transportError($0) }
         /// 檢查 HTTP Status Code 200...299 區間為成功
             .tryMap { output -> Data in
+                /// 轉換 response 失敗
                 guard let httpResponse = output.response as? HTTPURLResponse else {
                     throw WebServiceError.invalidResponse
                 }
+                /// 判斷 statusCode 200...299 才是正常回應
                 guard 200...299 ~= httpResponse.statusCode else {
                     throw WebServiceError.httpError(statusCode: httpResponse.statusCode)
                 }
+                /// 檢查 Content-Type，是否為 JSON
+                let contentType = httpResponse.value(forHTTPHeaderField: "Content-Type")?.lowercased() ?? ""
+                let likelyJSONContentType =
+                    contentType.contains("application/json") ||
+                    contentType.contains("text/json") ||
+                    contentType.contains("text/plain") ||
+                    contentType.isEmpty
+                guard likelyJSONContentType else {
+                    throw WebServiceError.invalidResponseBody("Content-Type is \(contentType)")
+                }
+                /// 檢查 body 的內容物，剔除為 HTML 的部分
+                let dataString = String(data: output.data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                 if dataString.hasPrefix("<!DOCTYPE html") ||
+                    dataString.hasPrefix("<html") ||
+                    dataString.hasPrefix("<") {
+                     throw WebServiceError.invalidResponseBody("is HTML body")
+                 }
+                
                 return output.data
             }
         /// 處理 data 有可能是 Empty 的情況，需要 decode 正常

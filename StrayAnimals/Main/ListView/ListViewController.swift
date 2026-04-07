@@ -98,7 +98,8 @@ class ListViewController: UIViewController {
         viewModel.errorMessage
             .receive(on: DispatchQueue.main)
             .sink { [weak self] errorMessage in
-                self?.showAlert(message: errorMessage,
+                self?.showAlert(title: "網路錯誤",
+                                message: errorMessage,
                                 buttonTitle: "確認",
                                 buttonAction: { _ in
                     self?.viewModel.reload.send()
