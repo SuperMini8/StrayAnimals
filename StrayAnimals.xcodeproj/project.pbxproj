@@ -149,7 +149,6 @@
 				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
 				EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */,
 				1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */,
-				1D6CFD962F75365A004ADF0E /* PetInformationView */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -232,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6CFD932F75362D004ADF0E /* ListView */,
+				1D6CFD962F75365A004ADF0E /* PetInformationView */,
 			);
 			path = Main;
 			sourceTree = "<group>";

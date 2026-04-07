@@ -146,14 +146,14 @@ final class ListCollectionViewItem: UICollectionViewCell {
             }
             .store(in: &cancellables)
         
-        setNeedsLayout()
+        startDownloadImage()
     }
     
-    // 給 CollectionView 呼叫開始下載用的
+    // 開始下載圖片
     func startDownloadImage() {
         super.layoutSubviews()
         let scale = window?.windowScene?.screen.scale ?? UIScreen.currentFallbackScale
-        viewModel?.loadImageIfNeeded(imageSize: animalImageView.bounds.size, imageScale: scale)
+        viewModel?.loadImageIfNeeded(imageSize: .thumbnail, imageScale: scale)
     }
     
 }

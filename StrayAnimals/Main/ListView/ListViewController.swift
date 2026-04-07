@@ -134,13 +134,6 @@ extension ListViewController: UICollectionViewDataSource {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let listItemCell = cell as? ListCollectionViewItem {
-            listItemCell.startDownloadImage()
-        }
-    }
-    
-    
 }
 
 extension ListViewController: UICollectionViewDelegate {

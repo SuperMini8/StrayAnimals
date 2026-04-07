@@ -45,7 +45,7 @@ final class ListViewModel {
     init(startPage: Int,
          pageSize: Int,
          webService: WebService = WebService(),
-         imageLoader: ImageLoading = ImageLoader(session: URLSession.shared)) {
+         imageLoader: ImageLoading = ImageLoader.shared) {
         self.currentPage = startPage
         self.pageSize = pageSize
         self.webService = webService

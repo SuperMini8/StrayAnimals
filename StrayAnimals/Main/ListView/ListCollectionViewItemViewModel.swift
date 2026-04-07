@@ -43,12 +43,22 @@ final class ListCollectionViewItemViewModel {
         self.imageLoader = imageLoader
     }
     /// 下載圖片
-    func loadImageIfNeeded(imageSize: CGSize, imageScale: CGFloat) {
+    func loadImageIfNeeded(imageSize: ImageSizeType, imageScale: CGFloat) {
         guard !hasStartedLoading else { return }
         hasStartedLoading = true
         isImageLoading = true
         
+        /* 載原圖
         imageLoader.loadImage(from: imageURL, targetSize: imageSize, scale: imageScale)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] image in
+                self?.image = image
+                self?.isImageLoading = false
+            }
+            .store(in: &cancellables)
+        */
+        // 改使用 imageKit 載處理過後的圖
+        imageLoader.loadFromImageKit(from: imageURL, imageSizeType: imageSize)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] image in
                 self?.image = image

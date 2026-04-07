@@ -2,7 +2,8 @@
 import UIKit
 
 extension UIViewController {
-    
+    //MARK: - Alert
+    /// 顯示 Alert
     func showAlert(title: String? = "",
                    message: String?,
                    buttonTitle: String,
@@ -13,7 +14,8 @@ extension UIViewController {
         alert.addAction(button)
         present(alert, animated: true)
     }
-    
+    //MARK: - Loading View
+    /// 顯示 Loading View
     func showLoadingView() {
         let loadingView = LoadingView()
         if !view.subviews.contains(loadingView) {
@@ -24,12 +26,21 @@ extension UIViewController {
         }
         loadingView.startAnimating()
     }
-    
+    /// 關閉 LoadingView
     func hideLoadingView() {
         if let loadingView = view.subviews.first(where: { $0 is LoadingView }) as? LoadingView {
             loadingView.stopAnimating()
             loadingView.removeFromSuperview()
         }
     }
-    
+    // MARK: - Window & Scene
+    var currentWindow: UIWindow? {
+        return view.window
+    }
+    var currentWindowScene: UIWindowScene? {
+        return view.window?.windowScene
+    }
+    var currentScreen: UIScreen? {
+        return view.window?.windowScene?.screen
+    }
 }
