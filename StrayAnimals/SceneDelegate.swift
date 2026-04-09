@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
+//        let listVCM = ListViewModel(startPage: 1, pageSize: 10, webService: MockLoader())
+//        let listVC = ListViewController(viewModel: listVCM)
         let listVC = ListViewController()
         let nav = UINavigationController(rootViewController: listVC)
         window?.rootViewController = nav

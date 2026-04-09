@@ -54,15 +54,20 @@ protocol EndpointType {
     var body: Data? { get }
     var bodyEncoding: ParameterEncoding { get }
     var timeout: TimeInterval { get }
+    
+    var mockFileName: String? { get }
 }
 
 extension EndpointType {
     var scheme: String { "https" }
+    
     var queryItems: [URLQueryItem]? { nil }
     var headers: HTTPHeaders { [:] }
     var body: Data? { nil }
     var bodyEncoding: ParameterEncoding { .none }
     var timeout: TimeInterval { 30 } // 預設 30 秒 Timeout
+    
+    var mockFileName: String? { nil }
 }
 
 enum APIEndpoint {
@@ -75,6 +80,7 @@ enum APIEndpoint {
         var method: HTTPMethod { .get }
         let query: StrayAnimalListQuery
         var queryItems: [URLQueryItem]? { [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems() }
+        var mockFileName: String? { "PetDataMockJSON" }
         
     }
 }
