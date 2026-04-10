@@ -403,16 +403,14 @@ enum AnimalAge: String, Codable {
     }
     
     func AgeText() -> String {
-        var text: String = "年紀："
         switch self {
         case .child:
-            text += "幼年"
+            return "幼年"
         case .adult:
-            text += "成年"
+            return "成年"
         case .unknown:
-            text += "未知年齡"
+            return "未知年齡"
         }
-        return text
     }
 }
 // MARK: - 寵物絕育狀態

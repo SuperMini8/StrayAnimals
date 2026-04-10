@@ -23,9 +23,11 @@
 		1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547B2F725AED005DA616 /* UICollectionViewCell.swift */; };
 		1D6F547E2F725F2F005DA616 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547D2F725F2F005DA616 /* UITableView.swift */; };
 		1D6F54802F726026005DA616 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F547F2F726026005DA616 /* UICollectionView.swift */; };
-		1D6F54822F729380005DA616 /* ListCollectionViewItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */; };
+		1D6F54822F729380005DA616 /* PetListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6F54812F729380005DA616 /* PetListItemViewModel.swift */; };
 		1D6FA32D2F6400C30075D942 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FA32C2F6400C30075D942 /* ImageLoader.swift */; };
 		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
+		1D8AD1AF2F850C36005026DC /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1AE2F850C36005026DC /* CategoryItem.swift */; };
+		1D8AD1B12F850C54005026DC /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */; };
 		1D8AD1B32F8635D1005026DC /* PetDataMockJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */; };
 		1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B42F8639A6005026DC /* MockLoader.swift */; };
 		1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */; };
@@ -35,7 +37,7 @@
 		1DAFC5792F2CA9A6009369E1 /* URLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC5782F2CA9A6009369E1 /* URLFactory.swift */; };
 		1DAFC57B2F2CB453009369E1 /* StrayAnimalListQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC57A2F2CB453009369E1 /* StrayAnimalListQuery.swift */; };
 		EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */; };
-		EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */; };
+		EC2E9EDD2EF93797002F1E1B /* PetListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9EDC2EF93797002F1E1B /* PetListItem.swift */; };
 		EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4E069D2E62F5AC002B6904 /* ListViewController.swift */; };
 		EC4E06A32E62F5AD002B6904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4E06A22E62F5AD002B6904 /* Assets.xcassets */; };
 		EC4E06A62E62F5AD002B6904 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC4E06A52E62F5AD002B6904 /* Base */; };
@@ -68,9 +70,11 @@
 		1D6F547B2F725AED005DA616 /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
 		1D6F547D2F725F2F005DA616 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		1D6F547F2F726026005DA616 /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
-		1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewItemViewModel.swift; sourceTree = "<group>"; };
+		1D6F54812F729380005DA616 /* PetListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetListItemViewModel.swift; sourceTree = "<group>"; };
 		1D6FA32C2F6400C30075D942 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
+		1D8AD1AE2F850C36005026DC /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewModel.swift; sourceTree = "<group>"; };
 		1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PetDataMockJSON.json; sourceTree = "<group>"; };
 		1D8AD1B42F8639A6005026DC /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
 		1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
@@ -80,7 +84,7 @@
 		1DAFC5782F2CA9A6009369E1 /* URLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLFactory.swift; sourceTree = "<group>"; };
 		1DAFC57A2F2CB453009369E1 /* StrayAnimalListQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrayAnimalListQuery.swift; sourceTree = "<group>"; };
 		EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewItem.swift; sourceTree = "<group>"; };
+		EC2E9EDC2EF93797002F1E1B /* PetListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetListItem.swift; sourceTree = "<group>"; };
 		EC4E06962E62F5AC002B6904 /* StrayAnimals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StrayAnimals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4E06992E62F5AC002B6904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4E069B2E62F5AC002B6904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,8 +155,10 @@
 			children = (
 				EC4E069D2E62F5AC002B6904 /* ListViewController.swift */,
 				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
-				EC2E9EDC2EF93797002F1E1B /* ListCollectionViewItem.swift */,
-				1D6F54812F729380005DA616 /* ListCollectionViewItemViewModel.swift */,
+				1D8AD1AE2F850C36005026DC /* CategoryItem.swift */,
+				1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */,
+				EC2E9EDC2EF93797002F1E1B /* PetListItem.swift */,
+				1D6F54812F729380005DA616 /* PetListItemViewModel.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -329,6 +335,8 @@
 			files = (
 				ECF5781B2E63F83C00F5959F /* AppDelegate.swift in Sources */,
 				EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */,
+				1D8AD1AF2F850C36005026DC /* CategoryItem.swift in Sources */,
+				1D8AD1B12F850C54005026DC /* CategoryItemViewModel.swift in Sources */,
 				ECDB413B2ED4C27300AEB3FB /* AnimalEnum.swift in Sources */,
 				1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */,
 				1DAFC57B2F2CB453009369E1 /* StrayAnimalListQuery.swift in Sources */,
@@ -354,9 +362,9 @@
 				1D36307B2F188FBE0071D131 /* WebService.swift in Sources */,
 				ECDB41382ED4437A00AEB3FB /* PetData.swift in Sources */,
 				ECF5781C2E63F83E00F5959F /* SceneDelegate.swift in Sources */,
-				EC2E9EDD2EF93797002F1E1B /* ListCollectionViewItem.swift in Sources */,
+				EC2E9EDD2EF93797002F1E1B /* PetListItem.swift in Sources */,
 				1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */,
-				1D6F54822F729380005DA616 /* ListCollectionViewItemViewModel.swift in Sources */,
+				1D6F54822F729380005DA616 /* PetListItemViewModel.swift in Sources */,
 				1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */,
 				1DAFC5792F2CA9A6009369E1 /* URLFactory.swift in Sources */,
 				EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */,

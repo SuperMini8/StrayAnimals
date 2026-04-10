@@ -10,7 +10,7 @@ import Combine
 
 enum ListUpdateType {
     case reloadAll
-    case append(indexPaths: [IndexPath])
+    case append(newItems: [PetListItemViewModel])
 }
 
 final class ListViewModel {
@@ -19,32 +19,48 @@ final class ListViewModel {
     private var cancellables = Set<AnyCancellable>()
         
     // 網路工具
-    private let webService: WebService
+    private let webService: APIClientProtocol
     private let imageLoader: ImageLoading
     
-    // 頁面資料數量狀態
+    // 類別
+    private(set) var categories: [CategoryItemViewModel] = []
+    private(set) var currentCategory: ListCategory = .all
+    
+    // 頁面資料狀態
+    private(set) var petList: [PetListItemViewModel] = []
     lazy private var listQuery: StrayAnimalListQuery = StrayAnimalListQuery(top: pageSize)
     private var currentPage: Int = 1
     private var pageSize: Int = 10
-    private var canLoadMore: Bool = true
+    
+    // Loading 狀態
     @Published private(set) var isLoading: Bool = false
+    // 是否可以再載入下一頁
+    private(set) var canLoadMore: Bool = true
     
     // MARK: - Input
-    // 接收 ViewController 來的事件
-    let viewdidLoad = PassthroughSubject<Void, Never>()
-    let loadMore = PassthroughSubject<Void, Never>()
-    let reload = PassthroughSubject<Void, Never>()
+    struct Intput {
+        let viewdidLoad = PassthroughSubject<Void, Never>()
+        let loadMore = PassthroughSubject<Void, Never>()
+        let reload = PassthroughSubject<Void, Never>()
+        let categorySelected = PassthroughSubject<ListCategory, Never>()
+    }
+    
+    let input = Intput()
     
     // MARK: - Output
-    private(set) var listItemViewModels: [ListCollectionViewItemViewModel] = []
-    // PassthroughSubject 傳送單一「事件」
-    let listUpdate = PassthroughSubject<ListUpdateType, Never>()
-    let errorMessage = PassthroughSubject<String, Never>()
-
+    struct Output {
+        // PassthroughSubject 傳送單一「事件」
+        /// 更新分類畫面 (舊分類, 新分類)
+        let setCategory = PassthroughSubject<Void, Never>()
+        let listUpdate = PassthroughSubject<ListUpdateType, Never>()
+        let errorMessage = PassthroughSubject<String, Never>()
+    }
+    
+    let output = Output()
     
     init(startPage: Int,
          pageSize: Int,
-         webService: WebService = WebService(),
+         webService: APIClientProtocol = WebService(),
          imageLoader: ImageLoading = ImageLoader.shared) {
         self.currentPage = startPage
         self.pageSize = pageSize
@@ -55,30 +71,38 @@ final class ListViewModel {
     
     private func bind() {
         // 當 viewController 進到 viewDidLoad 狀態，就去 load data
-        viewdidLoad
+        input.viewdidLoad
             .sink { [weak self] in
+                self?.loadCategoryList()
                 self?.getPetData(updateType: .reloadAll)
             }
             .store(in: &cancellables)
         // 當 viewController 需要更多資料時
-        loadMore
+        input.loadMore
             .sink { [weak self] in
                 if self?.isLoading != true {
                     self?.loadNextPage()
                 }
             }
             .store(in: &cancellables)
-        reload
+        input.reload
             .sink { [weak self] in
                 if self?.isLoading != true {
                     self?.getPetData(updateType: .reloadAll)
                 }
             }
             .store(in: &cancellables)
+        // 選擇分類時
+        input.categorySelected
+            .sink { [weak self] kind in
+                self?.selectedCategoryAndUpdatedData(kind)
+            }
+            .store(in: &cancellables)
     }
     // MARK: - PetData 相關
     private func getPetData(updateType: ListUpdateType) {
         
+        guard canLoadMore else { return }
         isLoading = true
         
         webService.sendRequest(with: APIEndpoint.StrayAnimalList(query: listQuery))
@@ -94,25 +118,25 @@ final class ListViewModel {
                     print("Request finished. Page is: \(self.currentPage)")
                 case .failure(let error):
                     print("Request failed with: \(error)")
-                    self.errorMessage.send(error.errorMassage())
+                    self.output.errorMessage.send(error.errorMassage())
                 }
                 print(completion)
             } receiveValue: { [weak self] response in
                 guard let self else { return }
-                // 先抓取更新前的 count
-                let oldCount = listItemViewModels.count
-                // 更新 Array
-                let cellViewModels = response.map { self.makeCellViewModel(for: $0) }
-                listItemViewModels.append(contentsOf: cellViewModels)
-                // 抓取更新的 Index
-                let newCount = listItemViewModels.count
-                let updateIndexPaths = (oldCount ..< newCount).map { IndexPath(row: $0, section: 0) }
+                let items = response.map { self.makePetListItemViewModel(for: $0) }
+                // 先檢查是否為空陣列，若為空陣列視為最後一頁。
+                if items.isEmpty {
+                    canLoadMore = false
+                    return
+                }
                 // 傳送更新事件
                 switch updateType {
                 case .reloadAll:
-                    listUpdate.send(.reloadAll)
+                    petList = items
+                    output.listUpdate.send(.reloadAll)
                 case .append(_):
-                    listUpdate.send(.append(indexPaths: updateIndexPaths))
+                    petList.append(contentsOf: items)
+                    output.listUpdate.send(.append(newItems: items))
                 }
             }
             // 把訂閱存起來，避免被自動取消
@@ -123,12 +147,31 @@ final class ListViewModel {
         // 更新頁數
         currentPage += 1
         listQuery.setPage(currentPage, size: pageSize)
-        getPetData(updateType: .append(indexPaths: []))
+        getPetData(updateType: .append(newItems: []))
     }
     
-    // MARK: - Cell 相關
-    private func makeCellViewModel(for item: PetData) -> ListCollectionViewItemViewModel {
-        ListCollectionViewItemViewModel(
+    // MARK: - Category 相關
+    func loadCategoryList() {
+        categories = ListCategory.allCases.compactMap { CategoryItemViewModel(categoryType: $0, isSelected: $0 == currentCategory) }
+    }
+    
+    func selectedCategoryAndUpdatedData(_ category: ListCategory) {
+        // 先更新分類狀態
+        currentCategory = category
+        loadCategoryList()
+        output.setCategory.send()
+        // 再請求資料
+        canLoadMore = true
+        listQuery.setCategory(category)
+        currentPage = 1
+        listQuery.setPage(currentPage, size: pageSize)
+        getPetData(updateType: .reloadAll)
+    }
+    
+    // MARK: - PetListItem 相關
+    private func makePetListItemViewModel(for item: PetData) -> PetListItemViewModel {
+        PetListItemViewModel(
+            id: item.animalId,
             imageURL: URL(string: item.albumFile),
             kind: item.animalKind,
             sex: item.animalSex,

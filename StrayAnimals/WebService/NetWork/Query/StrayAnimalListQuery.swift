@@ -102,5 +102,35 @@ struct StrayAnimalListQuery {
         top = size
         skip = (page - 1) * size
     }
+    /// 選擇分類
+    mutating func setCategory(_ category: ListCategory) {
+        switch category {
+        case .all:
+            cleanAll()
+        case .kindDog, .kindCat, .kindOther:
+            animalKind = AnimalKind(rawValue: category.queryValue())
+        case .ageChild, .ageAdult:
+            animalAge = AnimalAge(rawValue: category.queryValue())
+        }
+    }
+    /// 清除指定搜尋
+    mutating func cleanAll() {
+        animalID = nil
+        subID = nil
+        areaID = nil
+        animalPlace = nil
+        animalKind = nil
+        animalVariety = nil
+        animalSex = nil
+        animalBodyType = nil
+        animalColor = nil
+        animalAge = nil
+        animalSterilization = nil
+        animalBacterin = nil
+        animalFoundPlace = nil
+        animalStatus = nil
+        animalOpenDate = nil
+        shelterName = nil
+    }
 
 }

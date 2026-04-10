@@ -1,5 +1,5 @@
 //
-//  ListCollectionViewItemViewModel.swift
+//  PetListItemViewModel.swift
 //  StrayAnimals
 //
 //  Created by ElmaYeh on 2026/3/24.
@@ -9,13 +9,14 @@ import Foundation
 import Combine
 import UIKit
 
-final class ListCollectionViewItemViewModel {
-    
+final class PetListItemViewModel: Hashable {
+    // animalId for Hashable
+    let id: Int
     let imageURL: URL?
     let kind: AnimalKind
     let sex: AnimalSex
     let status: AnimalStatus
-    let age: AnimalAge
+    let age: String
     let place: String
     
     @Published private(set) var image: UIImage? = nil
@@ -26,6 +27,7 @@ final class ListCollectionViewItemViewModel {
     private var hasStartedLoading: Bool = false
     
     init(
+        id: Int,
         imageURL: URL?,
         kind: AnimalKind,
         sex: AnimalSex,
@@ -34,14 +36,25 @@ final class ListCollectionViewItemViewModel {
         place: String,
         imageLoader: ImageLoading
     ) {
+        self.id = id
         self.imageURL = imageURL
         self.kind = kind
         self.sex = sex
         self.status = status
-        self.age = age
+        self.age = "年紀：" + age.AgeText()
         self.place = place
         self.imageLoader = imageLoader
     }
+    
+    // MARK: - Hashable Class Need these two func
+    static func == (lhs: PetListItemViewModel, rhs: PetListItemViewModel) -> Bool {
+        lhs.id == rhs.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    // MARK: - Image Download
     /// 下載圖片
     func loadImageIfNeeded(imageSize: ImageSizeType, imageScale: CGFloat) {
         guard !hasStartedLoading else { return }

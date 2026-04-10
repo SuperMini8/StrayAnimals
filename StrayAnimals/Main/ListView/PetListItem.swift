@@ -1,5 +1,5 @@
 //
-//  ListCollectionViewItem.swift
+//  PetListItem.swift
 //  StrayAnimals
 //
 //  Created by 小八 on 2025/12/22.
@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Combine
 
-final class ListCollectionViewItem: UICollectionViewCell {
+final class PetListItem: UICollectionViewCell {
     // MARK: - UI
     lazy private var animalImageView: UIImageView = {
         let imageView = UIImageView()
@@ -45,8 +45,8 @@ final class ListCollectionViewItem: UICollectionViewCell {
     
     lazy private var loadingView = LoadingView()
     // MARK: - property
+    private var viewModel: PetListItemViewModel?
     private var cancellables = Set<AnyCancellable>()
-    private var viewModel: ListCollectionViewItemViewModel?
     // MARK: - method
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +54,7 @@ final class ListCollectionViewItem: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("ListCollectionViewItem init(coder:) has not been implemented")
+        fatalError("PetListItem init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -121,7 +121,7 @@ final class ListCollectionViewItem: UICollectionViewCell {
         }
     }
     
-    func configure(with viewModel: ListCollectionViewItemViewModel) {
+    func configure(with viewModel: PetListItemViewModel) {
         cancellables.removeAll()
         
         self.viewModel = viewModel
@@ -130,7 +130,7 @@ final class ListCollectionViewItem: UICollectionViewCell {
                                         image: viewModel.sex.sexImage(),
                                         imageArrangement: .right)
         animalStatusLabel.text = viewModel.status.statusText()
-        animalAgeLabel.text = viewModel.age.AgeText()
+        animalAgeLabel.text = viewModel.age
         animalPlaceLabel.text = viewModel.place
         
         viewModel.$image
