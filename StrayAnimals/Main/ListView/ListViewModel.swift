@@ -101,8 +101,9 @@ final class ListViewModel {
     }
     // MARK: - PetData 相關
     private func getPetData(updateType: ListUpdateType) {
-        
+        // 先檢查能不能再載下一頁
         guard canLoadMore else { return }
+        
         isLoading = true
         
         webService.sendRequest(with: APIEndpoint.StrayAnimalList(query: listQuery))
@@ -174,6 +175,7 @@ final class ListViewModel {
             id: item.animalId,
             imageURL: URL(string: item.albumFile),
             kind: item.animalKind,
+            variety: item.animalVariety,
             sex: item.animalSex,
             status: item.animalStatus,
             age: item.animalAge,

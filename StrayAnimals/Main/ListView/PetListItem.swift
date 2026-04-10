@@ -25,6 +25,12 @@ final class PetListItem: UICollectionViewCell {
         return label
     }()
     
+    lazy private var animalVarietyLabel: UILabel = {
+        let label = UILabel()
+        label.font = FontGroup.font(.regular, .small)
+        return label
+    }()
+    
     lazy private var animalStatusLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.regular, .small)
@@ -88,10 +94,18 @@ final class PetListItem: UICollectionViewCell {
                 make.centerX.equalToSuperview()
             }
         }
+        if !contentView.contains(animalVarietyLabel) {
+            contentView.addSubview(animalVarietyLabel)
+            animalVarietyLabel.snp.makeConstraints { make in
+                make.top.equalTo(animalKindLabel.snp.bottom).offset(3)
+                make.width.equalToSuperview().multipliedBy(0.85)
+                make.centerX.equalToSuperview()
+            }
+        }
         if !contentView.contains(animalStatusLabel) {
             contentView.addSubview(animalStatusLabel)
             animalStatusLabel.snp.makeConstraints { make in
-                make.top.equalTo(animalKindLabel.snp.bottom).offset(3)
+                make.top.equalTo(animalVarietyLabel.snp.bottom).offset(3)
                 make.width.equalToSuperview().multipliedBy(0.85)
                 make.centerX.equalToSuperview()
             }
@@ -129,6 +143,7 @@ final class PetListItem: UICollectionViewCell {
                                         font: FontGroup.font(.regular, .small),
                                         image: viewModel.sex.sexImage(),
                                         imageArrangement: .right)
+        animalVarietyLabel.text = viewModel.variety
         animalStatusLabel.text = viewModel.status.statusText()
         animalAgeLabel.text = viewModel.age
         animalPlaceLabel.text = viewModel.place

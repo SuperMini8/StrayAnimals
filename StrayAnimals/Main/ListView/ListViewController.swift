@@ -230,9 +230,9 @@ extension ListViewController {
         let groupSize = NSCollectionLayoutSize(
             // group 的 父視圖會是 collectionView
             widthDimension: .fractionalWidth(1.0),
-            // 這裡設定高度為 item.width * 1.5
-            // 因 item width 為 .fractionalWidth(0.5) 所以再 * 1.5
-            heightDimension: .fractionalWidth(0.5 * 1.5)
+            // 這裡設定高度為 item.width * 1.6
+            // 因 item width 為 .fractionalWidth(0.5) 所以再 * 1.6
+            heightDimension: .fractionalWidth(0.5 * 1.6)
         )
         // group 是在設定一組的大小，.horizontal 為 group 垂直排列
         let group = NSCollectionLayoutGroup.horizontal(

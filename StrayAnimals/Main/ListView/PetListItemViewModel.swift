@@ -14,6 +14,7 @@ final class PetListItemViewModel: Hashable {
     let id: Int
     let imageURL: URL?
     let kind: AnimalKind
+    let variety: String
     let sex: AnimalSex
     let status: AnimalStatus
     let age: String
@@ -30,6 +31,7 @@ final class PetListItemViewModel: Hashable {
         id: Int,
         imageURL: URL?,
         kind: AnimalKind,
+        variety: String,
         sex: AnimalSex,
         status: AnimalStatus,
         age: AnimalAge,
@@ -39,6 +41,7 @@ final class PetListItemViewModel: Hashable {
         self.id = id
         self.imageURL = imageURL
         self.kind = kind
+        self.variety = "品種：" + variety
         self.sex = sex
         self.status = status
         self.age = "年紀：" + age.AgeText()
