@@ -104,9 +104,11 @@ struct StrayAnimalListQuery {
     }
     /// 選擇分類
     mutating func setCategory(_ category: ListCategory) {
+        // 現階段只能選擇一種分類，所以要先清除所有記憶
+        cleanAll()
         switch category {
         case .all:
-            cleanAll()
+            break
         case .kindDog, .kindCat, .kindOther:
             animalKind = AnimalKind(rawValue: category.queryValue())
         case .ageChild, .ageAdult:
