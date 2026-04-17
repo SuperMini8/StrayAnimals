@@ -12,44 +12,44 @@ import Combine
 
 final class PetListItem: UICollectionViewCell {
     // MARK: - UI
-    lazy private var animalImageView: UIImageView = {
+    private let animalImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    lazy private var animalKindLabel: UILabel = {
+    private let animalKindLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.regular, .small)
         return label
     }()
     
-    lazy private var animalVarietyLabel: UILabel = {
+    private let animalVarietyLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.regular, .small)
         return label
     }()
     
-    lazy private var animalStatusLabel: UILabel = {
+    private let animalStatusLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.regular, .small)
         return label
     }()
     
-    lazy private var animalAgeLabel: UILabel = {
+    private let animalAgeLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.regular, .small)
         return label
     }()
     
-    lazy private var animalPlaceLabel: UILabel = {
+    private let animalPlaceLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.regular, .small)
         return label
     }()
     
-    lazy private var loadingView = LoadingView()
+    private lazy var loadingView = LoadingView(style: .medium)
     // MARK: - property
     private var viewModel: PetListItemViewModel?
     private var cancellables = Set<AnyCancellable>()
@@ -77,6 +77,8 @@ final class PetListItem: UICollectionViewCell {
     private func setUI() {
         backgroundColor = .white
         layer.cornerRadius = 12
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.border.cgColor
         clipsToBounds = true
         
         if !contentView.contains(animalImageView) {
@@ -139,7 +141,7 @@ final class PetListItem: UICollectionViewCell {
         cancellables.removeAll()
         
         self.viewModel = viewModel
-        animalKindLabel.setTextAndImage(text: viewModel.kind.displayTitleText() ,
+        animalKindLabel.setTextAndImage(text: viewModel.kindText ,
                                         font: FontGroup.font(.regular, .small),
                                         image: viewModel.sex.sexImage(),
                                         imageArrangement: .right)
@@ -151,7 +153,7 @@ final class PetListItem: UICollectionViewCell {
         viewModel.$image
             .receive(on: DispatchQueue.main)
             .sink { [weak self] image in
-                self?.animalImageView.image = image ?? viewModel.kind.defaultIamge()
+                self?.animalImageView.image = image ?? viewModel.kindImage
             }
             .store(in: &cancellables)
         viewModel.$isImageLoading

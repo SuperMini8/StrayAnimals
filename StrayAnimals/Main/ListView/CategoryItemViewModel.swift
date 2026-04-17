@@ -60,7 +60,7 @@ final class CategoryItemViewModel: Hashable {
     var isSelected: Bool = false
     
     var backgroundColor: UIColor {
-        return isSelected ? UIColor.white : UIColor.peach
+        return isSelected ? UIColor.white : UIColor.navigationBar
     }
     
     init(categoryType: ListCategory, isSelected: Bool) {

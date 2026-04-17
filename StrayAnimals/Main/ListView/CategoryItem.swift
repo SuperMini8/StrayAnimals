@@ -11,7 +11,7 @@ import SnapKit
 
 final class CategoryItem: UICollectionViewCell {
     // MARK: - UI
-    private lazy var titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = FontGroup.font(.medium, .normal)
         label.textColor = .black

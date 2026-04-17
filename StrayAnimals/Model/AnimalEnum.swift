@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 // MARK: - 台灣地區
+/// 台灣地區
 enum TaiwanArea: Int, Codable {
     /// 02 台北市
     case taipeiCity = 2
@@ -120,6 +121,7 @@ enum TaiwanArea: Int, Codable {
     
 }
 // MARK: - 收容所ID
+/// 收容所ID
 enum PetShelter: Int, Codable {
     /// 48 基隆市寵物銀行
     case keelungPetBank = 48
@@ -275,7 +277,8 @@ enum PetShelter: Int, Codable {
     }
     
 }
-// MARK: - 寵物種類
+// MARK: - 寵物類型
+/// 寵物類型
 enum AnimalKind: String, Codable {
     case dog = "狗"
     case cat = "貓"
@@ -288,19 +291,6 @@ enum AnimalKind: String, Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
-    }
-    
-    func displayTitleText() -> String {
-        var text = "類型："
-        switch self {
-        case .dog:
-            text += "狗"
-        case .cat:
-            text += "貓"
-        case .other:
-            text += "其他"
-        }
-        return text
     }
     
     func defaultIamge() -> UIImage? {
@@ -316,6 +306,7 @@ enum AnimalKind: String, Codable {
     
 }
 // MARK: - 寵物性別
+/// 寵物性別
 enum AnimalSex: String, Codable {
     case male = "M"
     case female = "F"
@@ -342,20 +333,19 @@ enum AnimalSex: String, Codable {
     }
     
     func displaySexName() -> String {
-        var name: String = "性別："
         switch self {
         case .male:
-            name += "公"
+            return "公"
         case .female:
-            name += "母"
+            return "母"
         case .unknown:
-            name += "未知性別"
+            return "未知性別"
         }
-        return name
     }
     
 }
 // MARK: - 寵物體型
+/// 寵物體型
 enum AnimalBodyType: String, Codable {
     case small = "SMALL"
     case medium = "MEDIUM"
@@ -372,22 +362,21 @@ enum AnimalBodyType: String, Codable {
     }
     
     func BodyTypeText() -> String {
-        var text: String = ""
         switch self {
         case .small:
-            text = "小型"
+            return "小型"
         case .medium:
-            text = "中型"
+            return "中型"
         case .big:
-            text = "大型"
+            return "大型"
         case .unknown:
-            text = "未知體型"
+            return "未知體型"
         }
-        return text
     }
     
 }
 // MARK: - 寵物年齡
+/// 寵物年齡
 enum AnimalAge: String, Codable {
     case child = "CHILD"
     case adult = "ADULT"
@@ -414,6 +403,7 @@ enum AnimalAge: String, Codable {
     }
 }
 // MARK: - 寵物絕育狀態
+/// 寵物絕育狀態
 enum AnimalSterilization: String, Codable {
     case sterilized = "T"
     case notSterilized = "F"
@@ -442,6 +432,7 @@ enum AnimalSterilization: String, Codable {
     }
 }
 // MARK: - 狂犬病施打狀態
+/// 狂犬病施打狀態
 enum AnimalBacterinStatus: String, Codable {
     case vaccinated = "T"
     case notVaccinated = "F"
@@ -457,19 +448,18 @@ enum AnimalBacterinStatus: String, Codable {
     }
     
     func statusText() -> String {
-        var text: String = ""
         switch self {
         case .vaccinated:
-            text = "已施打狂犬病疫苗"
+            return "已施打"
         case .notVaccinated:
-            text = "尚未施打狂犬病疫苗"
+            return "尚未施打"
         case .unknown:
-            text = "狂犬病施打狀態未知"
+            return "未知"
         }
-        return text
     }
 }
 // MARK: - 寵物狀態
+/// 寵物狀態
 enum AnimalStatus: String, Codable {
     case none = "NONE"
     case openAdoption = "OPEN"
@@ -487,19 +477,35 @@ enum AnimalStatus: String, Codable {
     }
     
     func statusText() -> String {
-        var text: String = "待認養狀態："
         switch self {
         case .none:
-            text += "未公告"
+            return "未公告"
         case .openAdoption:
-            text += "開放認養"
+            return "開放認養"
         case .adopted:
-            text += "已認養"
+            return "已認養"
         case .other:
-            text += "其他"
+            return "其他"
         case .dead:
-            text += "死亡"
+            return "死亡"
         }
-        return text
+    }
+    
+    func backgroundColor() -> UIColor {
+        switch self {
+        case .openAdoption:
+            return .openAdoptionBackground
+        default:
+            return .statusNormalBackground
+        }
+    }
+    
+    func textColor() -> UIColor {
+        switch self {
+        case .openAdoption:
+            return .openAdoptionText
+        default:
+            return .statusNormalText
+        }
     }
 }

@@ -13,7 +13,8 @@ final class PetListItemViewModel: Hashable {
     // animalId for Hashable
     let id: Int
     let imageURL: URL?
-    let kind: AnimalKind
+    let kindText: String
+    let kindImage: UIImage?
     let variety: String
     let sex: AnimalSex
     let status: AnimalStatus
@@ -40,7 +41,8 @@ final class PetListItemViewModel: Hashable {
     ) {
         self.id = id
         self.imageURL = imageURL
-        self.kind = kind
+        self.kindText = "類型：" + kind.rawValue
+        self.kindImage = kind.defaultIamge()
         self.variety = "品種：" + variety
         self.sex = sex
         self.status = status

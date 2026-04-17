@@ -10,7 +10,7 @@ import Combine
 
 class ListViewController: UIViewController {
     // MARK: - UI
-    private lazy var titleView: UILabel = {
+    private let titleView: UILabel = {
         let label = UILabel()
         label.setTextAndImage(text: "流浪動物",
                               font: FontGroup.font(.bold, .large),
@@ -62,7 +62,7 @@ class ListViewController: UIViewController {
     }
     
     private func setUI() {
-        view.backgroundColor = .lightGrey240
+        view.backgroundColor = .viewBackground
         navigationItem.titleView = titleView
         
         view.addSubview(listCollectionView)
@@ -73,6 +73,7 @@ class ListViewController: UIViewController {
     }
     
     private func setBind() {
+        // 選擇分類後更新 UI
         viewModel.output.setCategory
             .receive(on: DispatchQueue.main)
             .sink { [weak self]  in
@@ -116,16 +117,29 @@ class ListViewController: UIViewController {
                 })
             }
             .store(in: &cancellables)
+        // 選擇寵物後前往詳細頁
+        viewModel.output.pushInformationView
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] petData in
+                print("選擇寵物：\(petData.animalId)，前往詳細頁")
+                self?.pushInformationView(petData)
+            }
+            .store(in: &cancellables)
     }
     
     private func setNavBarAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .peach
+        appearance.backgroundColor = .navigationBar
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
+    private func pushInformationView(_ data: PetData) {
+        let vcm = PetInformationViewModel(petData: data)
+        let vc = PetInformationViewController(viewModel: vcm)
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
 // MARK: - UICollectionView 相關
@@ -150,7 +164,7 @@ extension ListViewController {
             
             switch item {
             case .category(let category):
-                guard let item = viewModel.categories.first(where: { $0.category.rawValue == category }) else { return nil }
+                guard let item = viewModel.categoryViewModel.first(where: { $0.category.rawValue == category }) else { return nil }
                 return collectionView.dequeueConfiguredReusableCell(
                     using: self.categoryCellRegistration,
                     for: indexPath,
@@ -158,7 +172,7 @@ extension ListViewController {
                 )
                 
             case .petList(let pet):
-                guard let item = viewModel.petList.first(where: { $0.id == pet }) else { return nil }
+                guard let item = viewModel.petViewModels.first(where: { $0.id == pet }) else { return nil }
                 return collectionView.dequeueConfiguredReusableCell(
                     using: self.petListCellRegistration,
                     for: indexPath,
@@ -255,10 +269,10 @@ extension ListViewController {
         var snapshot = Snapshot()
         snapshot.appendSections([.category, .petList])
         
-        let categoryItems = viewModel.categories
+        let categoryItems = viewModel.categoryViewModel
         snapshot.appendItems(categoryItems.map { ListItem.category(id: $0.category.rawValue) }, toSection: .category)
         
-        let petlistItems = viewModel.petList
+        let petlistItems = viewModel.petViewModels
         snapshot.appendItems(petlistItems.map { ListItem.petList(id: $0.id) }, toSection: .petList)
         
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -266,7 +280,7 @@ extension ListViewController {
     /// 只更新分類
     private func applyCategoriesOnly() {
         var snapshot = dataSource.snapshot()
-        snapshot.reconfigureItems(viewModel.categories.map { ListItem.category(id: $0.category.rawValue) })
+        snapshot.reconfigureItems(viewModel.categoryViewModel.map { ListItem.category(id: $0.category.rawValue) })
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     /// 加入新的 Pet Data
@@ -289,7 +303,7 @@ extension ListViewController: UICollectionViewDelegate {
             guard let category = ListCategory(rawValue: id) else { return }
             viewModel.input.categorySelected.send(category)
         case .petList(let id):
-            break
+            viewModel.input.petSelected.send(id)
         }
     }
     

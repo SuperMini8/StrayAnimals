@@ -8,17 +8,19 @@
 import UIKit
 /// 自帶灰色背景的 Loading 動畫的 View，Frame 要給才有顏色背景
 final class LoadingView: UIView {
-    private let indicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.style = .medium
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
     
-    override init(frame: CGRect) {
+    // 需要依賴 init 傳入 style，就不用固定的 property closure 直接初始化，改成在 init 裡建立。
+    private let indicator: UIActivityIndicatorView
+    
+    
+    init(frame: CGRect = .zero,
+         style: UIActivityIndicatorView.Style
+    ) {
+        self.indicator = UIActivityIndicatorView(style: style)
+        self.indicator.hidesWhenStopped = true
         super.init(frame: frame)
         
-        backgroundColor = UIColor.lightGrey220.withAlphaComponent(0.5)
+        backgroundColor = .viewBackground.withAlphaComponent(0.5)
         
         addSubview(indicator)
         indicator.snp.makeConstraints { make in

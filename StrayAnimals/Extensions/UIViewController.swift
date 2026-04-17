@@ -17,7 +17,7 @@ extension UIViewController {
     //MARK: - Loading View
     /// 顯示 Loading View
     func showLoadingView() {
-        let loadingView = LoadingView()
+        let loadingView = LoadingView(style: .large)
         if !view.subviews.contains(loadingView) {
             view.addSubview(loadingView)
             loadingView.snp.makeConstraints { make in

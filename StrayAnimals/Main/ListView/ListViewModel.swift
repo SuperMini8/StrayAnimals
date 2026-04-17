@@ -23,11 +23,12 @@ final class ListViewModel {
     private let imageLoader: ImageLoading
     
     // 類別
-    private(set) var categories: [CategoryItemViewModel] = []
+    private(set) var categoryViewModel: [CategoryItemViewModel] = []
     private(set) var currentCategory: ListCategory = .all
     
     // 頁面資料狀態
-    private(set) var petList: [PetListItemViewModel] = []
+    private var pets: [PetData] = []
+    private(set) var petViewModels: [PetListItemViewModel] = []
     lazy private var listQuery: StrayAnimalListQuery = StrayAnimalListQuery(top: pageSize)
     private var currentPage: Int = 1
     private var pageSize: Int = 10
@@ -43,6 +44,7 @@ final class ListViewModel {
         let loadMore = PassthroughSubject<Void, Never>()
         let reload = PassthroughSubject<Void, Never>()
         let categorySelected = PassthroughSubject<ListCategory, Never>()
+        let petSelected = PassthroughSubject<Int, Never>()
     }
     
     let input = Intput()
@@ -54,6 +56,8 @@ final class ListViewModel {
         let setCategory = PassthroughSubject<Void, Never>()
         let listUpdate = PassthroughSubject<ListUpdateType, Never>()
         let errorMessage = PassthroughSubject<String, Never>()
+        // 取得 Data 前往詳細頁
+        let pushInformationView = PassthroughSubject<PetData, Never>()
     }
     
     let output = Output()
@@ -98,6 +102,14 @@ final class ListViewModel {
                 self?.selectedCategoryAndUpdatedData(kind)
             }
             .store(in: &cancellables)
+        // 選擇寵物時
+        input.petSelected
+            .sink { [weak self] petID in
+                if let data = self?.getPetFullData(with: petID) {
+                    self?.output.pushInformationView.send(data)
+                }
+            }
+            .store(in: &cancellables)
     }
     // MARK: - PetData 相關
     private func getPetData(updateType: ListUpdateType) {
@@ -133,10 +145,12 @@ final class ListViewModel {
                 // 傳送更新事件
                 switch updateType {
                 case .reloadAll:
-                    petList = items
+                    pets = response
+                    petViewModels = items
                     output.listUpdate.send(.reloadAll)
                 case .append(_):
-                    petList.append(contentsOf: items)
+                    pets.append(contentsOf: response)
+                    petViewModels.append(contentsOf: items)
                     output.listUpdate.send(.append(newItems: items))
                 }
             }
@@ -153,7 +167,7 @@ final class ListViewModel {
     
     // MARK: - Category 相關
     func loadCategoryList() {
-        categories = ListCategory.allCases.compactMap { CategoryItemViewModel(categoryType: $0, isSelected: $0 == currentCategory) }
+        categoryViewModel = ListCategory.allCases.compactMap { CategoryItemViewModel(categoryType: $0, isSelected: $0 == currentCategory) }
     }
     
     func selectedCategoryAndUpdatedData(_ category: ListCategory) {
@@ -170,6 +184,7 @@ final class ListViewModel {
     }
     
     // MARK: - PetListItem 相關
+    // 將 Data 轉換成 View Model
     private func makePetListItemViewModel(for item: PetData) -> PetListItemViewModel {
         PetListItemViewModel(
             id: item.animalId,
@@ -182,5 +197,9 @@ final class ListViewModel {
             place: item.animalPlace,
             imageLoader: imageLoader
         )
+    }
+    // 取得完整資料
+    private func getPetFullData(with id: Int) -> PetData? {
+        return pets.first(where: { $0.animalId == id })
     }
 }
