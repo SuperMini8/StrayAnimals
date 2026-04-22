@@ -51,6 +51,10 @@ final class NoteCardView: PetInfoCardContainerView {
         } else {
             contentStackView.removeArrangedSubview(updateDateLabel)
         }
+        
+        if contentStackView.arrangedSubviews.isEmpty {
+            self.removeFromSuperview()
+        }
     }
 
 

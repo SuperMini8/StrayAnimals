@@ -111,7 +111,7 @@ final class PetInformationViewModel {
         let note = NoteCardViewData(
             foundPlace: data.animalFoundplace,
             remark: data.animalRemark,
-            updateDateText: makeDataText(from: data.animalUpdate)
+            updateDateText: makeDataText(from: data.cDate)
         )
         
         return PetInformationViewData(
