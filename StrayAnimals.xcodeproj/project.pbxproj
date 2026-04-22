@@ -194,17 +194,33 @@
 				1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */,
 				1D7099912F8F7EA9009C4B4A /* PetInformationViewData.swift */,
 				1D67ABCF2F8CEB2B00EFBEC6 /* PetInformationViewModel.swift */,
+				1D7108FF2F98AE0100E15C61 /* Card */,
+			);
+			path = PetInformationView;
+			sourceTree = "<group>";
+		};
+		1D7108FF2F98AE0100E15C61 /* Card */ = {
+			isa = PBXGroup;
+			children = (
 				1D7108FB2F9895CA00E15C61 /* PetInfoCardContainerView.swift */,
 				1D6EA5502F90D6F200E3FA63 /* SummaryCardView.swift */,
 				1D709F172F921E5400DBB0B3 /* StatusCardView.swift */,
-				1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */,
-				1D91FA772F977E510071E8B3 /* InfoColumnView.swift */,
-				1D91FA752F976A790071E8B3 /* InfoRowView.swift */,
+				1D7109002F98AE1F00E15C61 /* InfoCard */,
 				1D7108F92F98862800E15C61 /* ShelterCardView.swift */,
 				1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */,
 				1D7108F72F9884DA00E15C61 /* BottomActionView.swift */,
 			);
-			path = PetInformationView;
+			path = Card;
+			sourceTree = "<group>";
+		};
+		1D7109002F98AE1F00E15C61 /* InfoCard */ = {
+			isa = PBXGroup;
+			children = (
+				1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */,
+				1D91FA772F977E510071E8B3 /* InfoColumnView.swift */,
+				1D91FA752F976A790071E8B3 /* InfoRowView.swift */,
+			);
+			path = InfoCard;
 			sourceTree = "<group>";
 		};
 		1D8AD1B62F8639C0005026DC /* Mock */ = {

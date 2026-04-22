@@ -22,6 +22,7 @@ final class NoteCardView: PetInfoCardContainerView {
     }
     
     func configure(with viewData: NoteCardViewData) {
+        /// 沒有資料不顯示
         if viewData.foundPlace.isEmpty != true {
             foundPlaceLabel.configure(
                 icon: UIImage.questionMark,
@@ -52,6 +53,7 @@ final class NoteCardView: PetInfoCardContainerView {
             contentStackView.removeArrangedSubview(updateDateLabel)
         }
         
+        /// 如果都沒有資料就把自己移除
         if contentStackView.arrangedSubviews.isEmpty {
             self.removeFromSuperview()
         }
