@@ -79,19 +79,28 @@ final class PetInformationViewModel {
             statusText: "目前狀態：" + data.animalStatus.statusText(),
             statusBackgroundColor: data.animalStatus.backgroundColor(),
             statusTextColor: data.animalStatus.textColor(),
-            openDateText: makeDataText(from: data.animalOpendate)
+            openDateText: makeDataText(from: data.animalOpendate),
+            updateDateText: makeDataText(from: data.animalUpdate)
         )
         
-        let infoRows: [InfoRowViewData] = [
+        let leftInfoRows: [InfoRowViewData] = [
             InfoRowViewData(title: "類型", value: data.animalKind.rawValue),
             InfoRowViewData(title: "品種", value: data.animalVariety.trimmingCharacters(in: .whitespaces)),
             InfoRowViewData(title: "性別", value: data.animalSex.displaySexName()),
             InfoRowViewData(title: "年紀", value: data.animalAge.AgeText()),
+        ]
+        
+        let rightInfoRows: [InfoRowViewData] = [
             InfoRowViewData(title: "體型", value: data.animalBodytype.BodyTypeText()),
             InfoRowViewData(title: "毛色", value: data.animalColour),
             InfoRowViewData(title: "絕育狀況", value: data.animalSterilization.sterilizationText()),
             InfoRowViewData(title: "狂犬病疫苗", value: data.animalBacterin.statusText())
         ]
+        
+        let info = InfoCardViewData(
+            leftInfoRows: leftInfoRows,
+            rightInfoRows: rightInfoRows
+        )
         
         let shelter = ShelterCardViewData(
             name: data.shelterName,
@@ -111,7 +120,7 @@ final class PetInformationViewModel {
             subtitle: subtitle,
             badges: badges,
             status: status,
-            infoRows: infoRows,
+            info: info,
             shelter: shelter,
             note: note
         )

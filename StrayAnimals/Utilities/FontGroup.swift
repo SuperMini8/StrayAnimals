@@ -17,8 +17,13 @@ struct FontGroup {
     }
     
     enum FontSize: CGFloat {
+        /// 14
         case small = 14
-        case normal = 20
+        /// 18
+        case medium = 18
+        /// 20
+        case highLight = 22
+        /// 28
         case large = 28
     }
     

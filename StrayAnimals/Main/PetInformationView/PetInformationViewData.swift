@@ -41,11 +41,11 @@ struct PetInformationViewData {
     /// 狀態
     let status: StatusCardViewData
     /// 動物資訊
-    let infoRows: [InfoRowViewData]
+    let info: InfoCardViewData
     /// 收容所資訊
-    let shelter: ShelterCardViewData?
+    let shelter: ShelterCardViewData
     /// 備註
-    let note: NoteCardViewData?
+    let note: NoteCardViewData
 }
 /// 標籤
 struct BadgeViewData {
@@ -59,9 +59,15 @@ struct StatusCardViewData {
     let statusBackgroundColor: UIColor
     let statusTextColor: UIColor
     let openDateText: String?
+    let updateDateText: String?
 }
 /// 詳細資料列
-struct InfoRowViewData {
+struct InfoCardViewData {
+    let leftInfoRows: [InfoRowViewData]
+    let rightInfoRows: [InfoRowViewData]
+
+}
+struct InfoRowViewData: Hashable {
     let title: String
     let value: String
 }
@@ -74,7 +80,7 @@ struct ShelterCardViewData {
 /// 備註卡片
 struct NoteCardViewData {
     let foundPlace: String
-    let remark: String?
+    let remark: String
     let updateDateText: String?
 }
 /// 點擊互動的種類

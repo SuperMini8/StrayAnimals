@@ -7,21 +7,13 @@
 
 import UIKit
 
-final class SummaryCardView: UIView {
+final class SummaryCardView: PetInfoCardContainerView {
     // MARK: - UI
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.numberOfLines = 1
-        label.font = FontGroup.font(.bold, .large)
-        return label
-    }()
-    
     private let subtitleLabel: UILabel = {
        let label = UILabel()
         label.textColor = .label
         label.numberOfLines = 1
-        label.font = FontGroup.font(.regular, .normal)
+        label.font = FontGroup.font(.regular, .highLight)
         return label
     }()
     
@@ -29,45 +21,16 @@ final class SummaryCardView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 8
-        stackView.alignment = .leading
+        stackView.alignment = .fill
+        stackView.distribution = .fill
         return stackView
     }()
     
     // MARK: - method
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("SummaryCardView init(coder:) has not been implemented")
-    }
-    
-    private func setUI() {
-        self.backgroundColor = .white
-        self.layer.cornerRadius = 20
-        
-        addSubview(titleLabel)
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.left.equalToSuperview().offset(12)
-            make.right.equalToSuperview().inset(12)
-        }
-        
-        addSubview(subtitleLabel)
-        subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-            make.left.equalToSuperview().offset(12)
-            make.right.equalToSuperview().inset(12)
-        }
-        
-        addSubview(badgesStackView)
-        badgesStackView.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(12)
-            make.right.lessThanOrEqualToSuperview().inset(12)
-            make.bottom.equalToSuperview().inset(10)
-        }
+    override func setContent() {
+        contentStackView.addArrangedSubview(titleLabel)
+        contentStackView.addArrangedSubview(subtitleLabel)
+        contentStackView.addArrangedSubview(badgesStackView)
     }
     
     func configure(title: String, subtitle: String, badges: [BadgeViewData]) {
@@ -89,6 +52,11 @@ final class SummaryCardView: UIView {
             )
             badgesStackView.addArrangedSubview(badgeLabel)
         }
+        /// 避免 badge 被拉伸，放一個填滿用的 View
+        let spacerView = UIView()
+        spacerView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        spacerView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        badgesStackView.addArrangedSubview(spacerView)
     }
     
 }

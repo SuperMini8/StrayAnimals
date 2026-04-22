@@ -10,7 +10,7 @@ import UIKit
 final class BadgeLabel: UILabel {
     
     // 設定內距
-    let edgeInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
+    var edgeInsets = UIEdgeInsets(top: 6, left: 10, bottom: 6, right: 10)
     
     init(
         frame: CGRect = .zero,
@@ -57,6 +57,20 @@ final class BadgeLabel: UILabel {
         size.height += (edgeInsets.top + edgeInsets.bottom)
         return size
     }
+    
+    // 先扣掉 padding 算文字大小，再把 padding 加回去，回傳整個 label 應該有的大小。
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let insetSize = CGSize(
+            width: size.width - edgeInsets.left - edgeInsets.right,
+            height: size.height - edgeInsets.top - edgeInsets.bottom
+        )
+        let fitted = super.sizeThatFits(insetSize)
+        return CGSize(
+            width: fitted.width + edgeInsets.left + edgeInsets.right,
+            height: fitted.height + edgeInsets.top + edgeInsets.bottom
+        )
+    }
+    
     /// 給初次 init 用
     private func setupLabel(
         text: String,
@@ -72,6 +86,8 @@ final class BadgeLabel: UILabel {
         self.textAlignment = textAlignment
         self.layer.cornerRadius = 14
         self.clipsToBounds = true
+        setContentHuggingPriority(.required, for: .horizontal)
+        setContentCompressionResistancePriority(.required, for: .horizontal)
     }
     /// 後續外部 update 使用
     func updateLabel(
@@ -86,6 +102,14 @@ final class BadgeLabel: UILabel {
         self.backgroundColor = backgroundColor
         self.textColor = textColor
         self.textAlignment = textAlignment
+        
+        // 重算尺寸
+        invalidateIntrinsicContentSize()
+        // 需要重畫
+        setNeedsDisplay()
+        // 告訴外層重新排列
+        superview?.setNeedsLayout()
+        superview?.layoutIfNeeded()
     }
 
 }

@@ -43,7 +43,7 @@ enum ImageSizeType {
     var imageKitTransform: String {
         switch self {
         case .thumbnail: return "tr:w-200,q-70"
-        case .detail:    return "tr:w-800,q-90"
+        case .detail:    return "tr:w-400,q-80"
         }
     }
     

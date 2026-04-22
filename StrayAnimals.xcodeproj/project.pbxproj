@@ -29,11 +29,19 @@
 		1D6FA32D2F6400C30075D942 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6FA32C2F6400C30075D942 /* ImageLoader.swift */; };
 		1D7099922F8F7EA9009C4B4A /* PetInformationViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7099912F8F7EA9009C4B4A /* PetInformationViewData.swift */; };
 		1D709F182F921E5400DBB0B3 /* StatusCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D709F172F921E5400DBB0B3 /* StatusCardView.swift */; };
+		1D7108F62F986AD300E15C61 /* IconTitleValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108F52F986AD300E15C61 /* IconTitleValueView.swift */; };
+		1D7108F82F9884DA00E15C61 /* BottomActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108F72F9884DA00E15C61 /* BottomActionView.swift */; };
+		1D7108FA2F98862800E15C61 /* ShelterCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108F92F98862800E15C61 /* ShelterCardView.swift */; };
+		1D7108FC2F9895CA00E15C61 /* PetInfoCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108FB2F9895CA00E15C61 /* PetInfoCardContainerView.swift */; };
+		1D7108FE2F98A4E000E15C61 /* NoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */; };
 		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
 		1D8AD1AF2F850C36005026DC /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1AE2F850C36005026DC /* CategoryItem.swift */; };
 		1D8AD1B12F850C54005026DC /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */; };
 		1D8AD1B32F8635D1005026DC /* PetDataMockJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */; };
 		1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B42F8639A6005026DC /* MockLoader.swift */; };
+		1D91FA6E2F975EEE0071E8B3 /* InfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */; };
+		1D91FA762F976A790071E8B3 /* InfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA752F976A790071E8B3 /* InfoRowView.swift */; };
+		1D91FA782F977E510071E8B3 /* InfoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA772F977E510071E8B3 /* InfoColumnView.swift */; };
 		1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */; };
 		1DAFC5732F2CA32B009369E1 /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC5722F2CA32B009369E1 /* EnvironmentManager.swift */; };
 		1DAFC5752F2CA40C009369E1 /* ServiceHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC5742F2CA40C009369E1 /* ServiceHost.swift */; };
@@ -80,11 +88,19 @@
 		1D6FA32C2F6400C30075D942 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		1D7099912F8F7EA9009C4B4A /* PetInformationViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInformationViewData.swift; sourceTree = "<group>"; };
 		1D709F172F921E5400DBB0B3 /* StatusCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCardView.swift; sourceTree = "<group>"; };
+		1D7108F52F986AD300E15C61 /* IconTitleValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTitleValueView.swift; sourceTree = "<group>"; };
+		1D7108F72F9884DA00E15C61 /* BottomActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomActionView.swift; sourceTree = "<group>"; };
+		1D7108F92F98862800E15C61 /* ShelterCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelterCardView.swift; sourceTree = "<group>"; };
+		1D7108FB2F9895CA00E15C61 /* PetInfoCardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoCardContainerView.swift; sourceTree = "<group>"; };
+		1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCardView.swift; sourceTree = "<group>"; };
 		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		1D8AD1AE2F850C36005026DC /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewModel.swift; sourceTree = "<group>"; };
 		1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PetDataMockJSON.json; sourceTree = "<group>"; };
 		1D8AD1B42F8639A6005026DC /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardView.swift; sourceTree = "<group>"; };
+		1D91FA752F976A790071E8B3 /* InfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
+		1D91FA772F977E510071E8B3 /* InfoColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoColumnView.swift; sourceTree = "<group>"; };
 		1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
 		1DAFC5722F2CA32B009369E1 /* EnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
 		1DAFC5742F2CA40C009369E1 /* ServiceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHost.swift; sourceTree = "<group>"; };
@@ -127,6 +143,7 @@
 				1D6F54772F724320005DA616 /* ReusableView.swift */,
 				1D6CFD912F752B58004ADF0E /* LoadingView.swift */,
 				1D6EA5522F90DCD200E3FA63 /* BadgeLabel.swift */,
+				1D7108F52F986AD300E15C61 /* IconTitleValueView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -177,8 +194,15 @@
 				1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */,
 				1D7099912F8F7EA9009C4B4A /* PetInformationViewData.swift */,
 				1D67ABCF2F8CEB2B00EFBEC6 /* PetInformationViewModel.swift */,
+				1D7108FB2F9895CA00E15C61 /* PetInfoCardContainerView.swift */,
 				1D6EA5502F90D6F200E3FA63 /* SummaryCardView.swift */,
 				1D709F172F921E5400DBB0B3 /* StatusCardView.swift */,
+				1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */,
+				1D91FA772F977E510071E8B3 /* InfoColumnView.swift */,
+				1D91FA752F976A790071E8B3 /* InfoRowView.swift */,
+				1D7108F92F98862800E15C61 /* ShelterCardView.swift */,
+				1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */,
+				1D7108F72F9884DA00E15C61 /* BottomActionView.swift */,
 			);
 			path = PetInformationView;
 			sourceTree = "<group>";
@@ -346,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D709F182F921E5400DBB0B3 /* StatusCardView.swift in Sources */,
+				1D7108FC2F9895CA00E15C61 /* PetInfoCardContainerView.swift in Sources */,
 				ECF5781B2E63F83C00F5959F /* AppDelegate.swift in Sources */,
 				EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */,
 				1D8AD1AF2F850C36005026DC /* CategoryItem.swift in Sources */,
@@ -355,12 +380,16 @@
 				1DAFC57B2F2CB453009369E1 /* StrayAnimalListQuery.swift in Sources */,
 				1D67ABD02F8CEB2B00EFBEC6 /* PetInformationViewModel.swift in Sources */,
 				1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */,
+				1D91FA6E2F975EEE0071E8B3 /* InfoCardView.swift in Sources */,
 				1D6CFD952F753656004ADF0E /* PetInformationViewController.swift in Sources */,
 				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
+				1D7108F82F9884DA00E15C61 /* BottomActionView.swift in Sources */,
 				1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */,
 				1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */,
 				1D7099922F8F7EA9009C4B4A /* PetInformationViewData.swift in Sources */,
+				1D91FA762F976A790071E8B3 /* InfoRowView.swift in Sources */,
 				1DAFC5772F2CA748009369E1 /* APIEndpoint.swift in Sources */,
+				1D7108F62F986AD300E15C61 /* IconTitleValueView.swift in Sources */,
 				1DAFC5732F2CA32B009369E1 /* EnvironmentManager.swift in Sources */,
 				1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */,
 				1D6F54782F724320005DA616 /* ReusableView.swift in Sources */,
@@ -379,7 +408,10 @@
 				ECF5781C2E63F83E00F5959F /* SceneDelegate.swift in Sources */,
 				EC2E9EDD2EF93797002F1E1B /* PetListItem.swift in Sources */,
 				1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */,
+				1D91FA782F977E510071E8B3 /* InfoColumnView.swift in Sources */,
+				1D7108FE2F98A4E000E15C61 /* NoteCardView.swift in Sources */,
 				1D6F54822F729380005DA616 /* PetListItemViewModel.swift in Sources */,
+				1D7108FA2F98862800E15C61 /* ShelterCardView.swift in Sources */,
 				1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */,
 				1DAFC5792F2CA9A6009369E1 /* URLFactory.swift in Sources */,
 				EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */,

@@ -339,7 +339,7 @@ enum AnimalSex: String, Codable {
         case .female:
             return "母"
         case .unknown:
-            return "未知性別"
+            return "未知"
         }
     }
     
@@ -370,7 +370,7 @@ enum AnimalBodyType: String, Codable {
         case .big:
             return "大型"
         case .unknown:
-            return "未知體型"
+            return "未知"
         }
     }
     
@@ -398,7 +398,7 @@ enum AnimalAge: String, Codable {
         case .adult:
             return "成年"
         case .unknown:
-            return "未知年齡"
+            return "未知"
         }
     }
 }
@@ -426,7 +426,7 @@ enum AnimalSterilization: String, Codable {
         case .notSterilized:
             text = "尚未絕育"
         case .unknown:
-            text = "絕育狀態未知"
+            text = "未知"
         }
         return text
     }

@@ -13,7 +13,7 @@ final class CategoryItem: UICollectionViewCell {
     // MARK: - UI
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = FontGroup.font(.medium, .normal)
+        label.font = FontGroup.font(.medium, .medium)
         label.textColor = .black
         label.textAlignment = .center
         label.setContentHuggingPriority(.required, for: .horizontal)

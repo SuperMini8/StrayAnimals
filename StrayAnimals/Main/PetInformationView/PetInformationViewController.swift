@@ -32,6 +32,9 @@ final class PetInformationViewController: UIViewController {
     
     private let summartCardView = SummaryCardView()
     private let statusCardView = StatusCardView()
+    private let infoCardView = InfoCardView()
+    private let shelterCardView = ShelterCardView()
+    private let noteCardView = NoteCardView()
     
     // MARK: - property
     private let viewModel: PetInformationViewModel
@@ -70,7 +73,7 @@ final class PetInformationViewController: UIViewController {
         imageView.snp.makeConstraints { make in
             make.top.left.right.equalTo(scrollView.contentLayoutGuide)
             make.width.equalTo(scrollView.frameLayoutGuide)
-            make.height.equalTo(imageView.snp.width)
+            make.height.lessThanOrEqualTo(imageView.snp.width)
         }
         
         scrollView.addSubview(loadingView)
@@ -86,6 +89,9 @@ final class PetInformationViewController: UIViewController {
         }
         contentStackView.addArrangedSubview(summartCardView)
         contentStackView.addArrangedSubview(statusCardView)
+        contentStackView.addArrangedSubview(infoCardView)
+        contentStackView.addArrangedSubview(shelterCardView)
+        contentStackView.addArrangedSubview(noteCardView)
     }
     
     private func bindViewModel() {
@@ -127,6 +133,12 @@ final class PetInformationViewController: UIViewController {
         )
         
         statusCardView.configure(with: viewData.status)
+        
+        infoCardView.configure(with: viewData.info)
+        
+        shelterCardView.configure(with: viewData.shelter)
+        
+        noteCardView.configure(with: viewData.note)
         
     }
     
