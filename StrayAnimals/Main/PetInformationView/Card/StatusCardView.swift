@@ -33,7 +33,7 @@ final class StatusCardView: PetInfoCardContainerView {
         
         if let openText = data.openDateText {
             openDateView.configure(
-                icon: UIImage.dogAndCat,
+                icon: UIImage.date,
                 titleText: "開放時間",
                 valueText: openText
             )
@@ -43,7 +43,7 @@ final class StatusCardView: PetInfoCardContainerView {
         
         if let updateText = data.updateDateText {
             updateDateView.configure(
-                icon: UIImage.dogAndCat,
+                icon: UIImage.update,
                 titleText: "最後更新",
                 valueText: updateText
             )

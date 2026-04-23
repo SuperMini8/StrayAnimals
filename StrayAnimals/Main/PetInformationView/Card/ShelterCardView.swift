@@ -25,7 +25,7 @@ final class ShelterCardView: PetInfoCardContainerView {
     func configure(with viewData: ShelterCardViewData) {
         if viewData.name.isEmpty != true {
             shelterNameLabel.configure(
-                icon: UIImage.questionMark,
+                icon: UIImage.shelter,
                 titleText: nil,
                 valueText: viewData.name
             )
@@ -35,7 +35,7 @@ final class ShelterCardView: PetInfoCardContainerView {
         
         if viewData.adderss.isEmpty != true {
             shelterAddressLabel.configure(
-                icon: UIImage.questionMark,
+                icon: UIImage.location,
                 titleText: nil,
                 valueText: viewData.adderss
             )
@@ -45,7 +45,7 @@ final class ShelterCardView: PetInfoCardContainerView {
         
         if viewData.phone.isEmpty != true {
             shelterPhoneLabel.configure(
-                icon: UIImage.questionMark,
+                icon: UIImage.phone,
                 titleText: nil,
                 valueText: viewData.phone
             )

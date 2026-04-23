@@ -25,7 +25,7 @@ final class NoteCardView: PetInfoCardContainerView {
         /// 沒有資料不顯示
         if viewData.foundPlace.isEmpty != true {
             foundPlaceLabel.configure(
-                icon: UIImage.questionMark,
+                icon: UIImage.search,
                 titleText: "發現地點：",
                 valueText: viewData.foundPlace
             )
@@ -35,7 +35,7 @@ final class NoteCardView: PetInfoCardContainerView {
         
         if viewData.remark.isEmpty != true {
             remarkLabel.configure(
-                icon: UIImage.questionMark,
+                icon: UIImage.note,
                 titleText: "備註：",
                 valueText: viewData.remark
             )
@@ -45,7 +45,7 @@ final class NoteCardView: PetInfoCardContainerView {
         
         if let updateDateText = viewData.updateDateText {
             updateDateLabel.configure(
-                icon: UIImage.questionMark,
+                icon: UIImage.update,
                 titleText: "資料更新：",
                 valueText: updateDateText
             )

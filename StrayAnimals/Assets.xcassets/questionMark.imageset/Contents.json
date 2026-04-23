@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "questionMark.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "questionMark@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "questionMark@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "questionMark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
