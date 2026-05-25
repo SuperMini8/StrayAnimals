@@ -14,7 +14,7 @@ class ListViewController: UIViewController {
         let label = UILabel()
         label.setTextAndImage(text: "流浪動物",
                               font: FontGroup.font(.bold, .large),
-                              image: UIImage.dogAndCat,
+                              image: UIImage.paw,
                               imageArrangement: .left)
         return label
     }()

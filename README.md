@@ -18,3 +18,5 @@ https://data.moa.gov.tw/open_detail.aspx?id=QcbUEzN6E6DL
 
 ## 圖片來源
 1. Lucide
+2. Bootstrap Icons
+3. Phosphor Icons

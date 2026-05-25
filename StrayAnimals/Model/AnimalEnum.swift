@@ -300,7 +300,7 @@ enum AnimalKind: String, Codable {
         case .cat:
             return UIImage.cat
         case .other:
-            return UIImage.dogAndCat
+            return UIImage.paw
         }
     }
     
