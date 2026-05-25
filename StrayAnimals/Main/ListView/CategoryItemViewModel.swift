@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// TODO: 做成點擊後可以開啟清單的樣式
 enum ListCategory: Int, CaseIterable {
     case all = 0
     case kindDog
@@ -60,7 +60,15 @@ final class CategoryItemViewModel: Hashable {
     var isSelected: Bool = false
     
     var backgroundColor: UIColor {
-        return isSelected ? UIColor.white : UIColor.navigationBar
+        return isSelected ? UIColor.navigationBar : UIColor.white
+    }
+    
+    var borderWidth: CGFloat {
+        return isSelected ? 0.0 : 1.0
+    }
+    
+    var selectedImage: UIImage {
+        return isSelected ? UIImage.check : UIImage.more
     }
     
     init(categoryType: ListCategory, isSelected: Bool) {

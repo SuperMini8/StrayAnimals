@@ -13,12 +13,18 @@ final class CategoryItem: UICollectionViewCell {
     // MARK: - UI
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = FontGroup.font(.medium, .medium)
+        label.font = FontGroup.font(.medium, .small)
         label.textColor = .black
         label.textAlignment = .center
         label.setContentHuggingPriority(.required, for: .horizontal)
         label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
+    }()
+    private let selectedImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
     }()
     // MARK: - property
     private var viewModel: CategoryItemViewModel?
@@ -41,7 +47,8 @@ final class CategoryItem: UICollectionViewCell {
     }
     
     private func setUI() {
-        contentView.layer.cornerRadius = 16
+        contentView.layer.cornerRadius = 8
+        contentView.layer.borderColor = UIColor.black.cgColor
         contentView.layer.masksToBounds = true
         
         if !contentView.contains(titleLabel) {
@@ -49,8 +56,17 @@ final class CategoryItem: UICollectionViewCell {
             titleLabel.snp.makeConstraints { make in
                 make.top.equalToSuperview().offset(8)
                 make.bottom.equalToSuperview().inset(8)
-                make.left.equalToSuperview().offset(14)
-                make.right.equalToSuperview().inset(14)
+                make.left.equalToSuperview().offset(10)
+            }
+        }
+        
+        if !contentView.contains(selectedImageView) {
+            contentView.addSubview(selectedImageView)
+            selectedImageView.snp.makeConstraints { make in
+                make.centerY.equalTo(titleLabel)
+                make.left.equalTo(titleLabel.snp.right).offset(4)
+                make.right.equalToSuperview().inset(10)
+                make.width.height.equalTo(14)
             }
         }
     }
@@ -59,5 +75,7 @@ final class CategoryItem: UICollectionViewCell {
         self.viewModel = viewModel
         titleLabel.text = viewModel.categoryName
         contentView.backgroundColor = viewModel.backgroundColor
+        contentView.layer.borderWidth = viewModel.borderWidth
+        selectedImageView.image = viewModel.selectedImage
     }
 }
