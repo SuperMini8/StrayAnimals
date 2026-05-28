@@ -12,7 +12,7 @@ final class ShelterCardView: PetInfoCardContainerView {
     private let shelterNameLabel = IconTitleValueView()
     private let shelterAddressLabel = IconTitleValueView()
     private let shelterPhoneLabel = IconTitleValueView()
-    private let bottomButtonView = BottomActionView()
+    let bottomButtonView = BottomActionView()
     
     override func setContent() {
         titleLabel.text = "收容資訊"
@@ -52,6 +52,11 @@ final class ShelterCardView: PetInfoCardContainerView {
         } else {
             contentStackView.removeArrangedSubview(shelterPhoneLabel)
         }
+        
+        bottomButtonView.configure(
+            leftBtn: .outlined(title: "查看地址", image: UIImage.map),
+            rightBtn: .filled(title: "聯絡收容所", image: UIImage.phone),
+        )
     }
     
 }

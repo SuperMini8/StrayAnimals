@@ -35,6 +35,29 @@ final class PetInformationViewModel {
         viewData = makeViewData(form: petData)
         loadImageIfNeeded()
     }
+    /// 點擊「分享」按鈕
+    func didTapShare() {
+        let text = [
+            petData.animalKind.rawValue,
+            petData.animalVariety,
+            petData.shelterName,
+            petData.shelterAddress
+        ]
+            .compactMap { $0 }
+            .joined(separator: "\n")
+        
+        route.send(.share(items: [text]))
+    }
+    /// 點擊「聯絡收容所」按鈕
+    func didTapCall() {
+        guard !petData.shelterTel.isEmpty else { return }
+        route.send(.call(phone: petData.shelterTel))
+    }
+    /// 點擊「查看地址」按鈕
+    func didTapOpenMap() {
+        guard !petData.shelterAddress.isEmpty else { return }
+        route.send(.openMap(address: petData.shelterAddress))
+    }
     /// 將 Data 轉換成 View Data
     func makeViewData(form data: PetData) -> PetInformationViewData {
         // 先給預設的圖

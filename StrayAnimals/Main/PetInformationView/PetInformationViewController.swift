@@ -8,6 +8,8 @@
 import UIKit
 import SnapKit
 import Combine
+import MapKit
+import Contacts
 
 final class PetInformationViewController: UIViewController {
     // MARK: - UI
@@ -35,6 +37,7 @@ final class PetInformationViewController: UIViewController {
     private let infoCardView = InfoCardView()
     private let shelterCardView = ShelterCardView()
     private let noteCardView = NoteCardView()
+    private let bottomActionView = BottomActionView()
     
     // MARK: - property
     private let viewModel: PetInformationViewModel
@@ -63,10 +66,17 @@ final class PetInformationViewController: UIViewController {
         view.backgroundColor = .viewBackground
         title = "詳細資料"
         
+        view.addSubview(bottomActionView)
+        bottomActionView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.1)
+        }
+        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(bottomActionView.snp.top)
         }
         
         scrollView.addSubview(imageView)
@@ -119,7 +129,18 @@ final class PetInformationViewController: UIViewController {
     }
     
     private func bindAction() {
-        
+        shelterCardView.bottomButtonView.leftButtonOnTap = { [weak self] in
+            self?.viewModel.didTapOpenMap()
+        }
+        shelterCardView.bottomButtonView.rightButtonOnTap = { [weak self] in
+            self?.viewModel.didTapCall()
+        }
+        bottomActionView.leftButtonOnTap = { [weak self] in
+            self?.viewModel.didTapShare()
+        }
+        bottomActionView.rightButtonOnTap = { [weak self] in
+            self?.viewModel.didTapCall()
+        }
     }
     
     private func render(_ viewData: PetInformationViewData) {
@@ -140,9 +161,32 @@ final class PetInformationViewController: UIViewController {
         
         noteCardView.configure(with: viewData.note)
         
+        bottomActionView.configure(
+            leftBtn: .outlined(title: "分享", image: UIImage.share),
+            rightBtn: .filled(title: "聯絡收容所", image: UIImage.phone),
+            stackViewDistribution: .fillProportionally
+        )
+        bottomActionView.backgroundColor = .white
+        
     }
     
     private func handleAction(_ route: PetInformationRoute) {
-        
+        switch route {
+        case .call(let phone):
+            let filtered = phone.replacingOccurrences(of: " ", with: "")
+            guard let url = URL(string: "tel://\(filtered)"),
+                  UIApplication.shared.canOpenURL(url) else { return }
+            UIApplication.shared.open(url)
+            
+        case .openMap(let address):
+            let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
+            let mapItem = MKMapItem(placemark: placemark)
+            mapItem.name = address
+            mapItem.openInMaps()
+            
+        case .share(let items):
+            let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            present(controller, animated: true)
+        }
     }
 }
