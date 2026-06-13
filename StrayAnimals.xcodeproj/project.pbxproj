@@ -15,7 +15,6 @@
 		1D36308D2F188FC60071D131 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630822F188FC60071D131 /* UILabel.swift */; };
 		1D3630902F188FC60071D131 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3630852F188FC60071D131 /* UIViewController.swift */; };
 		1D67ABD02F8CEB2B00EFBEC6 /* PetInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D67ABCF2F8CEB2B00EFBEC6 /* PetInformationViewModel.swift */; };
-		1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */; };
 		1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD912F752B58004ADF0E /* LoadingView.swift */; };
 		1D6CFD952F753656004ADF0E /* PetInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */; };
 		1D6EA5512F90D6F200E3FA63 /* SummaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6EA5502F90D6F200E3FA63 /* SummaryCardView.swift */; };
@@ -75,7 +74,6 @@
 		1D3630822F188FC60071D131 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		1D3630852F188FC60071D131 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		1D67ABCF2F8CEB2B00EFBEC6 /* PetInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInformationViewModel.swift; sourceTree = "<group>"; };
-		1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
 		1D6CFD912F752B58004ADF0E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1D6CFD942F753656004ADF0E /* PetInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInformationViewController.swift; sourceTree = "<group>"; };
 		1D6EA5502F90D6F200E3FA63 /* SummaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCardView.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 		1D3630862F188FC60071D131 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1D6CFD8F2F751C3A004ADF0E /* UIScreen.swift */,
 				1D3630812F188FC60071D131 /* UIImage.swift */,
 				1D3630822F188FC60071D131 /* UILabel.swift */,
 				1D7E8D4B2FC6EF5400DE2314 /* UIButton.swift */,
@@ -404,7 +401,6 @@
 				1D3630792F188FBE0071D131 /* LocalizedHelper.swift in Sources */,
 				1D7108F82F9884DA00E15C61 /* BottomActionView.swift in Sources */,
 				1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */,
-				1D6CFD902F751C3A004ADF0E /* UIScreen.swift in Sources */,
 				1D7099922F8F7EA9009C4B4A /* PetInformationViewData.swift in Sources */,
 				1D7E8D4C2FC6EF5400DE2314 /* UIButton.swift in Sources */,
 				1D91FA762F976A790071E8B3 /* InfoRowView.swift in Sources */,

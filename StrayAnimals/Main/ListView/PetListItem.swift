@@ -168,8 +168,8 @@ final class PetListItem: UICollectionViewCell {
     
     // 開始下載圖片
     func startDownloadImage() {
-        super.layoutSubviews()
-        let scale = window?.windowScene?.screen.scale ?? UIScreen.currentFallbackScale
+        // 若抓取不到當前的 window 就使用目前裝置 traitCollection
+        let scale = window?.windowScene?.screen.scale ?? traitCollection.displayScale
         viewModel?.loadImageIfNeeded(imageSize: .thumbnail, imageScale: scale)
     }
     
