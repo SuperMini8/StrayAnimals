@@ -89,10 +89,18 @@ final class ListViewModel {
                 }
             }
             .store(in: &cancellables)
+        
         input.reload
             .sink { [weak self] in
-                if self?.isLoading != true {
-                    self?.getPetData(updateType: .reloadAll)
+                guard let self = self else { return }
+                if self.isLoading != true {
+                    switch currentPage {
+                    // 如果是第一頁，pets 又是空的，代表畫面是沒有資料的
+                    case 1 where pets.isEmpty:
+                        self.getPetData(updateType: .reloadAll)
+                    default:
+                        loadNextPage()
+                    }
                 }
             }
             .store(in: &cancellables)
@@ -114,8 +122,8 @@ final class ListViewModel {
     // MARK: - PetData 相關
     private var getPetDataRequestCancellable: AnyCancellable?
     private func getPetData(updateType: ListUpdateType) {
-        // 先檢查能不能再載下一頁
-        guard canLoadMore else { return }
+        // 先檢查能不能再載下一頁（如果更新是加入，並且不能 load more，就不 request）
+        if case .append = updateType, !canLoadMore { return }
         isLoading = true
         // 取消先前的 request
         getPetDataRequestCancellable?.cancel()
@@ -134,15 +142,19 @@ final class ListViewModel {
                 case .failure(let error):
                     print("Request failed with: \(error)")
                     self.output.errorMessage.send(error.errorMassage())
+                    if case .append = updateType {
+                        canLoadMore = true
+                        currentPage = max(1, currentPage - 1)
+                        listQuery.setPage(currentPage, size: pageSize)
+                    }
                 }
                 print(completion)
             } receiveValue: { [weak self] response in
                 guard let self else { return }
                 let items = response.map { self.makePetListItemViewModel(for: $0) }
-                // 先檢查是否為空陣列，若為空陣列視為最後一頁。
+                // 空陣列視為「最後一頁」
                 if items.isEmpty {
                     canLoadMore = false
-                    return
                 }
                 // 傳送更新事件
                 switch updateType {
@@ -150,7 +162,14 @@ final class ListViewModel {
                     pets = response
                     petViewModels = items
                     output.listUpdate.send(.reloadAll)
-                case .append(_):
+                case .append:
+                    // 如果加入是空資料就不用通知 UI 更新
+                    if items.isEmpty {
+                        // append 回空代表下一頁不存在，頁碼回到目前已持有資料的最後一頁。
+                        currentPage = max(1, currentPage - 1)
+                        listQuery.setPage(currentPage, size: pageSize)
+                        return
+                    }
                     pets.append(contentsOf: response)
                     petViewModels.append(contentsOf: items)
                     output.listUpdate.send(.append(newItems: items))
