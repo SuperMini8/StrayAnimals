@@ -112,13 +112,15 @@ final class ListViewModel {
             .store(in: &cancellables)
     }
     // MARK: - PetData 相關
+    private var getPetDataRequestCancellable: AnyCancellable?
     private func getPetData(updateType: ListUpdateType) {
         // 先檢查能不能再載下一頁
         guard canLoadMore else { return }
-        
         isLoading = true
-        
-        webService.sendRequest(with: APIEndpoint.StrayAnimalList(query: listQuery))
+        // 取消先前的 request
+        getPetDataRequestCancellable?.cancel()
+        // 儲存新的 request
+        getPetDataRequestCancellable = webService.sendRequest(with: APIEndpoint.StrayAnimalList(query: listQuery))
             // 在主執行緒
             .receive(on: DispatchQueue.main)
             // 建立訂閱
@@ -154,8 +156,6 @@ final class ListViewModel {
                     output.listUpdate.send(.append(newItems: items))
                 }
             }
-            // 把訂閱存起來，避免被自動取消
-            .store(in: &cancellables)
     }
     
     private func loadNextPage() {

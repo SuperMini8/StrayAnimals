@@ -86,24 +86,24 @@ class ListViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] updateType in
                 switch updateType {
-                // 整個 List 重整
+                    // 整個 List 重整
                 case .reloadAll:
                     self?.applySnapshot()
-                // 只更新新的資料
+                    // 只更新新的資料
                 case .append(let items):
                     self?.applyMorePetList(newPetItems: items)
                 }
-        }
-        .store(in: &cancellables)
+            }
+            .store(in: &cancellables)
         
         // Loading 畫面
         viewModel.$isLoading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] showAnimated in
-            // Loading View 開關
+                // Loading View 開關
                 showAnimated ? self?.showLoadingView() : self?.hideLoadingView()
-        }
-        .store(in: &cancellables)
+            }
+            .store(in: &cancellables)
         
         // error 事件
         viewModel.output.errorMessage
