@@ -81,6 +81,9 @@ final class PetListItemViewModel: Hashable {
             .sink { [weak self] image in
                 self?.image = image
                 self?.isImageLoading = false
+                if image == nil {
+                    self?.hasStartedLoading = false
+                }
             }
             .store(in: &cancellables)
     }
