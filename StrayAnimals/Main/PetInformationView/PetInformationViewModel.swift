@@ -165,7 +165,9 @@ final class PetInformationViewModel {
         imageLoader.loadFromImageKit(from: url, imageSizeType: .detail)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] image in
-                self?.viewData?.image = image
+                if let image {
+                    self?.viewData?.image = image
+                }
                 self?.isImageLoading = false
             }
             .store(in: &cancellables)
