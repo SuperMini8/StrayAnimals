@@ -9,6 +9,21 @@ import Foundation
 import Combine
 import UIKit
 
+private extension UIImage {
+    /// 計算 UIImage 的 cost
+    var memoryCost: Int {
+        // 如果是 cgImage
+        if let cgImage {
+            // 每一橫列像素在記憶體裡佔幾 bytes
+            return cgImage.bytesPerRow * cgImage.height
+        }
+        // size 是 point 乘 scale 轉成 pixel
+        let pixels = Int(size.width * scale * size.height * scale)
+        // 每個 pixel 4 bytes
+        return pixels * 4
+    }
+}
+
 /// Image URL 轉換，規則不與 APIEndpoint 共用
 struct ImageURLBuilder {
     private let base: String
@@ -69,6 +84,10 @@ final class ImageLoader: ImageLoading {
         self.session = session
         self.cache = cache
         self.urlBuilder = urlBuilder
+        
+        // 設定快取上線
+        cache.countLimit = 300
+        cache.totalCostLimit = 50 * 1024 * 1024
     }
     
     private var inFlightPublishers: [String: AnyPublisher<UIImage?, Never>] = [:]
@@ -119,7 +138,7 @@ final class ImageLoader: ImageLoading {
                 receiveOutput: { [weak self] image in
                     // 拿到image 存進 cache
                     guard let image else { return }
-                    self?.cache.setObject(image, forKey: cacheKey as NSString)
+                    self?.cache.setObject(image, forKey: cacheKey as NSString, cost: image.memoryCost)
                     print("✅Download ImageKit Image success: \(cacheKey)")
                 },
                 receiveCompletion: { [weak self] _ in
@@ -184,7 +203,7 @@ final class ImageLoader: ImageLoading {
                 // 收到 Output 時，把 image cache 住
                 receiveOutput: { [weak self] image in
                     guard let image else { return }
-                    self?.cache.setObject(image, forKey: cacheKey as NSString)
+                    self?.cache.setObject(image, forKey: cacheKey as NSString, cost: image.memoryCost)
                     print("✅Download Image success: \(cacheKey)")
                 },
                 // 當下載流程結束時，清除正載下載的 cacheKey
