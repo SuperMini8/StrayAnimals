@@ -17,8 +17,12 @@ extension UIViewController {
     //MARK: - Loading View
     /// 顯示 Loading View
     func showLoadingView() {
-        let loadingView = LoadingView(style: .large)
-        if !view.subviews.contains(loadingView) {
+        let loadingView: LoadingView
+        /// 先尋找是否已有 LoadingView 決定是否要加入新的
+        if let originalLV = view.subviews.first(where: { $0 is LoadingView }) as? LoadingView  {
+            loadingView = originalLV
+        } else {
+            loadingView = LoadingView(style: .large)
             view.addSubview(loadingView)
             loadingView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
