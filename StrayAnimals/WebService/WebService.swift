@@ -51,19 +51,17 @@ final class WebService: APIClientProtocol {
     /// 引用依賴注入，為了方便測試
     private let session: URLSession
     private let requestBuilder: RequestBuilder
-    private let decoder: JSONDecoder
     
     init(session: URLSession = .shared,
-         requestBuilder: RequestBuilder = .init(urlFactory: .init()),
-         decoder: JSONDecoder = .apiDefault) {
+         requestBuilder: RequestBuilder = .init(urlFactory: .init())) {
         self.session = session
         self.requestBuilder = requestBuilder
-        self.decoder = decoder
     }
     
     /// 發送 Request 並且 decode data
     func sendRequest<E: EndpointType>(with endpoint: E) ->AnyPublisher<E.response, WebServiceError> {
         let request: URLRequest
+        let decoder = JSONDecoder.apiDefault
         do { request = try requestBuilder.build(endpoint) }
         catch { return Fail(error: .unknown(error)).eraseToAnyPublisher() }
         

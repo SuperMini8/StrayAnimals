@@ -7,10 +7,9 @@
 
 import Foundation
 
-/// API 用 DateFormatter Pool（避免重複建立）
-enum APIDateFormatterPool {
-    /// 共用 Formatter 陣列（thread-safe）
-    static let shared: [DateFormatter] = {
+/// API 用 DateFormatter Pool
+final class APIDateFormatterPool {
+    let formatters: [DateFormatter] = {
         
         let formats = [
             "yyyy/MM/dd",
@@ -42,6 +41,7 @@ extension JSONDecoder {
     /// 全專案 API 預設 Decoder
     static var apiDefault: JSONDecoder {
         let decoder = JSONDecoder()
+        let formatterPool = APIDateFormatterPool()
         
         /// snake_case -> camelCase
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -64,7 +64,7 @@ extension JSONDecoder {
                 return Date.distantPast
             }
             
-            for formatter in APIDateFormatterPool.shared {
+            for formatter in formatterPool.formatters {
                 if let date = formatter.date(from: string) {
                     return date
                 }
