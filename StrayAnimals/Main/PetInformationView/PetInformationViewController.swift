@@ -179,10 +179,17 @@ final class PetInformationViewController: UIViewController {
             UIApplication.shared.open(url)
             
         case .openMap(let address):
-            let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = address
-            mapItem.openInMaps()
+            /// Google Map 優先使用
+            if let googleMapSchemeURL = URL(string:"comgooglemaps://"), UIApplication.shared.canOpenURL(googleMapSchemeURL),
+               let openURL = URLFactory().makeURL(for: GoogleMap(addressQuery: address)) {
+                UIApplication.shared.open(openURL)
+            } else {
+            /// Apple Map
+                let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
+                let mapItem = MKMapItem(placemark: placemark)
+                mapItem.name = address
+                mapItem.openInMaps()
+            }
             
         case .share(let items):
             let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)

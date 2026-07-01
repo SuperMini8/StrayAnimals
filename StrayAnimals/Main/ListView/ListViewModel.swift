@@ -118,7 +118,7 @@ final class ListViewModel {
         
         isLoading = true
         
-        webService.sendRequest(with: APIEndpoint.StrayAnimalList(query: listQuery))
+        webService.sendRequest(with: StrayAnimalList(query: listQuery))
             // 在主執行緒
             .receive(on: DispatchQueue.main)
             // 建立訂閱
