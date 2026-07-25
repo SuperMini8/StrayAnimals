@@ -4,7 +4,11 @@
 ## 政府的動物認領養 Open Data URL
 https://data.moa.gov.tw/open_detail.aspx?id=QcbUEzN6E6DL
 
-## 預計使用：
+## 畫面支援
+1. iPhone 直向
+(未來預計支援 iPhone 與 iPad)
+
+## 技術使用：
 1. MVVM
 2. Combine
 3. Code UI
