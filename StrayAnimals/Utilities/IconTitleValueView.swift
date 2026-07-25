@@ -66,22 +66,20 @@ final class IconTitleValueView: UIView {
     }
     
     func configure(icon: UIImage?, titleText: String?, valueText: String?) {
+        
+        iconImageView.isHidden = (icon == nil)
         if let icon {
             iconImageView.image = icon
-        } else {
-            stackView.removeArrangedSubviewCompletely(iconImageView)
         }
         
+        titleLabel.isHidden = (titleText == nil)
         if let titleText {
             titleLabel.text = titleText
-        } else {
-            stackView.removeArrangedSubviewCompletely(titleLabel)
         }
         
+        valueLabel.isHidden = (valueText == nil)
         if let valueText {
             valueLabel.text = valueText
-        } else {
-            stackView.removeArrangedSubviewCompletely(valueLabel)
         }
     }
 }

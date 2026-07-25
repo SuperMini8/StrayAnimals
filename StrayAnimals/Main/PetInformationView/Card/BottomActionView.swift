@@ -43,6 +43,8 @@ final class BottomActionView: UIView {
         contentSteckView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        leftButton.addTarget(self, action: #selector(leftDidTap), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(rightDidTap), for: .touchUpInside)
     }
     
     func configure(
@@ -51,9 +53,7 @@ final class BottomActionView: UIView {
         stackViewDistribution: UIStackView.Distribution = .fillEqually
     ) {
         leftButton.setConfiguration(style: leftBtn)
-        leftButton.addTarget(self, action: #selector(leftDidTap), for: .touchUpInside)
         rightButton.setConfiguration(style: rightBtn)
-        rightButton.addTarget(self, action: #selector(rightDidTap), for: .touchUpInside)
         contentSteckView.distribution = stackViewDistribution
     }
     

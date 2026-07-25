@@ -31,26 +31,23 @@ final class StatusCardView: PetInfoCardContainerView {
             textAlignment: .left
         )
         
+        openDateView.isHidden = (data.openDateText == nil)
         if let openText = data.openDateText {
             openDateView.configure(
                 icon: UIImage.date,
                 titleText: "開放時間",
                 valueText: openText
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(openDateView)
         }
         
+        updateDateView.isHidden = (data.updateDateText == nil)
         if let updateText = data.updateDateText {
             updateDateView.configure(
                 icon: UIImage.update,
                 titleText: "最後更新",
                 valueText: updateText
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(updateDateView)
-        }
-        
+        } 
     }
     
     

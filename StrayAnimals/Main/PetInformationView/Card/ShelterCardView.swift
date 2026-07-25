@@ -23,34 +23,31 @@ final class ShelterCardView: PetInfoCardContainerView {
     }
     
     func configure(with viewData: ShelterCardViewData) {
+        shelterNameLabel.isHidden = viewData.name.isEmpty
         if viewData.name.isEmpty != true {
             shelterNameLabel.configure(
                 icon: UIImage.shelter,
                 titleText: nil,
                 valueText: viewData.name
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(shelterNameLabel)
         }
         
+        shelterAddressLabel.isHidden = viewData.adderss.isEmpty
         if viewData.adderss.isEmpty != true {
             shelterAddressLabel.configure(
                 icon: UIImage.location,
                 titleText: nil,
                 valueText: viewData.adderss
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(shelterAddressLabel)
         }
         
+        shelterPhoneLabel.isHidden = viewData.phone.isEmpty
         if viewData.phone.isEmpty != true {
             shelterPhoneLabel.configure(
                 icon: UIImage.phone,
                 titleText: nil,
                 valueText: viewData.phone
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(shelterPhoneLabel)
         }
         
         bottomButtonView.configure(

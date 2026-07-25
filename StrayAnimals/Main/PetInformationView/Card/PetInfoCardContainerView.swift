@@ -55,8 +55,6 @@ class PetInfoCardContainerView: UIView {
     }
     
     // MARK: - Override Points
-    func setContent() {
-        
-    }
+    func setContent() {}
     
 }

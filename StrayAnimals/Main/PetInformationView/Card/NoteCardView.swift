@@ -23,40 +23,36 @@ final class NoteCardView: PetInfoCardContainerView {
     
     func configure(with viewData: NoteCardViewData) {
         /// 沒有資料不顯示
+        foundPlaceLabel.isHidden = viewData.foundPlace.isEmpty
         if viewData.foundPlace.isEmpty != true {
             foundPlaceLabel.configure(
                 icon: UIImage.search,
                 titleText: "發現地點：",
                 valueText: viewData.foundPlace
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(foundPlaceLabel)
         }
         
+        remarkLabel.isHidden = viewData.remark.isEmpty
         if viewData.remark.isEmpty != true {
             remarkLabel.configure(
                 icon: UIImage.note,
                 titleText: "備註：",
                 valueText: viewData.remark
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(remarkLabel)
         }
         
+        updateDateLabel.isHidden = (viewData.updateDateText == nil)
         if let updateDateText = viewData.updateDateText {
             updateDateLabel.configure(
                 icon: UIImage.update,
                 titleText: "資料更新：",
                 valueText: updateDateText
             )
-        } else {
-            contentStackView.removeArrangedSubviewCompletely(updateDateLabel)
         }
         
-        /// 如果都沒有資料就把自己移除
-        if contentStackView.arrangedSubviews.isEmpty {
-            self.removeFromSuperview()
-        }
+        /// 如果都沒有資料就把自己隱藏
+        let isAllSubviewIsHidden = contentStackView.arrangedSubviews.allSatisfy { $0.isHidden }
+        self.isHidden = isAllSubviewIsHidden
     }
 
 
