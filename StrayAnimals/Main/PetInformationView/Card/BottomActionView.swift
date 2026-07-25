@@ -56,6 +56,14 @@ final class BottomActionView: UIView {
         rightButton.setConfiguration(style: rightBtn)
         contentSteckView.distribution = stackViewDistribution
     }
+    /// 設定左邊按鈕是否可以點擊
+    func setLeftButtonEnable(_ isEnable: Bool) {
+        leftButton.isEnabled = isEnable
+    }
+    /// 設定右邊按鈕是否可以點擊
+    func setRightButtonEnable(_ isEnable: Bool) {
+        rightButton.isEnabled = isEnable
+    }
     
     @objc private func leftDidTap(_ sender: UIButton) {
         leftButtonOnTap?(sender)

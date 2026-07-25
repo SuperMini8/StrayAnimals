@@ -34,19 +34,6 @@ final class PetInformationViewModel {
         viewData = makeViewData(form: petData)
         loadImageIfNeeded()
     }
-    /// 輸出「分享」的資訊內容
-    func makeShareItems() -> [Any] {
-        let text = [
-            petData.animalKind.rawValue,
-            petData.animalVariety,
-            petData.shelterName,
-            petData.shelterAddress
-        ]
-            .compactMap { $0 }
-            .joined(separator: "\n")
-        
-        return [text]
-    }
     /// 輸出電話的 URL
     func makeCallURL() -> URL? {
         guard !petData.shelterTel.isEmpty else { return nil }
