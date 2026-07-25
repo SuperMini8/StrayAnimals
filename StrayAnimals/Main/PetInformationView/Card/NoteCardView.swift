@@ -30,7 +30,7 @@ final class NoteCardView: PetInfoCardContainerView {
                 valueText: viewData.foundPlace
             )
         } else {
-            contentStackView.removeArrangedSubview(foundPlaceLabel)
+            contentStackView.removeArrangedSubviewCompletely(foundPlaceLabel)
         }
         
         if viewData.remark.isEmpty != true {
@@ -40,7 +40,7 @@ final class NoteCardView: PetInfoCardContainerView {
                 valueText: viewData.remark
             )
         } else {
-            contentStackView.removeArrangedSubview(remarkLabel)
+            contentStackView.removeArrangedSubviewCompletely(remarkLabel)
         }
         
         if let updateDateText = viewData.updateDateText {
@@ -50,7 +50,7 @@ final class NoteCardView: PetInfoCardContainerView {
                 valueText: updateDateText
             )
         } else {
-            contentStackView.removeArrangedSubview(updateDateLabel)
+            contentStackView.removeArrangedSubviewCompletely(updateDateLabel)
         }
         
         /// 如果都沒有資料就把自己移除

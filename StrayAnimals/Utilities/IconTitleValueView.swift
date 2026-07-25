@@ -69,19 +69,19 @@ final class IconTitleValueView: UIView {
         if let icon {
             iconImageView.image = icon
         } else {
-            stackView.removeArrangedSubview(iconImageView)
+            stackView.removeArrangedSubviewCompletely(iconImageView)
         }
         
         if let titleText {
             titleLabel.text = titleText
         } else {
-            stackView.removeArrangedSubview(titleLabel)
+            stackView.removeArrangedSubviewCompletely(titleLabel)
         }
         
         if let valueText {
             valueLabel.text = valueText
         } else {
-            stackView.removeArrangedSubview(valueLabel)
+            stackView.removeArrangedSubviewCompletely(valueLabel)
         }
     }
 }

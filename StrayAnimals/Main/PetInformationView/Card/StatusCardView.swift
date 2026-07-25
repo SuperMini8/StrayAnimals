@@ -38,7 +38,7 @@ final class StatusCardView: PetInfoCardContainerView {
                 valueText: openText
             )
         } else {
-            contentStackView.removeArrangedSubview(openDateView)
+            contentStackView.removeArrangedSubviewCompletely(openDateView)
         }
         
         if let updateText = data.updateDateText {
@@ -48,7 +48,7 @@ final class StatusCardView: PetInfoCardContainerView {
                 valueText: updateText
             )
         } else {
-            contentStackView.removeArrangedSubview(updateDateView)
+            contentStackView.removeArrangedSubviewCompletely(updateDateView)
         }
         
     }

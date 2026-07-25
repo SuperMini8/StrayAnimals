@@ -40,10 +40,8 @@ final class InfoColumnView: UIView {
     }
     
     func configure(rows: [InfoRowViewData]) {
-        stackView.arrangedSubviews.forEach {
-            stackView.removeArrangedSubview($0)
-            $0.removeFromSuperview()
-        }
+        
+        stackView.removeAllArrangedSubview()
         
         rows.forEach {
             let rowView = InfoRowView()

@@ -37,10 +37,7 @@ final class SummaryCardView: PetInfoCardContainerView {
         titleLabel.text = title
         subtitleLabel.text = subtitle
         
-        badgesStackView.arrangedSubviews.forEach { badge in
-            badgesStackView.removeArrangedSubview(badge)
-            badge.removeFromSuperview()
-        }
+        badgesStackView.removeAllArrangedSubview()
         
         badges.forEach { badge in
             let badgeLabel = BadgeLabel(

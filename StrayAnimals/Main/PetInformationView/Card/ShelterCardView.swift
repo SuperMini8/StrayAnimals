@@ -30,7 +30,7 @@ final class ShelterCardView: PetInfoCardContainerView {
                 valueText: viewData.name
             )
         } else {
-            contentStackView.removeArrangedSubview(shelterNameLabel)
+            contentStackView.removeArrangedSubviewCompletely(shelterNameLabel)
         }
         
         if viewData.adderss.isEmpty != true {
@@ -40,7 +40,7 @@ final class ShelterCardView: PetInfoCardContainerView {
                 valueText: viewData.adderss
             )
         } else {
-            contentStackView.removeArrangedSubview(shelterAddressLabel)
+            contentStackView.removeArrangedSubviewCompletely(shelterAddressLabel)
         }
         
         if viewData.phone.isEmpty != true {
@@ -50,7 +50,7 @@ final class ShelterCardView: PetInfoCardContainerView {
                 valueText: viewData.phone
             )
         } else {
-            contentStackView.removeArrangedSubview(shelterPhoneLabel)
+            contentStackView.removeArrangedSubviewCompletely(shelterPhoneLabel)
         }
         
         bottomButtonView.configure(
