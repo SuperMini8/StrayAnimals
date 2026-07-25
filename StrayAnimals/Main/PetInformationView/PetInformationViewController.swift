@@ -120,26 +120,45 @@ final class PetInformationViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        viewModel.route
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] route in
-                self?.handleAction(route)
-            }
-            .store(in: &cancellables)
     }
     
     private func bindAction() {
-        shelterCardView.bottomButtonView.leftButtonOnTap = { [weak self] in
-            self?.viewModel.didTapOpenMap()
+        // 點擊打開地圖
+        shelterCardView.bottomButtonView.leftButtonOnTap = { [weak self] sender in
+            guard let self,
+                  let address = self.viewModel.makeMapAddress()
+            else { return }
+            let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
+            let mapItem = MKMapItem(placemark: placemark)
+            mapItem.name = address
+            mapItem.openInMaps()
         }
-        shelterCardView.bottomButtonView.rightButtonOnTap = { [weak self] in
-            self?.viewModel.didTapCall()
+        // 點擊撥打電話
+        shelterCardView.bottomButtonView.rightButtonOnTap = { [weak self] sender in
+            guard let self,
+                  let url = self.viewModel.makeCallURL(),
+                  UIApplication.shared.canOpenURL(url)
+            else { return }
+            
+            UIApplication.shared.open(url)
         }
-        bottomActionView.leftButtonOnTap = { [weak self] in
-            self?.viewModel.didTapShare()
+        
+        // 點擊分享
+        bottomActionView.leftButtonOnTap = { [weak self] sender in
+            guard let self else { return }
+            self.showShareActivityVC(
+                items: self.viewModel.makeShareItems(),
+                sourceView: sender
+            )
         }
-        bottomActionView.rightButtonOnTap = { [weak self] in
-            self?.viewModel.didTapCall()
+        // 點擊撥打電話
+        bottomActionView.rightButtonOnTap = { [weak self] sender in
+            guard let self,
+                  let url = self.viewModel.makeCallURL(),
+                  UIApplication.shared.canOpenURL(url)
+            else { return }
+            
+            UIApplication.shared.open(url)
         }
     }
     
@@ -170,22 +189,4 @@ final class PetInformationViewController: UIViewController {
         
     }
     
-    private func handleAction(_ route: PetInformationRoute) {
-        switch route {
-        case .call(let phone):
-            let filtered = phone.replacingOccurrences(of: " ", with: "")
-            guard let url = URL(string: "tel://\(filtered)"),
-                  UIApplication.shared.canOpenURL(url) else { return }
-            UIApplication.shared.open(url)
-            
-        case .openMap(let address):
-            let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = address
-            mapItem.openInMaps()
-            
-        case .share(let items):
-            showShareActivityVC(items: items)
-        }
-    }
 }

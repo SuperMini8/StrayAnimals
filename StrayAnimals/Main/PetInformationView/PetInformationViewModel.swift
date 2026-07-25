@@ -12,7 +12,6 @@ final class PetInformationViewModel {
     // MARK: - property
     @Published private(set) var viewData: PetInformationViewData?
     @Published private(set) var isImageLoading: Bool = false
-    let route = PassthroughSubject<PetInformationRoute, Never>()
     
     private let petData: PetData
     private let imageLoader: ImageLoading
@@ -35,8 +34,8 @@ final class PetInformationViewModel {
         viewData = makeViewData(form: petData)
         loadImageIfNeeded()
     }
-    /// 點擊「分享」按鈕
-    func didTapShare() {
+    /// 輸出「分享」的資訊內容
+    func makeShareItems() -> [Any] {
         let text = [
             petData.animalKind.rawValue,
             petData.animalVariety,
@@ -46,17 +45,17 @@ final class PetInformationViewModel {
             .compactMap { $0 }
             .joined(separator: "\n")
         
-        route.send(.share(items: [text]))
+        return [text]
     }
-    /// 點擊「聯絡收容所」按鈕
-    func didTapCall() {
-        guard !petData.shelterTel.isEmpty else { return }
-        route.send(.call(phone: petData.shelterTel))
+    /// 輸出電話的 URL
+    func makeCallURL() -> URL? {
+        guard !petData.shelterTel.isEmpty else { return nil }
+        let filtered = petData.shelterTel.replacingOccurrences(of: " ", with: "")
+        return URL(string: "tel://\(filtered)")
     }
-    /// 點擊「查看地址」按鈕
-    func didTapOpenMap() {
-        guard !petData.shelterAddress.isEmpty else { return }
-        route.send(.openMap(address: petData.shelterAddress))
+    /// 輸出地址
+    func makeMapAddress() -> String? {
+        return petData.shelterAddress.isEmpty ? nil : petData.shelterAddress
     }
     /// 將 Data 轉換成 View Data
     func makeViewData(form data: PetData) -> PetInformationViewData {

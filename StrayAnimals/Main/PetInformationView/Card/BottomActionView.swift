@@ -25,8 +25,8 @@ final class BottomActionView: UIView {
     }()
 
     // MARK: - property
-    var leftButtonOnTap: (() -> Void)?
-    var rightButtonOnTap: (() -> Void)?
+    var leftButtonOnTap: ((UIView) -> Void)?
+    var rightButtonOnTap: ((UIView) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,8 +43,8 @@ final class BottomActionView: UIView {
         contentSteckView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        leftButton.addTarget(self, action: #selector(leftDidTap), for: .touchUpInside)
-        rightButton.addTarget(self, action: #selector(rightDidTap), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(leftDidTap(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(rightDidTap(_:)), for: .touchUpInside)
     }
     
     func configure(
@@ -57,11 +57,11 @@ final class BottomActionView: UIView {
         contentSteckView.distribution = stackViewDistribution
     }
     
-    @objc private func leftDidTap() {
-        leftButtonOnTap?()
+    @objc private func leftDidTap(_ sender: UIButton) {
+        leftButtonOnTap?(sender)
     }
     
-    @objc private func rightDidTap() {
-        rightButtonOnTap?()
+    @objc private func rightDidTap(_ sender: UIButton) {
+        rightButtonOnTap?(sender)
     }
 }

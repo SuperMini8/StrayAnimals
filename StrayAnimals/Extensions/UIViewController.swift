@@ -17,11 +17,14 @@ extension UIViewController {
     // MARK: - Share Activity View Controller
     /// 顯示「分享」畫面
     func showShareActivityVC(items: [Any],
-                             activities: [UIActivity]? = nil) {
+                             activities: [UIActivity]? = nil,
+                             sourceView: UIView? = nil,
+                             sourceRect: CGRect? = nil) {
         let controller = UIActivityViewController(activityItems: items, applicationActivities: activities)
         // iPad 需要先設定 sourceView 與 sourceRect
-        controller.popoverPresentationController?.sourceView = view
-        controller.popoverPresentationController?.sourceRect = view.bounds
+        let anchorView: UIView = sourceView ?? view
+        controller.popoverPresentationController?.sourceView = anchorView
+        controller.popoverPresentationController?.sourceRect = sourceRect ?? anchorView.bounds
         present(controller, animated: true)
     }
     //MARK: - Loading View

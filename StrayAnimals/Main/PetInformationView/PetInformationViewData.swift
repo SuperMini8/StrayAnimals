@@ -83,12 +83,3 @@ struct NoteCardViewData {
     let remark: String
     let updateDateText: String?
 }
-/// 點擊互動的種類
-enum PetInformationRoute {
-    /// 分享寵物資訊
-    case share(items: [Any])
-    /// 撥打收容所電話
-    case call(phone: String)
-    /// 打開地圖
-    case openMap(address: String)
-}
