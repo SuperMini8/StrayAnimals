@@ -128,7 +128,7 @@ final class ListViewModel {
         // 取消先前的 request
         getPetDataRequestCancellable?.cancel()
         // 儲存新的 request
-        getPetDataRequestCancellable = webService.sendRequest(with: APIEndpoint.StrayAnimalList(query: listQuery))
+        getPetDataRequestCancellable = webService.sendRequest(with: StrayAnimalList(query: listQuery))
             // 在主執行緒
             .receive(on: DispatchQueue.main)
             // 建立訂閱

@@ -138,10 +138,17 @@ final class PetInformationViewController: UIViewController {
             guard let self,
                   let address = self.viewModel.makeMapAddress()
             else { return }
-            let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = address
-            mapItem.openInMaps()
+            /// Google Map 優先使用
+            if let googleMapSchemeURL = URL(string:"comgooglemaps://"), UIApplication.shared.canOpenURL(googleMapSchemeURL),
+               let openURL = URLFactory().makeURL(for: GoogleMap(addressQuery: address)) {
+                UIApplication.shared.open(openURL)
+            } else {
+            /// Apple Map
+                let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
+                let mapItem = MKMapItem(placemark: placemark)
+                mapItem.name = address
+                mapItem.openInMaps()
+            }
         }
         // 點擊撥打電話
         shelterCardView.bottomButtonView.rightButtonOnTap = { [weak self] sender in

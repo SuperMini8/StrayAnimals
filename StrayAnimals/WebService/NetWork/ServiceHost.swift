@@ -11,14 +11,18 @@ import Foundation
 enum ServiceHost {
     
     case gov
+    case google
     
     func host(in env: APIEnvironment) -> String {
-        switch self {
-        case .gov:
-            switch env {
-            case .dev,
-                 .production:
+        switch env {
+        /// 並沒有測試 domain，此架構練習用
+        case .dev,
+             .production:
+            switch self {
+            case .gov:
                 return "data.moa.gov.tw"
+            case .google:
+                return "www.google.com"
             }
         }
     }

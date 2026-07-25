@@ -70,17 +70,28 @@ extension EndpointType {
     var mockFileName: String? { nil }
 }
 
-enum APIEndpoint {
+// MARK: - API Endpoint
+struct StrayAnimalList: EndpointType {
+    typealias response = [PetData]
     
-    struct StrayAnimalList: EndpointType {
-        typealias response = [PetData]
-        
-        var service: ServiceHost { .gov }
-        var path: String { "/Service/OpenData/TransService.aspx" }
-        var method: HTTPMethod { .get }
-        let query: StrayAnimalListQuery
-        var queryItems: [URLQueryItem]? { [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems() }
-        var mockFileName: String? { "PetDataMockJSON" }
-        
-    }
+    var service: ServiceHost { .gov }
+    var path: String { "/Service/OpenData/TransService.aspx" }
+    var method: HTTPMethod { .get }
+    let query: StrayAnimalListQuery
+    var queryItems: [URLQueryItem]? { [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems() }
+    var mockFileName: String? { "PetDataMockJSON" }
+}
+
+struct GoogleMap: EndpointType {
+    /// 這個 Endpoint 不會在 App 內做 request
+    typealias response = Data
+    
+    var service: ServiceHost { .google }
+    var path: String { "/maps/search/" }
+    var method: HTTPMethod { .get }
+    let addressQuery: String
+    var queryItems: [URLQueryItem]? { [
+        URLQueryItem(name: "api", value: "1"),
+        URLQueryItem(name: "query", value: addressQuery)
+    ]}
 }
