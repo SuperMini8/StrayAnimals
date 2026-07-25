@@ -185,8 +185,7 @@ final class PetInformationViewController: UIViewController {
             mapItem.openInMaps()
             
         case .share(let items):
-            let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            present(controller, animated: true)
+            showShareActivityVC(items: items)
         }
     }
 }
