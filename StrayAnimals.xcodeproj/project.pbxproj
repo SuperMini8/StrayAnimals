@@ -54,6 +54,7 @@
 		EC4E06A32E62F5AD002B6904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4E06A22E62F5AD002B6904 /* Assets.xcassets */; };
 		EC4E06A62E62F5AD002B6904 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EC4E06A52E62F5AD002B6904 /* Base */; };
 		ECC2BB0230144AAA00AB2AF2 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC2BB0130144AAA00AB2AF2 /* UIStackView.swift */; };
+		ECC2BB043014B18E00AB2AF2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = ECC2BB033014B18E00AB2AF2 /* PrivacyInfo.xcprivacy */; };
 		ECDB41102EB9E32900AEB3FB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = ECDB410F2EB9E32900AEB3FB /* SnapKit */; };
 		ECDB41382ED4437A00AEB3FB /* PetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB41372ED4437A00AEB3FB /* PetData.swift */; };
 		ECDB413B2ED4C27300AEB3FB /* AnimalEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB413A2ED4C27300AEB3FB /* AnimalEnum.swift */; };
@@ -118,6 +119,7 @@
 		EC4E06A52E62F5AD002B6904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC4E06A72E62F5AD002B6904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC2BB0130144AAA00AB2AF2 /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		ECC2BB033014B18E00AB2AF2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ECDB41372ED4437A00AEB3FB /* PetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetData.swift; sourceTree = "<group>"; };
 		ECDB413A2ED4C27300AEB3FB /* AnimalEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalEnum.swift; sourceTree = "<group>"; };
 		ECF578172E62F61100F5959F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -260,6 +262,7 @@
 		EC4E068D2E62F5AC002B6904 = {
 			isa = PBXGroup;
 			children = (
+				ECC2BB033014B18E00AB2AF2 /* PrivacyInfo.xcprivacy */,
 				ECF578172E62F61100F5959F /* README.md */,
 				EC4E06982E62F5AC002B6904 /* StrayAnimals */,
 				EC4E06972E62F5AC002B6904 /* Products */,
@@ -373,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC2BB043014B18E00AB2AF2 /* PrivacyInfo.xcprivacy in Resources */,
 				1D8AD1B32F8635D1005026DC /* PetDataMockJSON.json in Resources */,
 				EC4E06A32E62F5AD002B6904 /* Assets.xcassets in Resources */,
 				1D36306F2F188F210071D131 /* Localizable.strings in Resources */,
@@ -601,6 +605,8 @@
 				DEVELOPMENT_TEAM = BJ3K623YKW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StrayAnimals/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "浪浪想找家";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -613,9 +619,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mini8.StrayAnimals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -631,6 +641,8 @@
 				DEVELOPMENT_TEAM = BJ3K623YKW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = StrayAnimals/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "浪浪想找家";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
@@ -643,9 +655,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mini8.StrayAnimals;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
