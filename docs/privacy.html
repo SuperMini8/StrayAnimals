@@ -36,6 +36,27 @@
       color: #1f6f5b;
       font-weight: 600;
     }
+    .en {
+      color: #52606d;
+      font-size: 0.95rem;
+    }
+    li .en {
+      display: block;
+      margin: 2px 0 0;
+    }
+    .contact {
+      margin: 24px 0;
+      padding: 16px 18px;
+      background: #ffffff;
+      border: 1px solid #c9d7cf;
+      border-radius: 8px;
+    }
+    .contact p {
+      margin: 0 0 6px;
+    }
+    .contact p:last-child {
+      margin-bottom: 0;
+    }
     .meta {
       margin-top: 36px;
       color: #637083;
@@ -47,46 +68,84 @@
   <div class="page" role="main">
     <h1>浪浪想找家 Privacy Policy</h1>
     <p>本隱私權政策說明浪浪想找家 iOS App（以下稱「本 App」）如何處理與保護使用者資料。使用本 App 即表示你了解本政策所述內容。</p>
+    <p class="en">This Privacy Policy explains how the iOS app 浪浪想找家 (Stray Animals) handles and protects user data. By using the app you acknowledge the practices described here. In case of any discrepancy between the Chinese and English text, the Chinese text prevails.</p>
 
-    <h2>一、適用範圍</h2>
+    <div class="contact">
+      <p><strong>開發者 / Developer:</strong> PIN-YU YEH</p>
+      <p><strong>聯絡信箱 / Contact:</strong> <a href="mailto:superminieight@gmail.com">superminieight@gmail.com</a></p>
+    </div>
+
+    <h2>一、適用範圍 / Scope</h2>
     <p>本政策適用於本 App 提供的台灣收容動物認領養資訊查詢、動物詳細資料瀏覽、開啟地圖、撥打收容所電話與分享畫面等功能。</p>
+    <p class="en">This policy applies to all features of the app: browsing and filtering Taiwan shelter animal adoption data, viewing animal details, opening a shelter address in Apple Maps, calling a shelter, and sharing an animal's information.</p>
 
-    <h2>二、我們不主動收集個人資料</h2>
+    <h2>二、我們不主動收集個人資料 / We Do Not Collect Personal Data</h2>
     <p>本 App 不要求使用者註冊或登入，也不主動收集姓名、電話、電子郵件、精確位置、照片、通訊錄、付款資訊或其他可直接識別個人的資料。</p>
+    <p class="en">The app has no account system and requires no registration or sign-in. It does not collect your name, phone number, email address, precise location, photos, contacts, payment information, or any other personally identifiable data.</p>
     <p>本 App 不建立使用者帳號，不維護使用者個人資料庫，也不將使用者操作紀錄用於廣告投放或跨 App 追蹤。</p>
+    <p class="en">We do not create user accounts, maintain any user database, or use activity data for advertising or cross-app tracking. The app requests no system permissions of any kind — there is no location, contacts, camera, photo library, microphone, notification, or App Tracking Transparency prompt anywhere in the app.</p>
 
-    <h2>三、App 功能涉及的資料處理</h2>
+    <h2>三、App 功能涉及的資料處理 / Data Handling by Feature</h2>
     <ul>
-      <li>動物資料查詢：本 App 會連線至農業部資料開放平台，以取得動物認領養資料。</li>
-      <li>圖片載入：本 App 會透過圖片服務載入或轉換動物照片，以改善圖片顯示速度與使用體驗。</li>
-      <li>開啟地圖：當使用者點選地圖相關功能時，本 App 會依收容所地址開啟 Apple Maps 或系統地圖服務。本 App 不會要求或存取使用者目前位置。</li>
-      <li>撥打電話：當使用者點選聯絡收容所時，本 App 會交由 iOS 系統開啟電話撥打功能。本 App 不會記錄通話內容。</li>
-      <li>分享功能：分享圖片會在裝置本機依目前畫面產生，並交由 iOS 系統分享面板處理。本 App 不會保存或上傳分享內容。</li>
+      <li>動物資料查詢：本 App 會連線至農業部資料開放平台，以取得動物認領養資料。
+        <span class="en">Animal data: the app requests publicly available adoption data from the Taiwan Ministry of Agriculture Open Data Platform.</span>
+      </li>
+      <li>圖片載入：本 App 會透過圖片最佳化服務載入或轉換動物照片，以改善圖片顯示速度與使用體驗。
+        <span class="en">Images: animal photos published in the open dataset are resized and compressed through an image optimisation service to improve loading speed.</span>
+      </li>
+      <li>開啟地圖：當使用者點選地圖相關功能時，本 App 會依收容所地址開啟 Apple Maps 或系統地圖服務。本 App 不會要求或存取使用者目前位置，也未使用 Core Location。
+        <span class="en">Maps: tapping the map button passes the shelter's publicly listed address to Apple Maps. The app does not request or access your current location and does not use Core Location.</span>
+      </li>
+      <li>撥打電話：當使用者點選聯絡收容所時，本 App 會交由 iOS 系統開啟電話撥打功能。本 App 不會記錄通話內容。
+        <span class="en">Phone: tapping the call button hands the shelter's publicly listed phone number to the system Phone app. The app does not log or record calls.</span>
+      </li>
+      <li>分享功能：分享圖片會在裝置本機依目前畫面產生，並交由 iOS 系統分享面板處理。本 App 不會保存或上傳分享內容。
+        <span class="en">Sharing: the shared image is rendered locally on your device and handed to the standard iOS share sheet. The app does not store or upload shared content.</span>
+      </li>
     </ul>
 
-    <h2>四、第三方服務與一般連線資訊</h2>
-    <p>本 App 使用第三方或外部服務取得開放資料與圖片。當 App 與這些服務連線時，服務提供方可能會基於網路傳輸、安全性、錯誤排除或服務維運目的，接收一般連線資訊，例如 IP 位址、請求時間、請求網址、裝置或系統產生的網路資訊。</p>
-    <p>上述一般連線資訊並非由本 App 主動建立使用者個人檔案，也不會由本 App 用於廣告追蹤。</p>
+    <h2>四、第三方服務 / Third-Party Services</h2>
+    <p>本 App 使用下列外部服務：</p>
+    <p class="en">The app uses the following external services:</p>
+    <ul>
+      <li><strong>農業部資料開放平台（data.moa.gov.tw）</strong>：提供動物認領養公開資料。此為公開開放資料，不需帳號或金鑰，本 App 不會傳送任何使用者資料。
+        <span class="en"><strong>Taiwan Ministry of Agriculture Open Data Platform</strong> — provides the public animal adoption dataset. It is an unauthenticated public open dataset; no user data is transmitted.</span>
+      </li>
+      <li><strong>ImageKit.io（ik.imagekit.io）</strong>：僅作為圖片壓縮與 CDN 傳遞服務，用於縮放開放資料中已公開的動物照片。本 App 只會送出公開的圖片檔名，不會傳送任何使用者資料，也不用於帳號、分析、廣告或個資儲存。其隱私權政策見 <a href="https://imagekit.io/privacy-policy/">imagekit.io/privacy-policy</a>。
+        <span class="en"><strong>ImageKit.io</strong> — used solely as an image optimisation and CDN delivery proxy for photos already published publicly in the government dataset. Only the public image filename is sent. It is not used for accounts, analytics, advertising, or storage of personal data.</span>
+      </li>
+      <li><strong>Apple Maps 與系統電話 App</strong>：屬 iOS 系統服務，由使用者主動點擊後開啟，其資料處理適用 Apple 的隱私權政策。
+        <span class="en"><strong>Apple Maps and the system Phone app</strong> — iOS system services, opened only when you tap the corresponding button. Their handling of data is governed by Apple's privacy policy.</span>
+      </li>
+    </ul>
+    <p>當 App 與上述服務連線時，服務提供方可能會基於網路傳輸、安全性、錯誤排除或服務維運目的，接收一般連線資訊，例如 IP 位址、請求時間、請求網址、裝置或系統產生的網路資訊。上述一般連線資訊並非由本 App 主動建立使用者個人檔案，也不會由本 App 用於廣告追蹤。</p>
+    <p class="en">When the app connects to these services, the providers may receive ordinary connection information such as IP address, request time, and requested URL, for network delivery, security, troubleshooting, and operational purposes. The app does not use this information to build a user profile or for advertising.</p>
 
-    <h2>五、追蹤、廣告與資料分享</h2>
-    <p>本 App 不使用 IDFA，不提供第三方廣告 SDK，不進行跨 App 或跨網站追蹤，也不將使用者資料出售、出租或提供給資料經紀商。</p>
+    <h2>五、追蹤、廣告與資料分享 / Tracking, Advertising, and Data Sharing</h2>
+    <p>本 App 不使用 IDFA，不提供第三方廣告 SDK，不進行跨 App 或跨網站追蹤，也不將使用者資料出售、出租或提供給資料經紀商。本 App 未整合任何分析、當機回報、廣告或 AI 服務。</p>
+    <p class="en">The app does not use the IDFA, contains no advertising SDK, performs no cross-app or cross-site tracking, and never sells, rents, or shares user data with data brokers. No analytics, crash-reporting, advertising, or AI SDK is integrated.</p>
 
-    <h2>六、資料保存</h2>
+    <h2>六、資料保存 / Data Retention</h2>
     <p>本 App 可能在裝置記憶體中暫存已載入的圖片，以改善瀏覽效能。這類暫存資料僅用於 App 運作與顯示，不包含使用者提供的個人資料，並可能由系統或 App 在適當時機清除。</p>
+    <p class="en">The app may cache loaded images in device memory to improve browsing performance. This cache contains no personal data and may be cleared by the system or the app at any time. No data is stored on any server operated by us — we operate no backend server.</p>
 
-    <h2>七、兒童隱私</h2>
+    <h2>七、兒童隱私 / Children's Privacy</h2>
     <p>本 App 並非以兒童為主要使用對象，也不會故意收集兒童的個人資料。</p>
+    <p class="en">The app is not directed at children and does not knowingly collect personal data from children.</p>
 
-    <h2>八、資料來源與內容聲明</h2>
-    <p>本 App 顯示的動物資料來自農業部資料開放平台「動物認領養」。本 App 非政府官方 App，資料內容、認養狀態、照片、地址與聯絡資訊以原資料來源及收容所公告為準。</p>
+    <h2>八、資料來源與內容聲明 / Data Source and Disclaimer</h2>
+    <p>本 App 顯示的動物資料來自農業部資料開放平台「動物認領養」資料集，該資料集依「政府資料開放授權條款－第1版」釋出。本 App 非政府官方 App，資料內容、認養狀態、照片、地址與聯絡資訊以原資料來源及收容所公告為準。</p>
+    <p class="en">All animal data shown in the app comes from the "Animal Adoption" dataset of the Taiwan Ministry of Agriculture Open Data Platform, released under the Open Government Data License, Version 1.0. This app is not an official government app; adoption status, photos, addresses, and contact details are subject to the original data source and each shelter's own announcements.</p>
 
-    <h2>九、政策更新</h2>
+    <h2>九、政策更新 / Changes to This Policy</h2>
     <p>我們可能因 App 功能、法規要求或服務調整而更新本隱私權政策。更新後的版本會公布於本頁，並以頁面標示的更新日期為準。</p>
+    <p class="en">We may update this policy as the app, applicable regulations, or our services change. Updates are published on this page and take effect on the date shown below.</p>
 
-    <h2>十、聯絡我們</h2>
-    <p>若你對本隱私權政策或本 App 的資料處理方式有任何問題，請透過 App Store 產品頁面中的開發者聯絡資訊與我們聯繫。</p>
+    <h2>十、聯絡我們 / Contact Us</h2>
+    <p>若你對本隱私權政策或本 App 的資料處理方式有任何問題，請來信 <a href="mailto:superminieight@gmail.com">superminieight@gmail.com</a>，我們會盡快回覆。</p>
+    <p class="en">If you have any question about this policy or how the app handles data, email <a href="mailto:superminieight@gmail.com">superminieight@gmail.com</a> and we will respond as soon as possible.</p>
 
-    <p class="meta">Last updated: 2026-07-25</p>
+    <p class="meta">Last updated: 2026-07-28</p>
   </div>
 </body>
 </html>
