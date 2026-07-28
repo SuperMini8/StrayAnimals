@@ -8,8 +8,6 @@
 import UIKit
 import SnapKit
 import Combine
-import MapKit
-import Contacts
 
 final class PetInformationViewController: UIViewController {
     // MARK: - UI
@@ -136,12 +134,11 @@ final class PetInformationViewController: UIViewController {
         // 點擊打開地圖
         shelterCardView.bottomButtonView.leftButtonOnTap = { [weak self] sender in
             guard let self,
-                  let address = self.viewModel.makeMapAddress()
+                  let url = self.viewModel.makeMapURL(),
+                  UIApplication.shared.canOpenURL(url)
             else { return }
-            let placemark = MKPlacemark(coordinate: .init(), addressDictionary: [CNPostalAddressStreetKey: address])
-            let mapItem = MKMapItem(placemark: placemark)
-            mapItem.name = address
-            mapItem.openInMaps()
+
+            UIApplication.shared.open(url)
         }
         // 點擊撥打電話
         shelterCardView.bottomButtonView.rightButtonOnTap = { [weak self] sender in

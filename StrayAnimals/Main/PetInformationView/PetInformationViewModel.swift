@@ -40,9 +40,12 @@ final class PetInformationViewModel {
         let filtered = petData.shelterTel.replacingOccurrences(of: " ", with: "")
         return URL(string: "tel://\(filtered)")
     }
-    /// 輸出地址
-    func makeMapAddress() -> String? {
-        return petData.shelterAddress.isEmpty ? nil : petData.shelterAddress
+    /// 輸出地圖的 URL
+    func makeMapURL() -> URL? {
+        guard !petData.shelterAddress.isEmpty else { return nil }
+        var components = URLComponents(string: "https://maps.apple.com/")
+        components?.queryItems = [URLQueryItem(name: "q", value: petData.shelterAddress)]
+        return components?.url
     }
     /// 將 Data 轉換成 View Data
     func makeViewData(form data: PetData) -> PetInformationViewData {
