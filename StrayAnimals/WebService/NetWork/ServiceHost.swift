@@ -11,6 +11,7 @@ import Foundation
 enum ServiceHost {
     
     case gov
+    case appleMap
     case google
     
     func host(in env: APIEnvironment) -> String {
@@ -21,6 +22,8 @@ enum ServiceHost {
             switch self {
             case .gov:
                 return "data.moa.gov.tw"
+            case .appleMap:
+                return "maps.apple.com"
             case .google:
                 return "www.google.com"
             }

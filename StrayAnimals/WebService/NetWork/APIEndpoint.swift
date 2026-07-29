@@ -81,7 +81,20 @@ struct StrayAnimalList: EndpointType {
     var queryItems: [URLQueryItem]? { [URLQueryItem(name: "UnitId", value: "QcbUEzN6E6DL")] + query.toQueryItems() }
     var mockFileName: String? { "PetDataMockJSON" }
 }
-
+/// 製作外開 Apple Map URL
+struct AppleMap: EndpointType {
+    /// 這個 Endpoint 不會在 App 內做 request
+    typealias response = Data
+    
+    var service: ServiceHost { .appleMap }
+    var path: String { "" }
+    var method: HTTPMethod { .get }
+    let addressQuery: String
+    var queryItems: [URLQueryItem]? { [
+        URLQueryItem(name: "q", value: addressQuery)
+    ]}
+}
+/// 製作外開 Google Map URL
 struct GoogleMap: EndpointType {
     /// 這個 Endpoint 不會在 App 內做 request
     typealias response = Data

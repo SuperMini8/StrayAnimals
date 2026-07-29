@@ -36,6 +36,27 @@
       color: #1f6f5b;
       font-weight: 600;
     }
+    .en {
+      color: #52606d;
+      font-size: 0.95rem;
+    }
+    li .en {
+      display: block;
+      margin: 2px 0 0;
+    }
+    .contact {
+      margin: 24px 0;
+      padding: 16px 18px;
+      background: #ffffff;
+      border: 1px solid #c9d7cf;
+      border-radius: 8px;
+    }
+    .contact p {
+      margin: 0 0 6px;
+    }
+    .contact p:last-child {
+      margin-bottom: 0;
+    }
     .meta {
       margin-top: 36px;
       color: #637083;
@@ -46,27 +67,69 @@
 <body>
   <div class="page" role="main">
     <h1>浪浪想找家 Support</h1>
-    <p>浪浪想找家是一個查詢台灣收容動物認領養資訊的 iOS App。</p>
+    <p>浪浪想找家是一個查詢台灣收容動物認領養資訊的 iOS App，資料來自農業部資料開放平台。App 不需註冊或登入，也不需要任何權限即可使用全部功能。</p>
+    <p class="en">浪浪想找家 (Stray Animals) is an iOS app for browsing adoptable shelter animals in Taiwan, using the official open data published by the Taiwan Ministry of Agriculture. No account, no sign-in, and no system permissions are required — every feature is available immediately after launch.</p>
 
-    <h2>常見問題</h2>
+    <h2>聯絡與回報問題 / Contact and Support</h2>
+    <div class="contact">
+      <p><strong>開發者 / Developer:</strong> PIN-YU YEH</p>
+      <p><strong>聯絡信箱 / Contact:</strong> <a href="mailto:superminieight@gmail.com">superminieight@gmail.com</a></p>
+      <p>我們通常會在 3 個工作天內回覆。</p>
+      <p class="en">We normally reply within 3 business days.</p>
+    </div>
+    <p>回報問題時，建議附上 iOS 版本、App 版本、發生問題的畫面截圖，以及你遇到的狀況描述，這能幫助我們更快找出原因。</p>
+    <p class="en">When reporting an issue, please include your iOS version, the app version, a screenshot of the problem, and a short description of what happened.</p>
+
+    <h2>如何使用 / How to Use</h2>
     <ul>
-      <li>動物資料來自農業部資料開放平台，App 內資料可能因原始資料更新時間而延遲。</li>
-      <li>動物照片可能因原始圖片連結或圖片服務狀態而暫時無法顯示。</li>
-      <li>若要確認認養狀態，請以收容所公告或電話聯絡結果為準。</li>
+      <li>開啟 App 後會自動載入認養中的動物列表，往下捲動會自動載入更多。
+        <span class="en">Launch the app and the adoption list loads automatically; scroll down to load more.</span>
+      </li>
+      <li>點選上方的分類（全部／狗／貓／其他／幼年／成年）可以篩選列表。
+        <span class="en">Tap a category chip (All / Dog / Cat / Other / Young / Adult) to filter the list.</span>
+      </li>
+      <li>點選任一張卡片可查看動物詳細資料、收容所資訊與備註。
+        <span class="en">Tap any card to view the animal's details, shelter information, and remarks.</span>
+      </li>
+      <li>在詳細頁可以開啟地圖查看收容所位置、撥打收容所電話，或分享這隻動物的資訊。
+        <span class="en">On the detail page you can open the shelter address in Apple Maps, call the shelter, or share the animal's information.</span>
+      </li>
     </ul>
 
-    <h2>聯絡與回報問題</h2>
-    <p>若你在使用 App 時遇到問題，請透過 App Store 產品頁面中的開發者聯絡資訊與我們聯繫。</p>
-    <p>回報問題時，建議附上 iOS 版本、App 版本、發生問題的畫面，以及你遇到的狀況描述。</p>
+    <h2>常見問題 / FAQ</h2>
+    <ul>
+      <li>動物資料來自農業部資料開放平台，App 內資料可能因原始資料更新時間而延遲。
+        <span class="en">Data comes from the government Open Data platform and may lag behind the shelter's own records.</span>
+      </li>
+      <li>動物照片可能因原始圖片連結或圖片服務狀態而暫時無法顯示，此時會顯示預設圖示。
+        <span class="en">A photo may be temporarily unavailable if the original image link is down; a placeholder icon is shown instead.</span>
+      </li>
+      <li>列表無法載入時，請先確認網路連線，並稍後再試；原始開放資料平台偶爾會維護。
+        <span class="en">If the list fails to load, check your network connection and try again later — the government open data platform is occasionally under maintenance.</span>
+      </li>
+      <li>若要確認認養狀態，請以收容所公告或電話聯絡結果為準。
+        <span class="en">To confirm whether an animal is still available, please contact the shelter directly.</span>
+      </li>
+      <li>本 App 不會要求定位權限；開啟地圖只是把收容所地址交給 Apple Maps 顯示。
+        <span class="en">The app never asks for location permission; the map button simply passes the shelter address to Apple Maps.</span>
+      </li>
+    </ul>
 
-    <h2>資料來源</h2>
-    <p>資料來源：農業部資料開放平台「動物認領養」。</p>
+    <h2>資料來源與授權 / Data Source and License</h2>
+    <p>資料來源：農業部資料開放平台「動物認領養」資料集。</p>
     <p><a href="https://data.moa.gov.tw/open_detail.aspx?id=QcbUEzN6E6DL">https://data.moa.gov.tw/open_detail.aspx?id=QcbUEzN6E6DL</a></p>
+    <p>該資料集依「<a href="https://data.gov.tw/license">政府資料開放授權條款－第1版</a>」釋出，允許使用者自由使用、重製與公開傳輸，本 App 依授權條款標示資料來源。</p>
+    <p class="en">The dataset is released under the <a href="https://data.gov.tw/license">Open Government Data License, Version 1.0</a>, which permits free use, reproduction, and public transmission with attribution to the source. This app attributes the Taiwan Ministry of Agriculture Open Data Platform accordingly.</p>
 
-    <h2>聲明</h2>
+    <h2>隱私權 / Privacy</h2>
+    <p>本 App 不收集個人資料、不追蹤使用者、不使用定位。完整說明請見<a href="./privacy.html">隱私權政策</a>。</p>
+    <p class="en">The app collects no personal data, performs no tracking, and does not use location. See the <a href="./privacy.html">Privacy Policy</a> for full details.</p>
+
+    <h2>聲明 / Disclaimer</h2>
     <p>本 App 非政府官方 App，資料內容、認養狀態與聯絡資訊以原資料來源及收容所公告為準。</p>
+    <p class="en">This app is not an official government app. Data content, adoption status, and contact details are subject to the original data source and each shelter's own announcements.</p>
 
-    <p class="meta">Last updated: 2026-07-25</p>
+    <p class="meta">Last updated: 2026-07-28</p>
   </div>
 </body>
 </html>

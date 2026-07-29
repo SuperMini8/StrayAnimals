@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 final class PetInformationViewModel {
     // MARK: - property
@@ -40,9 +41,16 @@ final class PetInformationViewModel {
         let filtered = petData.shelterTel.replacingOccurrences(of: " ", with: "")
         return URL(string: "tel://\(filtered)")
     }
-    /// 輸出地址
-    func makeMapAddress() -> String? {
-        return petData.shelterAddress.isEmpty ? nil : petData.shelterAddress
+    /// 輸出地圖的 URL
+    func makeMapURL() -> URL? {
+        guard !petData.shelterAddress.isEmpty else { return nil }
+        // 優先打開 Google Map
+        if let googleMapSchemeURL = URL(string:"comgooglemaps://"),
+           UIApplication.shared.canOpenURL(googleMapSchemeURL) {
+            return URLFactory().makeURL(for: GoogleMap(addressQuery: petData.shelterAddress))
+        }
+        // 才是 Apple Map
+        return URLFactory().makeURL(for: AppleMap(addressQuery: petData.shelterAddress))
     }
     /// 將 Data 轉換成 View Data
     func makeViewData(form data: PetData) -> PetInformationViewData {
