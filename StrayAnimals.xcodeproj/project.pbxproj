@@ -39,6 +39,10 @@
 		1D8AD1B12F850C54005026DC /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */; };
 		1D8AD1B32F8635D1005026DC /* PetDataMockJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */; };
 		1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B42F8639A6005026DC /* MockLoader.swift */; };
+		1D8BAD973019CA44000771E5 /* TodayPetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8BAD963019CA44000771E5 /* TodayPetItem.swift */; };
+		1D8BAD993019CA51000771E5 /* TodayPetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8BAD983019CA51000771E5 /* TodayPetItemViewModel.swift */; };
+		1D8BAD9B301A05F000771E5 /* ListSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8BAD9A301A05F000771E5 /* ListSectionHeaderView.swift */; };
+		1D8BAD9D301A061000771E5 /* TodaySectionBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8BAD9C301A061000771E5 /* TodaySectionBackgroundView.swift */; };
 		1D91FA6E2F975EEE0071E8B3 /* InfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */; };
 		1D91FA762F976A790071E8B3 /* InfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA752F976A790071E8B3 /* InfoRowView.swift */; };
 		1D91FA782F977E510071E8B3 /* InfoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA772F977E510071E8B3 /* InfoColumnView.swift */; };
@@ -100,6 +104,10 @@
 		1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewModel.swift; sourceTree = "<group>"; };
 		1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PetDataMockJSON.json; sourceTree = "<group>"; };
 		1D8AD1B42F8639A6005026DC /* MockLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoader.swift; sourceTree = "<group>"; };
+		1D8BAD963019CA44000771E5 /* TodayPetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPetItem.swift; sourceTree = "<group>"; };
+		1D8BAD983019CA51000771E5 /* TodayPetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayPetItemViewModel.swift; sourceTree = "<group>"; };
+		1D8BAD9A301A05F000771E5 /* ListSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSectionHeaderView.swift; sourceTree = "<group>"; };
+		1D8BAD9C301A061000771E5 /* TodaySectionBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySectionBackgroundView.swift; sourceTree = "<group>"; };
 		1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardView.swift; sourceTree = "<group>"; };
 		1D91FA752F976A790071E8B3 /* InfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
 		1D91FA772F977E510071E8B3 /* InfoColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoColumnView.swift; sourceTree = "<group>"; };
@@ -189,6 +197,10 @@
 				1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */,
 				EC2E9EDC2EF93797002F1E1B /* PetListItem.swift */,
 				1D6F54812F729380005DA616 /* PetListItemViewModel.swift */,
+				1D8BAD963019CA44000771E5 /* TodayPetItem.swift */,
+				1D8BAD983019CA51000771E5 /* TodayPetItemViewModel.swift */,
+				1D8BAD9A301A05F000771E5 /* ListSectionHeaderView.swift */,
+				1D8BAD9C301A061000771E5 /* TodaySectionBackgroundView.swift */,
 			);
 			path = ListView;
 			sourceTree = "<group>";
@@ -394,6 +406,8 @@
 			files = (
 				1D709F182F921E5400DBB0B3 /* StatusCardView.swift in Sources */,
 				1D7108FC2F9895CA00E15C61 /* PetInfoCardContainerView.swift in Sources */,
+				1D8BAD973019CA44000771E5 /* TodayPetItem.swift in Sources */,
+				1D8BAD9B301A05F000771E5 /* ListSectionHeaderView.swift in Sources */,
 				ECF5781B2E63F83C00F5959F /* AppDelegate.swift in Sources */,
 				EC4E069E2E62F5AC002B6904 /* ListViewController.swift in Sources */,
 				1D8AD1AF2F850C36005026DC /* CategoryItem.swift in Sources */,
@@ -436,6 +450,8 @@
 				1D7108FE2F98A4E000E15C61 /* NoteCardView.swift in Sources */,
 				1D6F54822F729380005DA616 /* PetListItemViewModel.swift in Sources */,
 				1D7108FA2F98862800E15C61 /* ShelterCardView.swift in Sources */,
+				1D8BAD993019CA51000771E5 /* TodayPetItemViewModel.swift in Sources */,
+				1D8BAD9D301A061000771E5 /* TodaySectionBackgroundView.swift in Sources */,
 				1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */,
 				1DAFC5792F2CA9A6009369E1 /* URLFactory.swift in Sources */,
 				EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */,

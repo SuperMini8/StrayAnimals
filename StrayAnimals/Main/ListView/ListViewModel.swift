@@ -9,7 +9,9 @@ import Foundation
 import Combine
 
 enum ListUpdateType {
-    case reloadAll
+    // 下方主要列表重整
+    case reloadList
+    // 下方主要列表載入下一頁
     case append(newItems: [PetListItemViewModel])
 }
 
@@ -27,6 +29,11 @@ final class ListViewModel {
     private(set) var currentCategory: ListCategory = .all
     
     // 頁面資料狀態
+    // 上面今日更新的 List 原始資料，點擊 TodayCell 時會用它進詳細頁
+    private var todayPets: [PetData] = []
+    // 上面今日更新的 List 畫面資料
+    private(set) var todayPetsViewModels: [TodayPetItemViewModel] = []
+    // 下面全部的 List
     private var pets: [PetData] = []
     private(set) var petViewModels: [PetListItemViewModel] = []
     lazy private var listQuery: StrayAnimalListQuery = StrayAnimalListQuery(top: pageSize)
@@ -54,6 +61,9 @@ final class ListViewModel {
         // PassthroughSubject 傳送單一「事件」
         /// 更新分類畫面 (舊分類, 新分類)
         let setCategory = PassthroughSubject<Void, Never>()
+        // 今日更新橫滑區塊重整
+        let todayListUpdate = PassthroughSubject<Void, Never>()
+        // 下方主要列表重整或載入下一頁
         let listUpdate = PassthroughSubject<ListUpdateType, Never>()
         let errorMessage = PassthroughSubject<String, Never>()
         // 取得 Data 前往詳細頁
@@ -78,7 +88,8 @@ final class ListViewModel {
         input.viewdidLoad
             .sink { [weak self] in
                 self?.loadCategoryList()
-                self?.getPetData(updateType: .reloadAll)
+                self?.getTodayPetData()
+                self?.getPetData(updateType: .reloadList)
             }
             .store(in: &cancellables)
         // 當 viewController 需要更多資料時
@@ -97,7 +108,7 @@ final class ListViewModel {
                     switch currentPage {
                     // 如果是第一頁，pets 又是空的，代表畫面是沒有資料的
                     case 1 where pets.isEmpty:
-                        self.getPetData(updateType: .reloadAll)
+                        self.getPetData(updateType: .reloadList)
                     default:
                         loadNextPage()
                     }
@@ -120,6 +131,34 @@ final class ListViewModel {
             .store(in: &cancellables)
     }
     // MARK: - PetData 相關
+    /// 取得「今日更新」資料，最多10 筆
+    private func getTodayPetData() {
+        // API 的 animal_update 格式是 yyyy/MM/dd，所以這裡用今天日期組查詢字串
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let dateString = formatter.string(from: .now)
+        // 今日更新獨立打一支 request，不影響下方主要列表的分頁狀態
+        webService.sendRequest(with: StrayAnimalList(query: .init(top: 10, animalUpdate: dateString)))
+            .receive(on: DispatchQueue.main)
+            .sink {[weak self] completion in
+                guard self != nil else { return }
+                switch completion {
+                case .finished:
+                    print("getTodayPetData Request finished.")
+                case .failure(let error):
+                    print("getPetData Request failed with: \(error)")
+                }
+            } receiveValue: { [weak self] response in
+                guard let self else { return }
+                // 保留完整 PetData，讓使用者點 TodayCell 時可以直接進詳細頁
+                self.todayPets = response
+                // 轉成 TodayCell 需要的輕量 ViewModel
+                self.todayPetsViewModels = response.map { self.makeTodayPetItemViewModel(for: $0) }
+                output.todayListUpdate.send()
+            }
+            .store(in: &cancellables)
+    }
+    
     private var getPetDataRequestCancellable: AnyCancellable?
     private func getPetData(updateType: ListUpdateType) {
         // 先檢查能不能再載下一頁（如果更新是加入，並且不能 load more，就不 request）
@@ -138,9 +177,9 @@ final class ListViewModel {
                 
                 switch completion {
                 case .finished:
-                    print("Request finished. Page is: \(self.currentPage)")
+                    print("getPetData Request finished. Page is: \(self.currentPage)")
                 case .failure(let error):
-                    print("Request failed with: \(error)")
+                    print("getPetData Request failed with: \(error)")
                     self.output.errorMessage.send(error.errorMassage())
                     if case .append = updateType {
                         canLoadMore = true
@@ -158,10 +197,10 @@ final class ListViewModel {
                 }
                 // 傳送更新事件
                 switch updateType {
-                case .reloadAll:
+                case .reloadList:
                     pets = response
                     petViewModels = items
-                    output.listUpdate.send(.reloadAll)
+                    output.listUpdate.send(.reloadList)
                 case .append:
                     // 如果加入是空資料就不用通知 UI 更新
                     if items.isEmpty {
@@ -199,7 +238,19 @@ final class ListViewModel {
         listQuery.setCategory(category)
         currentPage = 1
         listQuery.setPage(currentPage, size: pageSize)
-        getPetData(updateType: .reloadAll)
+        getPetData(updateType: .reloadList)
+    }
+    
+    // MARK: - TodayPetItem 相關
+    // 將 Data 轉換成 View Model
+    private func makeTodayPetItemViewModel(for item: PetData) -> TodayPetItemViewModel {
+        TodayPetItemViewModel(
+            id: item.animalId,
+            imageURL: URL(string: item.albumFile),
+            areaName: item.animalAreaPkid.areaName(),
+            kind: item.animalKind,
+            imageLoader: imageLoader
+        )
     }
     
     // MARK: - PetListItem 相關
@@ -219,6 +270,7 @@ final class ListViewModel {
     }
     // 取得完整資料
     private func getPetFullData(with id: Int) -> PetData? {
-        return pets.first(where: { $0.animalId == id })
+        // 今日更新與主要列表都能點進詳細頁，所以兩邊資料都要找
+        return (todayPets + pets).first(where: { $0.animalId == id })
     }
 }

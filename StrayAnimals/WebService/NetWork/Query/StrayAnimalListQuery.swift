@@ -27,6 +27,8 @@ struct StrayAnimalListQuery {
         case animalFoundPlace = "animal_foundplace"
         case animalStatus = "animal_status"
         case animalOpenDate = "animal_opendate"
+        // 今日更新區塊使用這個欄位查詢今天異動的動物資料
+        case animalUpdate = "animal_update"
         case shelterName = "shelter_name"
     }
     /// 取最前筆數
@@ -63,6 +65,8 @@ struct StrayAnimalListQuery {
     var animalStatus: AnimalStatus?
     /// 開放認養時間（起）
     var animalOpenDate: String?
+    /// 動物資料異動時間
+    var animalUpdate: String?
     /// 動物所屬收容所名稱
     var shelterName: PetShelter?
     
@@ -90,6 +94,7 @@ struct StrayAnimalListQuery {
         add(.animalFoundPlace, animalFoundPlace)
         add(.animalStatus, animalStatus?.rawValue)
         add(.animalOpenDate, animalOpenDate)
+        add(.animalUpdate, animalUpdate)
         add(.shelterName, shelterName?.shelterName())
         return items
     }
@@ -132,6 +137,7 @@ struct StrayAnimalListQuery {
         animalFoundPlace = nil
         animalStatus = nil
         animalOpenDate = nil
+        animalUpdate = nil
         shelterName = nil
     }
 
