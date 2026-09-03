@@ -61,7 +61,7 @@ final class PetInformationViewModel {
             return [
                 data.animalVariety.trimmingCharacters(in: .whitespaces),
                 data.animalSex.displaySexName(),
-                data.animalAge.AgeText()
+                data.animalAge.ageText()
             ]
                 .compactMap { $0 }
                 .joined(separator: " ")
@@ -86,7 +86,7 @@ final class PetInformationViewModel {
                 textColor: .label
             ),
             BadgeViewData(
-                text: data.animalAge.AgeText(),
+                text: data.animalAge.ageText(),
                 backgroundColor: .navigationBar,
                 textColor: .label
             )
@@ -104,11 +104,11 @@ final class PetInformationViewModel {
             InfoRowViewData(title: "類型", value: data.animalKind.rawValue),
             InfoRowViewData(title: "品種", value: data.animalVariety.trimmingCharacters(in: .whitespaces)),
             InfoRowViewData(title: "性別", value: data.animalSex.displaySexName()),
-            InfoRowViewData(title: "年紀", value: data.animalAge.AgeText()),
+            InfoRowViewData(title: "年紀", value: data.animalAge.ageText()),
         ]
         
         let rightInfoRows: [InfoRowViewData] = [
-            InfoRowViewData(title: "體型", value: data.animalBodytype.BodyTypeText()),
+            InfoRowViewData(title: "體型", value: data.animalBodytype.bodyTypeText()),
             InfoRowViewData(title: "毛色", value: data.animalColour),
             InfoRowViewData(title: "絕育狀況", value: data.animalSterilization.sterilizationText()),
             InfoRowViewData(title: "狂犬病疫苗", value: data.animalBacterin.statusText())

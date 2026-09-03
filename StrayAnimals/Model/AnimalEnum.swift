@@ -13,47 +13,47 @@ enum TaiwanArea: Int, Codable, CaseIterable {
     /// 02 台北市
     case taipeiCity = 2
     /// 03 新北市
-    case newTaipeiCity
+    case newTaipeiCity = 3
     /// 04 基隆市
-    case keelungCity
+    case keelungCity = 4
     /// 05 宜蘭縣
-    case yilanCounty
+    case yilanCounty = 5
     /// 06 桃園縣
-    case taoyuanCity
+    case taoyuanCity = 6
     /// 07 新竹縣
-    case hsinchuCounty
+    case hsinchuCounty = 7
     /// 08 新竹市
-    case hsinchuCity
+    case hsinchuCity = 8
     /// 09 苗栗縣
-    case miaoliCounty
+    case miaoliCounty = 9
     /// 10 台中市
-    case taichungCity
+    case taichungCity = 10
     /// 11 彰化縣
-    case changhuaCounty
+    case changhuaCounty = 11
     /// 12 南投縣
-    case nantouCounty
+    case nantouCounty = 12
     /// 13 雲林縣
-    case yunlinCounty
+    case yunlinCounty = 13
     /// 14 嘉義縣
-    case chiayiCounty
+    case chiayiCounty = 14
     /// 15 嘉義市
-    case chiayiCity
+    case chiayiCity = 15
     /// 16 台南市
-    case tainanCity
+    case tainanCity = 16
     /// 17 高雄市
-    case kaohsiungCity
+    case kaohsiungCity = 17
     /// 18 屏東縣
-    case pingtungCounty
+    case pingtungCounty = 18
     /// 19 花蓮縣
-    case hualienCounty
+    case hualienCounty = 19
     /// 20 台東縣
-    case taitungCounty
-    /// 20 澎湖縣
-    case penghuCounty
-    /// 21 金門縣
-    case kinmenCounty
-    /// 22 連江縣（馬祖）
-    case lienchiangCounty
+    case taitungCounty = 20
+    /// 21 澎湖縣
+    case penghuCounty = 21
+    /// 22 金門縣
+    case kinmenCounty = 22
+    /// 23 連江縣（馬祖）
+    case lienchiangCounty = 23
     /// 99
     case unknown = 99
     
@@ -280,6 +280,7 @@ enum PetShelter: Int, Codable {
 // MARK: - 寵物類型
 /// 寵物類型
 enum AnimalKind: String, Codable, CaseIterable {
+    
     case dog = "狗"
     case cat = "貓"
     case other = "其他"
@@ -361,7 +362,7 @@ enum AnimalBodyType: String, Codable, CaseIterable {
         try container.encode(rawValue)
     }
     
-    func BodyTypeText() -> String {
+    func bodyTypeText() -> String {
         switch self {
         case .small:
             return "小型"
@@ -391,7 +392,7 @@ enum AnimalAge: String, Codable, CaseIterable {
         try container.encode(rawValue)
     }
     
-    func AgeText() -> String {
+    func ageText() -> String {
         switch self {
         case .child:
             return "幼年"

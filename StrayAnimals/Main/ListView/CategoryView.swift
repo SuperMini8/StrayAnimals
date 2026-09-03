@@ -7,14 +7,41 @@
 
 import UIKit
 import SnapKit
-/// 類別傳送資料用
-struct AnimalListFilter: Equatable {
-    var kind: AnimalKind?
-    var sex: AnimalSex?
-    var age: AnimalAge?
-    var bodyType: AnimalBodyType?
-    var area: TaiwanArea?
-    var variety: String?
+
+protocol SingleSelectable: CaseIterable {
+    var selectID: String { get }
+    var selectTitle: String { get }
+    var isSelectable: Bool { get }
+}
+
+extension AnimalKind: SingleSelectable {
+    var selectID: String { self.rawValue }
+    var selectTitle: String { self.rawValue }
+    var isSelectable: Bool { true }
+}
+
+extension AnimalSex: SingleSelectable {
+    var selectID: String { self.rawValue }
+    var selectTitle: String { self.displaySexName() }
+    var isSelectable: Bool { self != .unknown }
+}
+
+extension AnimalAge: SingleSelectable {
+    var selectID: String { self.rawValue }
+    var selectTitle: String { self.ageText() }
+    var isSelectable: Bool { self != .unknown }
+}
+
+extension AnimalBodyType: SingleSelectable {
+    var selectID: String { self.rawValue }
+    var selectTitle: String { self.bodyTypeText() }
+    var isSelectable: Bool { self != .unknown }
+}
+
+extension TaiwanArea: SingleSelectable {
+    var selectID: String { String(self.rawValue) }
+    var selectTitle: String { self.areaName() }
+    var isSelectable: Bool { self != .unknown }
 }
 
 final class CategoryView: UIView {
@@ -69,62 +96,57 @@ final class CategoryView: UIView {
     }
     
     private func setContent() {
-        var menuButtons: [SingleSelectMenuButton] = []
         // 種類
-        let kindItems = AnimalKind.allCases.map { SingleSelectItem(id: $0.rawValue, title: $0.rawValue) }
-        let kindButton = SingleSelectMenuButton(defaultTitle: "種類", menuTitle: "請選擇種類", items: kindItems)
-        kindButton.onSelectionChanged = { [weak self] item in
-            self?.currentFilter.kind = item.flatMap { AnimalKind(rawValue: $0.id) }
-            self?.sendFilterChanged()
+        addMenuButton(defaultTitle: "種類",
+                      menuTitle: "請選擇種類",
+                      type: AnimalKind.self) { [weak self] kind in
+            self?.currentFilter.kind = kind
         }
-        menuButtons.append(kindButton)
-        
-        // 性別（撇除未知）
-        let sexItems = AnimalSex.allCases
-            .filter { $0 != .unknown }
-            .map { SingleSelectItem(id: $0.rawValue, title: $0.displaySexName()) }
-        let sexButton = SingleSelectMenuButton(defaultTitle: "性別", menuTitle: "請選擇性別", items: sexItems)
-        sexButton.onSelectionChanged = { [weak self] item in
-            self?.currentFilter.sex = item.flatMap { AnimalSex(rawValue: $0.id) }
-            self?.sendFilterChanged()
+        // 性別
+        addMenuButton(defaultTitle: "性別",
+                      menuTitle: "請選擇性別",
+                      type: AnimalSex.self) { [weak self] sex in
+            self?.currentFilter.sex = sex
         }
-        menuButtons.append(sexButton)
-
         // 年紀（撇除未知）
-        let ageItems = AnimalAge.allCases
-            .filter { $0 != .unknown }
-            .map { SingleSelectItem(id: $0.rawValue, title: $0.AgeText()) }
-        let ageButton = SingleSelectMenuButton(defaultTitle: "年紀", menuTitle: "請選擇年紀", items: ageItems)
-        ageButton.onSelectionChanged = { [weak self] item in
-            self?.currentFilter.age = item.flatMap { AnimalAge(rawValue: $0.id) }
-            self?.sendFilterChanged()
+        addMenuButton(defaultTitle: "年紀",
+                      menuTitle: "請選擇年紀",
+                      type: AnimalAge.self) { [weak self] age in
+            self?.currentFilter.age = age
         }
-        menuButtons.append(ageButton)
-        
         // 體型（撇除未知）
-        let bodyTypeItems = AnimalBodyType.allCases
-            .filter { $0 != .unknown }
-            .map { SingleSelectItem(id: $0.rawValue, title: $0.BodyTypeText()) }
-        let bodyTypeButton = SingleSelectMenuButton(defaultTitle: "體型", menuTitle: "請選擇體型", items: bodyTypeItems)
-        bodyTypeButton.onSelectionChanged = { [weak self] item in
-            self?.currentFilter.bodyType = item.flatMap { AnimalBodyType(rawValue: $0.id) }
-            self?.sendFilterChanged()
+        addMenuButton(defaultTitle: "體型",
+                      menuTitle: "請選擇體型",
+                      type: AnimalBodyType.self) { [weak self] body in
+            self?.currentFilter.bodyType = body
         }
-        menuButtons.append(bodyTypeButton)
-        
         // 地區（撇除未知）
-        let areaItems = TaiwanArea.allCases
-            .filter { $0 != .unknown }
-            .map { SingleSelectItem(id: "\($0.rawValue)", title: $0.areaName()) }
-        let areaButton = SingleSelectMenuButton(defaultTitle: "地區", menuTitle: "請選擇地區", items: areaItems)
-        areaButton.onSelectionChanged = { [weak self] item in
-            let areaID = item.flatMap { Int($0.id) }
-            self?.currentFilter.area = areaID.flatMap { TaiwanArea(rawValue: $0) }
+        addMenuButton(defaultTitle: "地區",
+                      menuTitle: "請選擇地區",
+                      type: TaiwanArea.self) { [weak self] area in
+            self?.currentFilter.area = area
+        }
+    }
+    // 將 SingleSelectable 的 enum 變成 menuButton 並且加入至 stack view
+    private func addMenuButton<Option>(
+        defaultTitle: String,
+        menuTitle: String,
+        type: Option.Type,
+        onSelectionChanged: @escaping (Option?) -> Void
+    ) where Option: SingleSelectable {
+        
+        let options = Option.allCases.filter { $0.isSelectable }
+        let items = options.map { SingleSelectItem(id: $0.selectID, title: $0.selectTitle) }
+        let button = SingleSelectMenuButton(defaultTitle: defaultTitle, menuTitle: menuTitle, items: items)
+        button.onSelectionChanged = { [weak self] item in
+            // 在這裡先比對相同 id
+            let option = item.flatMap { i in
+                options.first { $0.selectID == i.id }
+            }
+            onSelectionChanged(option)
             self?.sendFilterChanged()
         }
-        menuButtons.append(areaButton)
-        
-        menuButtons.forEach { contentStackView.addArrangedSubview($0) }
+        contentStackView.addArrangedSubview(button)
     }
 
     private func sendFilterChanged() {

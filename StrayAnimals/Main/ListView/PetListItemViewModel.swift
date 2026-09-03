@@ -46,7 +46,7 @@ final class PetListItemViewModel: Hashable {
         self.variety = "品種：" + variety
         self.sex = sex
         self.status = status
-        self.age = "年紀：" + age.AgeText()
+        self.age = "年紀：" + age.ageText()
         self.place = place
         self.imageLoader = imageLoader
     }
