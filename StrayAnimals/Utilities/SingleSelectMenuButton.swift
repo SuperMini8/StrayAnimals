@@ -32,8 +32,8 @@ class SingleSelectMenuButton: UIButton {
             rebuildMenu()
         }
     }
-    /// 選擇後觸發的 action
-    var onSelectionChanged: ((SingleSelectItem) -> Void)?
+    /// 選擇後觸發的 action（選擇曾經選過的會傳送 nil，SingleSelectItem 需要是 optional）
+    var onSelectionChanged: ((SingleSelectItem?) -> Void)?
     
     // MARK: - method
     
@@ -119,7 +119,7 @@ private extension SingleSelectMenuButton {
             selectedItem = item
         }
         
-        onSelectionChanged?(item)
+        onSelectionChanged?(selectedItem)
         
         sendActions(for: .valueChanged)
     }

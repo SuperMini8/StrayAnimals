@@ -33,6 +33,9 @@ final class ListViewModel {
     private var pets: [PetData] = []
     private(set) var petViewModels: [PetListItemViewModel] = []
     lazy private var listQuery: StrayAnimalListQuery = StrayAnimalListQuery(top: pageSize)
+    // 目前的篩選條件
+    private var currentFilter = AnimalListFilter()
+    // 目前已 load 的頁碼
     private var currentPage: Int = 1
     private var pageSize: Int = 10
     
@@ -46,6 +49,7 @@ final class ListViewModel {
         let viewdidLoad = PassthroughSubject<Void, Never>()
         let loadMore = PassthroughSubject<Void, Never>()
         let reload = PassthroughSubject<Void, Never>()
+        let filterChanged = PassthroughSubject<AnimalListFilter, Never>()
         let petSelected = PassthroughSubject<Int, Never>()
     }
     
@@ -105,6 +109,13 @@ final class ListViewModel {
                         loadNextPage()
                     }
                 }
+            }
+            .store(in: &cancellables)
+        // 更新篩選條件時，回到第一頁重新抓主要列表
+        input.filterChanged
+            .removeDuplicates()
+            .sink { [weak self] filter in
+                self?.applyFilterAndReload(filter)
             }
             .store(in: &cancellables)
         // 選擇寵物時
@@ -207,6 +218,15 @@ final class ListViewModel {
         currentPage += 1
         listQuery.setPage(currentPage, size: pageSize)
         getPetData(updateType: .append(newItems: []))
+    }
+
+    private func applyFilterAndReload(_ filter: AnimalListFilter) {
+        currentFilter = filter
+        canLoadMore = true
+        currentPage = 1
+        listQuery.applyFilter(currentFilter)
+        listQuery.setPage(currentPage, size: pageSize)
+        getPetData(updateType: .reloadList)
     }
     
     // MARK: - TodayPetItem 相關

@@ -128,4 +128,14 @@ struct StrayAnimalListQuery {
         shelterName = nil
     }
 
+    mutating func applyFilter(_ filter: AnimalListFilter) {
+        cleanAll()
+        areaID = filter.area
+        animalKind = filter.kind
+        animalVariety = filter.variety
+        animalSex = filter.sex
+        animalBodyType = filter.bodyType
+        animalAge = filter.age
+    }
+
 }

@@ -90,6 +90,10 @@ class ListViewController: UIViewController {
     }
     
     private func setBind() {
+        // 綁定類別選擇後的事件傳送
+        categoryFilterView.onFilterChanged = { [weak self] filter in
+            self?.viewModel.input.filterChanged.send(filter)
+        }
         // 接收今日更新橫滑區塊事件
         viewModel.output.todayListUpdate
             .receive(on: DispatchQueue.main)
