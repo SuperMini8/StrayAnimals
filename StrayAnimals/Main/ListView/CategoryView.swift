@@ -8,13 +8,17 @@
 import UIKit
 final class CategoryView: UIView {
     
-    private let scrollView = UIScrollView()
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
     
     private let contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .leading
-        stackView.distribution = .fill
+        stackView.distribution = .fillProportionally
         stackView.spacing = 8
         stackView.layoutMargins = UIEdgeInsets(top: 12, left: 16, bottom: 0, right: 16)
         stackView.isLayoutMarginsRelativeArrangement = true
