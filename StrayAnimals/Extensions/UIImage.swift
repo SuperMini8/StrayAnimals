@@ -19,4 +19,12 @@ extension UIImage {
         
         return UIImage(cgImage: cgImage)
     }
+    // 改變圖片大小
+    func resized(to size: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: size)
+        
+        return renderer.image { _ in
+            draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
 }

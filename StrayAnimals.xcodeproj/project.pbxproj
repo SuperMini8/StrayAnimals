@@ -35,6 +35,7 @@
 		1D7108FE2F98A4E000E15C61 /* NoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */; };
 		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
 		1D7E8D4C2FC6EF5400DE2314 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7E8D4B2FC6EF5400DE2314 /* UIButton.swift */; };
+		1D89FD15304828F00039541D /* SingleSelectMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89FD14304828F00039541D /* SingleSelectMenuButton.swift */; };
 		1D8AD1AF2F850C36005026DC /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1AE2F850C36005026DC /* CategoryItem.swift */; };
 		1D8AD1B12F850C54005026DC /* CategoryItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */; };
 		1D8AD1B32F8635D1005026DC /* PetDataMockJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */; };
@@ -46,6 +47,7 @@
 		1D91FA6E2F975EEE0071E8B3 /* InfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */; };
 		1D91FA762F976A790071E8B3 /* InfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA752F976A790071E8B3 /* InfoRowView.swift */; };
 		1D91FA782F977E510071E8B3 /* InfoColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D91FA772F977E510071E8B3 /* InfoColumnView.swift */; };
+		1D9D93823049520400F819CB /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9D93813049520400F819CB /* CategoryView.swift */; };
 		1DAFC5702F2CA2D7009369E1 /* APIEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */; };
 		1DAFC5732F2CA32B009369E1 /* EnvironmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC5722F2CA32B009369E1 /* EnvironmentManager.swift */; };
 		1DAFC5752F2CA40C009369E1 /* ServiceHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAFC5742F2CA40C009369E1 /* ServiceHost.swift */; };
@@ -100,6 +102,7 @@
 		1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCardView.swift; sourceTree = "<group>"; };
 		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		1D7E8D4B2FC6EF5400DE2314 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		1D89FD14304828F00039541D /* SingleSelectMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectMenuButton.swift; sourceTree = "<group>"; };
 		1D8AD1AE2F850C36005026DC /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemViewModel.swift; sourceTree = "<group>"; };
 		1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PetDataMockJSON.json; sourceTree = "<group>"; };
@@ -111,6 +114,7 @@
 		1D91FA6D2F975EEE0071E8B3 /* InfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCardView.swift; sourceTree = "<group>"; };
 		1D91FA752F976A790071E8B3 /* InfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
 		1D91FA772F977E510071E8B3 /* InfoColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoColumnView.swift; sourceTree = "<group>"; };
+		1D9D93813049520400F819CB /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		1DAFC56F2F2CA2D7009369E1 /* APIEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvironment.swift; sourceTree = "<group>"; };
 		1DAFC5722F2CA32B009369E1 /* EnvironmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentManager.swift; sourceTree = "<group>"; };
 		1DAFC5742F2CA40C009369E1 /* ServiceHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHost.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				1D6CFD912F752B58004ADF0E /* LoadingView.swift */,
 				1D6EA5522F90DCD200E3FA63 /* BadgeLabel.swift */,
 				1D7108F52F986AD300E15C61 /* IconTitleValueView.swift */,
+				1D89FD14304828F00039541D /* SingleSelectMenuButton.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 			children = (
 				EC4E069D2E62F5AC002B6904 /* ListViewController.swift */,
 				EC2E9EDA2EF9360A002F1E1B /* ListViewModel.swift */,
+				1D9D93813049520400F819CB /* CategoryView.swift */,
 				1D8AD1AE2F850C36005026DC /* CategoryItem.swift */,
 				1D8AD1B02F850C54005026DC /* CategoryItemViewModel.swift */,
 				EC2E9EDC2EF93797002F1E1B /* PetListItem.swift */,
@@ -446,12 +452,14 @@
 				ECF5781C2E63F83E00F5959F /* SceneDelegate.swift in Sources */,
 				EC2E9EDD2EF93797002F1E1B /* PetListItem.swift in Sources */,
 				1D6F547C2F725AED005DA616 /* UICollectionViewCell.swift in Sources */,
+				1D89FD15304828F00039541D /* SingleSelectMenuButton.swift in Sources */,
 				1D91FA782F977E510071E8B3 /* InfoColumnView.swift in Sources */,
 				1D7108FE2F98A4E000E15C61 /* NoteCardView.swift in Sources */,
 				1D6F54822F729380005DA616 /* PetListItemViewModel.swift in Sources */,
 				1D7108FA2F98862800E15C61 /* ShelterCardView.swift in Sources */,
 				1D8BAD993019CA51000771E5 /* TodayPetItemViewModel.swift in Sources */,
 				1D8BAD9D301A061000771E5 /* TodaySectionBackgroundView.swift in Sources */,
+				1D9D93823049520400F819CB /* CategoryView.swift in Sources */,
 				1D8AD1B52F8639A6005026DC /* MockLoader.swift in Sources */,
 				1DAFC5792F2CA9A6009369E1 /* URLFactory.swift in Sources */,
 				EC2E9EDB2EF9360B002F1E1B /* ListViewModel.swift in Sources */,

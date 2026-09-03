@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 // MARK: - 台灣地區
 /// 台灣地區
-enum TaiwanArea: Int, Codable {
+enum TaiwanArea: Int, Codable, CaseIterable {
     /// 02 台北市
     case taipeiCity = 2
     /// 03 新北市
@@ -279,7 +279,7 @@ enum PetShelter: Int, Codable {
 }
 // MARK: - 寵物類型
 /// 寵物類型
-enum AnimalKind: String, Codable {
+enum AnimalKind: String, Codable, CaseIterable {
     case dog = "狗"
     case cat = "貓"
     case other = "其他"
@@ -307,7 +307,7 @@ enum AnimalKind: String, Codable {
 }
 // MARK: - 寵物性別
 /// 寵物性別
-enum AnimalSex: String, Codable {
+enum AnimalSex: String, Codable, CaseIterable {
     case male = "M"
     case female = "F"
     case unknown = "N"
@@ -346,7 +346,7 @@ enum AnimalSex: String, Codable {
 }
 // MARK: - 寵物體型
 /// 寵物體型
-enum AnimalBodyType: String, Codable {
+enum AnimalBodyType: String, Codable, CaseIterable {
     case small = "SMALL"
     case medium = "MEDIUM"
     case big = "BIG"
@@ -377,7 +377,7 @@ enum AnimalBodyType: String, Codable {
 }
 // MARK: - 寵物年齡
 /// 寵物年齡
-enum AnimalAge: String, Codable {
+enum AnimalAge: String, Codable, CaseIterable {
     case child = "CHILD"
     case adult = "ADULT"
     case unknown = "UNKNOWN"
