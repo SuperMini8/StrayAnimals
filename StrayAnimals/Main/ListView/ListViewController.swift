@@ -21,12 +21,14 @@ class ListViewController: UIViewController {
     // MARK: - UI
     private let titleView: UILabel = {
         let label = UILabel()
-        label.setTextAndImage(text: "流浪動物",
+        label.setTextAndImage(text: "浪浪想找家",
                               font: FontGroup.font(.bold, .large),
                               image: UIImage.paw,
                               imageArrangement: .left)
         return label
     }()
+        
+    private lazy var categoryFilterView = CategoryView()
     
     private lazy var listCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: makeCollectionLayout())
@@ -40,10 +42,6 @@ class ListViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<ListSection, ListItem>
     private lazy var dataSource: DataSource = configureDataSource()
     // 不可以在 provider 裡建立 registration，會 crash
-    /// 類別的 Item
-    private let categoryCellRegistration = UICollectionView.CellRegistration<CategoryItem, CategoryItemViewModel> { cell, indexPath, viewModel in
-            cell.configure(with: viewModel)
-    }
     /// Today 的 Item
     private let todayPetCellRegistration = UICollectionView.CellRegistration<TodayPetItem, TodayPetItemViewModel> { cell, indexPath, viewModel in
             cell.configure(with: viewModel)
@@ -77,23 +75,21 @@ class ListViewController: UIViewController {
     private func setUI() {
         view.backgroundColor = .viewBackground
         navigationItem.titleView = titleView
+        navigationItem.backButtonDisplayMode = .minimal
         
+        view.addSubview(categoryFilterView)
+        categoryFilterView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
         view.addSubview(listCollectionView)
         listCollectionView.snp.makeConstraints { make in
-            make.top.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(categoryFilterView.snp.bottom).offset(8)
+            make.left.right.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalToSuperview()
         }
     }
     
     private func setBind() {
-        // 選擇分類後更新 UI
-        viewModel.output.setCategory
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self]  in
-                self?.applyCategoriesOnly()
-            }
-            .store(in: &cancellables)
-        
         // 接收今日更新橫滑區塊事件
         viewModel.output.todayListUpdate
             .receive(on: DispatchQueue.main)
@@ -166,13 +162,11 @@ class ListViewController: UIViewController {
 // MARK: - UICollectionView 相關
 /// List Section 的種類
 enum ListSection: Int, CaseIterable {
-    case category   // 最上方類別，橫滑
     case todayList  // 今日更新
     case petList    // 下方寵物列表，直滑
 }
 /// List Item 的種類
 enum ListItem: Hashable {
-    case category(id: Int)
     case todayList(id: Int)
     case petList(id: Int)
 }
@@ -205,14 +199,6 @@ extension ListViewController {
             guard let self else { return nil }
             
             switch item {
-            case .category(let category):
-                guard let item = viewModel.categoryViewModel.first(where: { $0.category.rawValue == category }) else { return nil }
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: self.categoryCellRegistration,
-                    for: indexPath,
-                    item: item
-                )
-                
             case .todayList(let pet):
                 guard let item = viewModel.todayPetsViewModels.first(where: { $0.id == pet }) else { return nil }
                 return collectionView.dequeueConfiguredReusableCell(
@@ -253,8 +239,6 @@ extension ListViewController {
             else { return nil }
             
             switch section {
-            case .category:
-                return self.makeCategorySection()
             case .todayList:
                 return self.makeTodayPetSection()
             case .petList:
@@ -278,36 +262,6 @@ extension ListViewController {
             return ListSection(rawValue: index)
         }
         return sections[index]
-    }
-    /// 類別的 Layout
-    private func makeCategorySection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            // estimated 預估值，absolute 固定值，fractionalWidth 相對父容器寬度的比例
-            widthDimension: .estimated(80),
-            heightDimension: .estimated(36)
-        )
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(80),
-            heightDimension: .estimated(36)
-        )
-        // 這裡一個 group 只放一個 item，所以 item 與 group 同大小
-        // .horizontal 這個 group 為 水平排列
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        
-        let section = NSCollectionLayoutSection(group: group)
-        // 與 Collection View 主要滑行方向垂直 ex: CV 直滑此 section 可以設定橫滑
-        // 預設值為 .none（不垂直的意思）.continuous 垂直後平順的滑
-        section.orthogonalScrollingBehavior = .continuous
-        // group 與 group 之間的間距
-        section.interGroupSpacing = 8
-        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
-        
-        return section
     }
     /// today 的 Layout
     private func makeTodayPetSection() -> NSCollectionLayoutSection {
@@ -404,11 +358,8 @@ extension ListViewController {
         var snapshot = Snapshot()
         let todayItems = viewModel.todayPetsViewModels
         // 今日更新沒有資料時，不加入 todayList section；Header 和背景色也就不會先顯示
-        let sections: [ListSection] = todayItems.isEmpty ? [.category, .petList] : [.category, .todayList, .petList]
+        let sections: [ListSection] = todayItems.isEmpty ? [.petList] : [.todayList, .petList]
         snapshot.appendSections(sections)
-        
-        let categoryItems = viewModel.categoryViewModel
-        snapshot.appendItems(categoryItems.map { ListItem.category(id: $0.category.rawValue) }, toSection: .category)
         
         if sections.contains(.todayList) {
             // 只有 todayList section 存在時，才可以把 today item append 進去
@@ -454,12 +405,6 @@ extension ListViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
 
-    /// 只更新分類
-    private func applyCategoriesOnly() {
-        var snapshot = dataSource.snapshot()
-        snapshot.reconfigureItems(viewModel.categoryViewModel.map { ListItem.category(id: $0.category.rawValue) })
-        dataSource.apply(snapshot, animatingDifferences: true)
-    }
     /// 加入新的 Pet Data
     private func applyMorePetList(newPetItems: [PetListItemViewModel]) {
         var snapshot = dataSource.snapshot()
@@ -476,9 +421,6 @@ extension ListViewController: UICollectionViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
         switch item {
-        case .category(let id):
-            guard let category = ListCategory(rawValue: id) else { return }
-            viewModel.input.categorySelected.send(category)
         case .todayList(let id):
             viewModel.input.petSelected.send(id)
         case .petList(let id):

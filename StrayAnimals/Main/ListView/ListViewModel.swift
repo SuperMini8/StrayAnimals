@@ -23,11 +23,7 @@ final class ListViewModel {
     // 網路工具
     private let webService: APIClientProtocol
     private let imageLoader: ImageLoading
-    
-    // 類別
-    private(set) var categoryViewModel: [CategoryItemViewModel] = []
-    private(set) var currentCategory: ListCategory = .all
-    
+        
     // 頁面資料狀態
     // 上面今日更新的 List 原始資料，點擊 TodayCell 時會用它進詳細頁
     private var todayPets: [PetData] = []
@@ -50,7 +46,6 @@ final class ListViewModel {
         let viewdidLoad = PassthroughSubject<Void, Never>()
         let loadMore = PassthroughSubject<Void, Never>()
         let reload = PassthroughSubject<Void, Never>()
-        let categorySelected = PassthroughSubject<ListCategory, Never>()
         let petSelected = PassthroughSubject<Int, Never>()
     }
     
@@ -59,8 +54,6 @@ final class ListViewModel {
     // MARK: - Output
     struct Output {
         // PassthroughSubject 傳送單一「事件」
-        /// 更新分類畫面 (舊分類, 新分類)
-        let setCategory = PassthroughSubject<Void, Never>()
         // 今日更新橫滑區塊重整
         let todayListUpdate = PassthroughSubject<Void, Never>()
         // 下方主要列表重整或載入下一頁
@@ -87,7 +80,6 @@ final class ListViewModel {
         // 當 viewController 進到 viewDidLoad 狀態，就去 load data
         input.viewdidLoad
             .sink { [weak self] in
-                self?.loadCategoryList()
                 self?.getTodayPetData()
                 self?.getPetData(updateType: .reloadList)
             }
@@ -113,12 +105,6 @@ final class ListViewModel {
                         loadNextPage()
                     }
                 }
-            }
-            .store(in: &cancellables)
-        // 選擇分類時
-        input.categorySelected
-            .sink { [weak self] kind in
-                self?.selectedCategoryAndUpdatedData(kind)
             }
             .store(in: &cancellables)
         // 選擇寵物時
@@ -221,24 +207,6 @@ final class ListViewModel {
         currentPage += 1
         listQuery.setPage(currentPage, size: pageSize)
         getPetData(updateType: .append(newItems: []))
-    }
-    
-    // MARK: - Category 相關
-    func loadCategoryList() {
-        categoryViewModel = ListCategory.allCases.compactMap { CategoryItemViewModel(categoryType: $0, isSelected: $0 == currentCategory) }
-    }
-    
-    func selectedCategoryAndUpdatedData(_ category: ListCategory) {
-        // 先更新分類狀態
-        currentCategory = category
-        loadCategoryList()
-        output.setCategory.send()
-        // 再請求資料
-        canLoadMore = true
-        listQuery.setCategory(category)
-        currentPage = 1
-        listQuery.setPage(currentPage, size: pageSize)
-        getPetData(updateType: .reloadList)
     }
     
     // MARK: - TodayPetItem 相關

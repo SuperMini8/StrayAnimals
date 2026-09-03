@@ -1,4 +1,4 @@
-//
+ //
 //  StrayAnimalListQuery.swift
 //  StrayAnimals
 //
@@ -106,19 +106,6 @@ struct StrayAnimalListQuery {
         }
         top = size
         skip = (page - 1) * size
-    }
-    /// 選擇分類
-    mutating func setCategory(_ category: ListCategory) {
-        // 現階段只能選擇一種分類，所以要先清除所有記憶
-        cleanAll()
-        switch category {
-        case .all:
-            break
-        case .kindDog, .kindCat, .kindOther:
-            animalKind = AnimalKind(rawValue: category.queryValue())
-        case .ageChild, .ageAdult:
-            animalAge = AnimalAge(rawValue: category.queryValue())
-        }
     }
     /// 清除指定搜尋
     mutating func cleanAll() {
