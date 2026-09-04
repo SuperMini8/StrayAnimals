@@ -74,7 +74,7 @@ struct InfoRowViewData: Hashable {
 /// 收容所卡片
 struct ShelterCardViewData {
     let name: String
-    let adderss: String
+    let address: String
     let phone: String
 }
 /// 備註卡片

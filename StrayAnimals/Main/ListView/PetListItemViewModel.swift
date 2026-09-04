@@ -42,7 +42,7 @@ final class PetListItemViewModel: Hashable {
         self.id = id
         self.imageURL = imageURL
         self.kindText = "類型：" + kind.rawValue
-        self.kindImage = kind.defaultIamge()
+        self.kindImage = kind.defaultImage()
         self.variety = "品種：" + variety
         self.sex = sex
         self.status = status

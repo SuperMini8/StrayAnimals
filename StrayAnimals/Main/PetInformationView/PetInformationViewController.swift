@@ -31,7 +31,7 @@ final class PetInformationViewController: UIViewController {
         return imageView
     }()
     
-    private let summartCardView = SummaryCardView()
+    private let summaryCardView = SummaryCardView()
     private let statusCardView = StatusCardView()
     private let infoCardView = InfoCardView()
     private let shelterCardView = ShelterCardView()
@@ -103,7 +103,7 @@ final class PetInformationViewController: UIViewController {
             make.top.equalTo(imageView.snp.bottom)
             make.left.right.bottom.equalToSuperview()
         }
-        contentStackView.addArrangedSubview(summartCardView)
+        contentStackView.addArrangedSubview(summaryCardView)
         contentStackView.addArrangedSubview(statusCardView)
         contentStackView.addArrangedSubview(infoCardView)
         contentStackView.addArrangedSubview(shelterCardView)
@@ -185,7 +185,7 @@ final class PetInformationViewController: UIViewController {
         
         imageView.image = viewData.image
         
-        summartCardView.configure(
+        summaryCardView.configure(
             title: viewData.title,
             subtitle: viewData.subtitle,
             badges: viewData.badges

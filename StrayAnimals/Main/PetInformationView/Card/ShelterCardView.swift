@@ -32,12 +32,12 @@ final class ShelterCardView: PetInfoCardContainerView {
             )
         }
         
-        shelterAddressLabel.isHidden = viewData.adderss.isEmpty
-        if viewData.adderss.isEmpty != true {
+        shelterAddressLabel.isHidden = viewData.address.isEmpty
+        if viewData.address.isEmpty != true {
             shelterAddressLabel.configure(
                 icon: UIImage.location,
                 titleText: nil,
-                valueText: viewData.adderss
+                valueText: viewData.address
             )
         }
         

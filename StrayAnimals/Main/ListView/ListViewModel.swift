@@ -45,15 +45,15 @@ final class ListViewModel {
     private(set) var canLoadMore: Bool = true
     
     // MARK: - Input
-    struct Intput {
-        let viewdidLoad = PassthroughSubject<Void, Never>()
+    struct Input {
+        let viewDidLoad = PassthroughSubject<Void, Never>()
         let loadMore = PassthroughSubject<Void, Never>()
         let reload = PassthroughSubject<Void, Never>()
         let filterChanged = PassthroughSubject<AnimalListFilter, Never>()
         let petSelected = PassthroughSubject<Int, Never>()
     }
     
-    let input = Intput()
+    let input = Input()
     
     // MARK: - Output
     struct Output {
@@ -82,7 +82,7 @@ final class ListViewModel {
     
     private func bind() {
         // 當 viewController 進到 viewDidLoad 狀態，就去 load data
-        input.viewdidLoad
+        input.viewDidLoad
             .sink { [weak self] in
                 self?.getTodayPetData()
                 self?.getPetData(updateType: .reloadList)
@@ -177,7 +177,7 @@ final class ListViewModel {
                     print("getPetData Request finished. Page is: \(self.currentPage)")
                 case .failure(let error):
                     print("getPetData Request failed with: \(error)")
-                    self.output.errorMessage.send(error.errorMassage())
+                    self.output.errorMessage.send(error.errorMessage())
                     if case .append = updateType {
                         canLoadMore = true
                         currentPage = max(1, currentPage - 1)

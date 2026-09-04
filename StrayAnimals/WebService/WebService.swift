@@ -27,7 +27,7 @@ enum WebServiceError: Error {
     case unknown(Error)
     
     /// show 給 alert 用的
-    func errorMassage() -> String {
+    func errorMessage() -> String {
         switch self {
         case .transportError(let error):
             return error.localizedDescription

@@ -294,7 +294,7 @@ enum AnimalKind: String, Codable, CaseIterable {
         try container.encode(rawValue)
     }
     
-    func defaultIamge() -> UIImage? {
+    func defaultImage() -> UIImage? {
         switch self {
         case .dog:
             return UIImage.dog

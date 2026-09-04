@@ -69,7 +69,7 @@ class ListViewController: UIViewController {
         setNavBarAppearance()
         setUI()
         setBind()
-        viewModel.input.viewdidLoad.send()
+        viewModel.input.viewDidLoad.send()
     }
     
     private func setUI() {

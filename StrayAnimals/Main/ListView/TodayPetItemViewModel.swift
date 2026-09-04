@@ -34,7 +34,7 @@ final class TodayPetItemViewModel: Hashable {
         self.id = id
         self.imageURL = imageURL
         self.areaName = areaName
-        self.kindImage = kind.defaultIamge()
+        self.kindImage = kind.defaultImage()
         self.imageLoader = imageLoader
     }
     

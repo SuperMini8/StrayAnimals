@@ -32,7 +32,7 @@ final class PetInformationViewModel {
     }
     
     func viewDidLoad() {
-        viewData = makeViewData(form: petData)
+        viewData = makeViewData(from: petData)
         loadImageIfNeeded()
     }
     /// 輸出電話的 URL
@@ -53,9 +53,9 @@ final class PetInformationViewModel {
         return URLFactory().makeURL(for: AppleMap(addressQuery: petData.shelterAddress))
     }
     /// 將 Data 轉換成 View Data
-    func makeViewData(form data: PetData) -> PetInformationViewData {
+    func makeViewData(from data: PetData) -> PetInformationViewData {
         // 先給預設的圖
-        let defaultImage = data.animalKind.defaultIamge()
+        let defaultImage = data.animalKind.defaultImage()
         
         let title: String = {
             return [
@@ -121,7 +121,7 @@ final class PetInformationViewModel {
         
         let shelter = ShelterCardViewData(
             name: data.shelterName,
-            adderss: data.shelterAddress,
+            address: data.shelterAddress,
             phone: data.shelterTel
         )
         
