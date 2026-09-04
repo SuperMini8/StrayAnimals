@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 // MARK: - 台灣地區
 /// 台灣地區
 enum TaiwanArea: Int, Codable, CaseIterable {
