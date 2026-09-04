@@ -293,18 +293,6 @@ enum AnimalKind: String, Codable, CaseIterable {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }
-    
-    func defaultImage() -> UIImage? {
-        switch self {
-        case .dog:
-            return UIImage.dog
-        case .cat:
-            return UIImage.cat
-        case .other:
-            return UIImage.paw
-        }
-    }
-    
 }
 // MARK: - 寵物性別
 /// 寵物性別
@@ -321,29 +309,6 @@ enum AnimalSex: String, Codable, CaseIterable {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }
-    
-    func sexImage() -> UIImage {
-        switch self {
-        case .male:
-            return UIImage.gender
-        case .female:
-            return UIImage.female
-        case .unknown:
-            return UIImage.questionMark
-        }
-    }
-    
-    func displaySexName() -> String {
-        switch self {
-        case .male:
-            return "公"
-        case .female:
-            return "母"
-        case .unknown:
-            return "未知"
-        }
-    }
-    
 }
 // MARK: - 寵物體型
 /// 寵物體型
@@ -361,20 +326,6 @@ enum AnimalBodyType: String, Codable, CaseIterable {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }
-    
-    func bodyTypeText() -> String {
-        switch self {
-        case .small:
-            return "小型"
-        case .medium:
-            return "中型"
-        case .big:
-            return "大型"
-        case .unknown:
-            return "未知"
-        }
-    }
-    
 }
 // MARK: - 寵物年齡
 /// 寵物年齡
@@ -390,17 +341,6 @@ enum AnimalAge: String, Codable, CaseIterable {
     func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
-    }
-    
-    func ageText() -> String {
-        switch self {
-        case .child:
-            return "幼年"
-        case .adult:
-            return "成年"
-        case .unknown:
-            return "未知"
-        }
     }
 }
 // MARK: - 寵物絕育狀態
@@ -418,19 +358,6 @@ enum AnimalSterilization: String, Codable {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
     }
-    
-    func sterilizationText() -> String {
-        var text: String = ""
-        switch self {
-        case .sterilized:
-            text = "已絕育"
-        case .notSterilized:
-            text = "尚未絕育"
-        case .unknown:
-            text = "未知"
-        }
-        return text
-    }
 }
 // MARK: - 狂犬病施打狀態
 /// 狂犬病施打狀態
@@ -446,17 +373,6 @@ enum AnimalBacterinStatus: String, Codable {
     func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
-    }
-    
-    func statusText() -> String {
-        switch self {
-        case .vaccinated:
-            return "已施打"
-        case .notVaccinated:
-            return "尚未施打"
-        case .unknown:
-            return "未知"
-        }
     }
 }
 // MARK: - 寵物狀態
@@ -475,38 +391,5 @@ enum AnimalStatus: String, Codable {
     func encode(to encoder: any Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(rawValue)
-    }
-    
-    func statusText() -> String {
-        switch self {
-        case .none:
-            return "未公告"
-        case .openAdoption:
-            return "開放認養"
-        case .adopted:
-            return "已認養"
-        case .other:
-            return "其他"
-        case .dead:
-            return "死亡"
-        }
-    }
-    
-    func backgroundColor() -> UIColor {
-        switch self {
-        case .openAdoption:
-            return .openAdoptionBackground
-        default:
-            return .statusNormalBackground
-        }
-    }
-    
-    func textColor() -> UIColor {
-        switch self {
-        case .openAdoption:
-            return .openAdoptionText
-        default:
-            return .statusNormalText
-        }
-    }
+    }    
 }
