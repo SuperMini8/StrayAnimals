@@ -34,6 +34,7 @@
 		1D7108FC2F9895CA00E15C61 /* PetInfoCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108FB2F9895CA00E15C61 /* PetInfoCardContainerView.swift */; };
 		1D7108FE2F98A4E000E15C61 /* NoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */; };
 		1D71A8472F1F6C8C00C9149C /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */; };
+		1D7A1923307641F500CE64F1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7A1922307641F500CE64F1 /* MainTabBarController.swift */; };
 		1D7E8D4C2FC6EF5400DE2314 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7E8D4B2FC6EF5400DE2314 /* UIButton.swift */; };
 		1D89FD15304828F00039541D /* SingleSelectMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D89FD14304828F00039541D /* SingleSelectMenuButton.swift */; };
 		1D8AD1B32F8635D1005026DC /* PetDataMockJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */; };
@@ -101,6 +102,7 @@
 		1D7108FB2F9895CA00E15C61 /* PetInfoCardContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoCardContainerView.swift; sourceTree = "<group>"; };
 		1D7108FD2F98A4E000E15C61 /* NoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCardView.swift; sourceTree = "<group>"; };
 		1D71A8462F1F6C8C00C9149C /* WebServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
+		1D7A1922307641F500CE64F1 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1D7E8D4B2FC6EF5400DE2314 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		1D89FD14304828F00039541D /* SingleSelectMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectMenuButton.swift; sourceTree = "<group>"; };
 		1D8AD1B22F8635D1005026DC /* PetDataMockJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PetDataMockJSON.json; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 		ECDB429A2EEA94F900AEB3FB /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				1D7A1922307641F500CE64F1 /* MainTabBarController.swift */,
 				1D6CFD932F75362D004ADF0E /* ListView */,
 				1D6CFD962F75365A004ADF0E /* PetInformationView */,
 			);
@@ -420,6 +423,7 @@
 				1D3630772F188FBE0071D131 /* FontGroup.swift in Sources */,
 				1DAFC57B2F2CB453009369E1 /* StrayAnimalListQuery.swift in Sources */,
 				1D67ABD02F8CEB2B00EFBEC6 /* PetInformationViewModel.swift in Sources */,
+				1D7A1923307641F500CE64F1 /* MainTabBarController.swift in Sources */,
 				1D6CFD922F752B58004ADF0E /* LoadingView.swift in Sources */,
 				1D91FA6E2F975EEE0071E8B3 /* InfoCardView.swift in Sources */,
 				1D6CFD952F753656004ADF0E /* PetInformationViewController.swift in Sources */,
