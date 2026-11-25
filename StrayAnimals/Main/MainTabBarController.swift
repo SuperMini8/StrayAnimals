@@ -34,7 +34,7 @@ final class MainTabBarController: UITabBarController {
     ) -> UIViewController {
         let nav = UINavigationController(rootViewController: rootVC)
         
-        navigationController?.tabBarItem = UITabBarItem(
+        nav.tabBarItem = UITabBarItem(
             title: title,
             image: image,
             selectedImage: selectedImage
